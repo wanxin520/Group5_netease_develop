@@ -3,7 +3,6 @@ import { computed, defineProps } from "vue";
 import Banner from "@/views/Home/children/Banner.vue";
 import MenuPage from "@/views/Home/children/MenuPage.vue";
 
-
 const blockTypeComponentMap = {
   HOMEPAGE_BANNER: Banner, // 轮播图
   HOMEPAGE_BLOCK_OLD_DRAGON_BALL: MenuPage, // 圆形图标
@@ -26,7 +25,7 @@ const propsData = computed(() => {
       }));
     // 轮播图
     case "HOMEPAGE_BANNER":
-      return props.data.extInfo.banners
+      return props.data.extInfo.banners;
     default:
       return null;
   }
@@ -37,6 +36,9 @@ const propsData = computed(() => {
 
 <template>
   <div>
-    <component :is="blockTypeComponentMap[props.data.blockCode]" :data="propsData"></component>
+    <component
+      :is="blockTypeComponentMap[props.data.blockCode]"
+      :data="propsData"
+    ></component>
   </div>
 </template>
