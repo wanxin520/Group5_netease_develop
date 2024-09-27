@@ -17,7 +17,7 @@ const { data: pageData } = useRequest(getHomePageData)
         </header>
         <div class="content">
             <BlockType v-for="item in pageData" :data="item" :key="item.blockCode" class="min-h-[100%]"></BlockType>
-            <!-- <div style="height: 300px;"></div> -->
+            <div style="height: 50px;"></div>
         </div>
         <footer class="fixed bottom-0 left-0 right-0 z-index-1008">
             <Bottom></Bottom>
