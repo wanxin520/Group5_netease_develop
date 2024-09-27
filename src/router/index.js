@@ -1,3 +1,7 @@
+/**
+ * @注意 ：此页面的路由配置请勿改动
+*/
+
 import { createWebHistory, createRouter } from "vue-router";
 import routes from "./routes";
 
