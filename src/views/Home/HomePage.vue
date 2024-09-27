@@ -1,7 +1,9 @@
 <script setup>
 import { getHomePageData } from "@/api";
 import { useRequest } from "vue-request";
+import TopSearch from "./children/TopSearch.vue";
 import BlockType from "./children/BlockType.vue";
+import Bottom from "./children/Bottom.vue";
 
 // useRequest传入的是一个返回Promise值的请求函数,data就是返回的数据
 const { data: pageData } = useRequest(getHomePageData)
@@ -10,10 +12,16 @@ const { data: pageData } = useRequest(getHomePageData)
 
 <template>
     <div class="h-[100vh]">
+        <header>
+            <TopSearch></TopSearch>
+        </header>
         <div class="content">
             <BlockType v-for="item in pageData" :data="item" :key="item.blockCode" class="min-h-[100%]"></BlockType>
-            <div style="height: 300px;"></div>
+            <!-- <div style="height: 300px;"></div> -->
         </div>
+        <footer>
+            <Bottom></Bottom>
+        </footer>
     </div>
 </template>
 <style scoped>
