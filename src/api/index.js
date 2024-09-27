@@ -15,7 +15,7 @@ import request from "./request";
 export const getHomePageData = async () => {
   const [error, res] = await to(request.get("/homepage/block/page"));
   if (error) return console.log("请求出错！");
-  console.log(res);
+  // console.log(res);
   return res.data.data.blocks;
 };
 
