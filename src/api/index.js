@@ -195,8 +195,8 @@ export const checkQRLoginIsSuccessful = async (data) => {
 /* 
 接口地址 : /register/anonimous
 */
-export const LoginByTourist = async (data) => {
-  const [error, res] = await to(request.post("/register/anonimous"), data);
+export const loginByTourist = async () => {
+  const [error, res] = await to(request.get("/register/anonimous"));
   if (error) return console.log("请求出错！");
   return res.data;
 };

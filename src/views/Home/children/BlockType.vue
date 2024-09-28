@@ -9,6 +9,7 @@ import BroadCast from "./BroadCast.vue";
 import YunCunProduced from "./YunCunProduced.vue";
 import RCMDStyle from "./RCMDStyle.vue";
 import RCMDVoiceList from "./RCMDVoiceList.vue";
+import HotTopic from "./HotTopic.vue";
 
 const blockTypeComponentMap = {
   HOMEPAGE_BANNER: Banner, // 轮播图
@@ -17,7 +18,7 @@ const blockTypeComponentMap = {
   HOMEPAGE_BLOCK_STYLE_RCMD: RCMDStyle, // 为你定制精选歌曲
   HOMEPAGE_BLOCK_MGC_PLAYLIST: MGCPlayList, //网易云音乐的雷达歌单
   HOMEPAGE_VOICELIST_RCMD: RCMDVoiceList,  // 热门播客
-  // HOMEPAGE_BLOCK_HOT_TOPIC: HotTopic, //  热门话题
+  HOMEPAGE_BLOCK_HOT_TOPIC: HotTopic, //  热门话题
   // HOMEPAGE_BLOCK_NEW_HOT_COMMENT: HotComment, // 热评歌曲
   HOMEPAGE_BLOCK_OFFICIAL_PLAYLIST: OfficialPlayList, //专属场景歌单
   // HOMEPAGE_BLOCK_VIDEO_PLAYLIST: VideoPlayList, // 视频合辑
