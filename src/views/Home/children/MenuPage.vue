@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps } from "vue";
-import router from "@/router";
+import { useRouter } from "vue-router";
 
 const props = defineProps({
     data: {
@@ -8,6 +8,41 @@ const props = defineProps({
         required: true,
     },
 });
+// console.log(props.data);
+
+const router = useRouter()
+
+const isClicked = (name) => {
+    switch (name) {
+        case "每日推荐":
+            router.push({ name: "recommend" })
+            break
+        case "私人FM":
+            router.push({ name: "personalfm" })
+            break
+        case "歌单":
+            router.push({ name: "personalized" })
+            break
+        case "排行榜":
+            router.push({ name: "toplist" })
+            break
+        case "有声书":
+            router.push({ name: "radiostation" })
+            break
+        case "数字专辑":
+            router.push({ name: "albumList" })
+            break
+        case "关注新歌":
+            router.push({ name: "concernartist" })
+            break
+        case "收藏家":
+            router.push({ name: "collector" })
+
+        default:
+            return
+    }
+}
+
 </script>
 
 <template>
@@ -15,7 +50,7 @@ const props = defineProps({
         <div class="w-[100vw] flex justify-center items-center">
             <van-swipe class="my-swipe" :width="90" :height="80" :stop-propagation="false" :loop="false"
                 :show-indicators="false">
-                <van-swipe-item @click="isClicked(index)" v-for="(item, index) in props.data" :key="item.name">
+                <van-swipe-item @click="isClicked(item.name)" v-for="(item, index) in props.data" :key="item.name">
                     <div class="flex flex-col items-center">
                         <div class="">
                             <img class="filter w-[2.6rem]" :src="item.iconUrl" alt="">

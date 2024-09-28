@@ -11,21 +11,25 @@ export default [
     name: "login",
     children: [
       { path: "/login", redirect: "/login/phone" },
+      // 二维码登录
       {
         path: "qrcode",
         name: "qrcode",
         component: () => import("@/views/login/LoginByQRCode.vue"),
       },
+      // 手机登录
       {
         path: "phone",
         name: "phone",
         component: () => import("@/views/login/LoginByPhone.vue"),
       },
+      // 邮箱登录
       {
         path: "email",
         name: "email",
         component: () => import("@/views/login/LoginByEmail.vue"),
       },
+      // 游客登录
       {
         path: "tourist",
         name: "tourist",
@@ -38,7 +42,7 @@ export default [
   {
     path: "/homepage",
     // 主页圆形图标菜单栏的子路由
-    children:[
+    children: [
       // 主页
       { path: "", name: "homepage", component: () => import("@/views/Home/HomePage.vue") },
       // 每日推荐
@@ -58,9 +62,9 @@ export default [
       // 收藏家
       { path: "collector", name: "collector", component: () => import("@/views/Home/menu/Collector.vue") }
     ]
-    
+
   },
 
   // 主页圆形图标菜单子路由
-  
+
 ];
