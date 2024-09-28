@@ -160,8 +160,8 @@ export const loginByEmail = async (data) => {
 说明: 调用此接口可生成一个 key
 接口地址 : /login/qr/key
 */
-export const getQRCodeKey = async () => {
-  const [error, res] = await to(request.get("/login/qr/key"));
+export const getQRCodeKey = async (data) => {
+  const [error, res] = await to(request.post("/login/qr/key"),data);
   if (error) return console.log("请求出错！");
   return res.data;
 };
@@ -173,8 +173,8 @@ export const getQRCodeKey = async () => {
 接口地址 : /login/qr/create
 调用例子 : /login/qr/create?key=xxx
 */
-export const createQRCodeIMG = async () => {
-  const [error, res] = await to(request.get("/login/qr/create"));
+export const createQRCodeIMG = async (data) => {
+  const [error, res] = await to(request.post(`/login/qr/create?key=${data.key}&qrimg=${data.qrimg}&timestamp=${data.timestamp}`));
   if (error) return console.log("请求出错！");
   return res.data;
 };
@@ -187,6 +187,7 @@ export const createQRCodeIMG = async () => {
 */
 export const checkQRLoginIsSuccessful = async (data) => {
   const [error, res] = await to(request.post("/login/qr/check"), data);
+  console.log(res);
   if (error) return console.log("请求出错！");
   return res.data;
 };
