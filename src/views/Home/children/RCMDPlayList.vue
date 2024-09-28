@@ -8,7 +8,7 @@ const props = defineProps({
   data: {},
 })
 // console.log(props.data.resourceExtInfo[0].playCount);
-console.log(props.data.children);
+// console.log(props.data.children);
 const isChecked = (id) => {
   console.log(id);
   let query = { id: id }
