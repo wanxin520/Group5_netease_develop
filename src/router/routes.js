@@ -1,5 +1,10 @@
 /**
  * @注意 ：此页面的路由配置请勿改动
+ * @注意 ：此页面的路由配置请勿改动
+ * @注意 ：此页面的路由配置请勿改动
+ * @注意 ：此页面的路由配置请勿改动
+ * @注意 ：此页面的路由配置请勿改动
+ * @注意 ：此页面的路由配置请勿改动
  */
 
 export default [
@@ -12,29 +17,13 @@ export default [
     children: [
       { path: "/login", redirect: "/login/phone" },
       // 二维码登录
-      {
-        path: "qrcode",
-        name: "qrcode",
-        component: () => import("@/views/login/LoginByQRCode.vue"),
-      },
+      { path: "qrcode", name: "qrcode", component: () => import("@/views/Login/LoginByQRCode.vue") },
       // 手机登录
-      {
-        path: "phone",
-        name: "phone",
-        component: () => import("@/views/login/LoginByPhone.vue"),
-      },
+      { path: "phone", name: "phone", component: () => import("@/views/Login/LoginByPhone.vue") },
       // 邮箱登录
-      {
-        path: "email",
-        name: "email",
-        component: () => import("@/views/login/LoginByEmail.vue"),
-      },
+      { path: "email", name: "email", component: () => import("@/views/Login/LoginByEmail.vue"), },
       // 游客登录
-      {
-        path: "tourist",
-        name: "tourist",
-        component: () => import("@/views/login/LoginByTourist.vue"),
-      },
+      { path: "tourist", name: "tourist", component: () => import("@/views/Login/LoginByTourist.vue") },
     ],
   },
 

@@ -126,7 +126,6 @@ const propsData = computed(() => {
   }
   return [];
 });
-console.log(props.data);
 </script>
 
 <template>
