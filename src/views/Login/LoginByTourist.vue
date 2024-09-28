@@ -27,7 +27,7 @@ watch(data, () => {
   // console.log(data.value);
   // 登陆成功之后将返回的用户数据以及登录cookie储存在userStore里面
   userStore.setUserInfo(data.value)
-  console.log(userStore.userInfo.cookie);
+  // console.log(userStore.userInfo.cookie);
   // 同时还将用户数据储存在localForeage里面
   localforage.setItem("userInfo", data.value)
   // localforage.getItem("userInfo")
