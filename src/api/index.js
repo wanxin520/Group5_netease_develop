@@ -1,10 +1,10 @@
 /**
  * @注意 :
  *  在开发过程中，此文件的 模块导入 以及 方法命名在 非必要情况下不要改动
- * 
+ *
  *  如若需要改动请在微信群里进行说明
- * 
-*/
+ *
+ */
 import to from "await-to-js";
 import request from "./request";
 
@@ -32,7 +32,7 @@ export const cloudsearch = async (data) => {
   const [error, res] = await to(request.post("/cloudsearch"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 默认搜索关键词
 /* 
@@ -43,7 +43,7 @@ export const cloudsearchDefault = async (data) => {
   const [error, res] = await to(request.get("/search/default"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 热搜列表(简略)
 /* 
@@ -55,7 +55,7 @@ export const getSearchHot = async (data) => {
   const [error, res] = await to(request.get("/search/hot"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 热搜列表(详细)
 /* 
@@ -67,7 +67,7 @@ export const getSearchHotDetail = async (data) => {
   const [error, res] = await to(request.get("/search/hot/detail"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 搜索建议
 /* 
@@ -81,7 +81,7 @@ export const searchSuggest = async (data) => {
   const [error, res] = await to(request.post("/search/suggest"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 搜索多重匹配
 /* 
@@ -94,8 +94,7 @@ export const searchMultimatch = async (data) => {
   const [error, res] = await to(request.post("/search/multimatch"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
-
+};
 
 // 手机登录
 /**
@@ -108,7 +107,7 @@ export const loginByPhone = async (data) => {
   const [error, res] = await to(request.post("/login/cellphone"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 发送验证码
 /**
@@ -121,8 +120,7 @@ export const sendValidCode = async (data) => {
   const [error, res] = await to(request.post("/captcha/sent"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
-
+};
 
 // 验证验证码
 /* 
@@ -138,7 +136,7 @@ export const verifyCaptcha = async (data) => {
   const [error, res] = await to(request.post("/captcha/verify"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 邮箱登录
 /* 
@@ -154,7 +152,7 @@ export const loginByEmail = async (data) => {
   const [error, res] = await to(request.post("/login"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 二维码登录
 // 1. 二维码 key 生成接口
@@ -166,7 +164,7 @@ export const getQRCodeKey = async () => {
   const [error, res] = await to(request.get("/login/qr/key"));
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 2. 二维码生成接口
 /* 
@@ -179,7 +177,7 @@ export const createQRCodeIMG = async () => {
   const [error, res] = await to(request.get("/login/qr/create"));
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 3. 二维码检测扫码状态接口
 /* 
@@ -191,17 +189,17 @@ export const checkQRLoginIsSuccessful = async (data) => {
   const [error, res] = await to(request.post("/login/qr/check"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 游客登录
 /* 
 接口地址 : /register/anonimous
 */
-export const loginByTourist = async (data) => {
+export const LoginByTourist = async (data) => {
   const [error, res] = await to(request.post("/register/anonimous"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 刷新登录状态
 /* 
@@ -212,7 +210,7 @@ export const refreshLoginStatus = async (data) => {
   const [error, res] = await to(request.post("/login/refresh"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 获取登录状态
 /* 
@@ -223,7 +221,7 @@ export const getLoginStatus = async (data) => {
   const [error, res] = await to(request.post("/login/status"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 获取用户详情
 /* 
@@ -236,7 +234,7 @@ export const getUserDetail = async (data) => {
   const [error, res] = await to(request.post("/user/detail"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 获取账号信息
 /* 
@@ -248,7 +246,7 @@ export const getUserAccount = async (data) => {
   const [error, res] = await to(request.get("/user/account"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 获取用户信息 , 歌单，收藏，mv, dj 数量
 /* 
@@ -260,7 +258,7 @@ export const getUserSubcount = async (data) => {
   const [error, res] = await to(request.get("/user/subcount"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 获取用户等级信息
 /* 
@@ -271,8 +269,7 @@ export const getUserLevel = async (data) => {
   const [error, res] = await to(request.get("/user/level"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
-
+};
 
 // 获取每日推荐歌单
 /* 
@@ -284,7 +281,7 @@ export const getRecommendList = async (data) => {
   const [error, res] = await to(request.get("/recommend/resource"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 获取每日推荐歌曲
 /* 
@@ -296,7 +293,7 @@ export const getRecommendSongs = async (data) => {
   const [error, res] = await to(request.get("/recommend/songs"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 私人 FM
 /* 
@@ -308,7 +305,7 @@ export const getPersonalFM = async (data) => {
   const [error, res] = await to(request.post("/personal_fm"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 歌单(网友精选碟)
 /* 
@@ -324,7 +321,7 @@ export const getTopPlayList = async (data) => {
   const [error, res] = await to(request.post("/top/playlist"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 精品歌单标签列表
 /* 
@@ -333,10 +330,13 @@ export const getTopPlayList = async (data) => {
 调用例子 : /playlist/highquality/tags 
 */
 export const getHighqualityTag = async (data) => {
-  const [error, res] = await to(request.post("/playlist/highquality/tags"), data);
+  const [error, res] = await to(
+    request.post("/playlist/highquality/tags"),
+    data
+  );
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 获取精品歌单
 /* 
@@ -348,10 +348,13 @@ before: 分页参数,取上一页最后一个歌单的 updateTime 获取下一�
 调用例子 : /top/playlist/highquality?before=1503639064232&limit=3
 */
 export const getHighqualityPlayList = async (data) => {
-  const [error, res] = await to(request.post("/top/playlist/highquality"), data);
+  const [error, res] = await to(
+    request.post("/top/playlist/highquality"),
+    data
+  );
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 相关歌单推荐
 /* 
@@ -364,8 +367,7 @@ export const getRelatedPlaylist = async (data) => {
   const [error, res] = await to(request.post("/related/playlist"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
-
+};
 
 // 获取歌单详情
 /* 
@@ -381,7 +383,7 @@ export const getPlayListDetail = async (data) => {
   const [error, res] = await to(request.post("/playlist/detail"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 获取歌单所有歌曲
 /* 
@@ -400,7 +402,7 @@ export const getPlaylistTrackAll = async (data) => {
   const [error, res] = await to(request.post("/playlist/track/all"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 歌单详情动态
 /* 
@@ -413,7 +415,7 @@ export const getPlaylistDetailDynamic = async (data) => {
   const [error, res] = await to(request.post("/detail/dynamic"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 歌单更新播放量
 /* 
@@ -426,7 +428,7 @@ export const getPlaylistUpdatePlaycount = async (data) => {
   const [error, res] = await to(request.post("/update/playcount"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 音乐是否可用
 /* 
@@ -440,7 +442,7 @@ export const checkMusic = async (data) => {
   const [error, res] = await to(request.post("/check/music"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 获取音乐 url - 新版
 /* 
@@ -454,7 +456,7 @@ export const getSongUrl = async (data) => {
   const [error, res] = await to(request.post("/song/url/v1"), data);
   if (error) return console.log("请求出错！");
   return res.data;
-}
+};
 
 // 所有榜单
 /*
