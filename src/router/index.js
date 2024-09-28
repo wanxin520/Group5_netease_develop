@@ -15,7 +15,9 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   // console.log(to.fullPath);
   // 如果还没有登录就跳转至登录页面
-  if (!to.fullPath.startsWith("/login")) {
+  if (to.fullPath.startsWith("/homepage")){
+    next()
+  }else if (!to.fullPath.startsWith("/login")) {
     localforage.getItem("userInfo")
       .then((data) => {
         data.cookie ? next() : next(`/login/phone?originPath=${to.fullPath}`)
