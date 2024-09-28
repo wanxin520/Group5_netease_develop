@@ -8,6 +8,7 @@ import OfficialPlayList from "./OfficialPlayList.vue";
 import BroadCast from "./BroadCast.vue";
 import YunCunProduced from "./YunCunProduced.vue";
 import RCMDStyle from "./RCMDStyle.vue";
+import RCMDVoiceList from "./RCMDVoiceList.vue";
 
 const blockTypeComponentMap = {
   HOMEPAGE_BANNER: Banner, // 轮播图
@@ -15,10 +16,16 @@ const blockTypeComponentMap = {
   HOMEPAGE_BLOCK_PLAYLIST_RCMD: RCMDPlayList, //  推荐歌单
   HOMEPAGE_BLOCK_STYLE_RCMD: RCMDStyle, // 为你定制精选歌曲
   HOMEPAGE_BLOCK_MGC_PLAYLIST: MGCPlayList, //网易云音乐的雷达歌单
-  HOMEPAGE_BLOCK_OFFICIAL_PLAYLIST: OfficialPlayList, //专属场景歌单
-  HOMEPAGE_BLOCK_YUNCUN_PRODUCED: YunCunProduced, // 云村出品
-  HOMEPAGE_PODCAST24: BroadCast, // 广播
+  HOMEPAGE_VOICELIST_RCMD: RCMDVoiceList,  // 热门播客
+  // HOMEPAGE_BLOCK_HOT_TOPIC: HotTopic, //  热门话题
   // HOMEPAGE_BLOCK_NEW_HOT_COMMENT: HotComment, // 热评歌曲
+  HOMEPAGE_BLOCK_OFFICIAL_PLAYLIST: OfficialPlayList, //专属场景歌单
+  // HOMEPAGE_BLOCK_VIDEO_PLAYLIST: VideoPlayList, // 视频合辑
+  HOMEPAGE_BLOCK_YUNCUN_PRODUCED: YunCunProduced, // 云村出品
+  // HOMEPAGE_MUSIC_CALENDAR: MusicCalender, // 音乐日历
+  // HOMEPAGE_MUSIC_MLOG: MusicMlog, // 精选音乐视频
+  HOMEPAGE_PODCAST24: BroadCast, // 广播
+  // HOMEPAGE_VOICEBOOK_RCMD: RCMDVoiceBook, // 有声书
 };
 const props = defineProps({
   data: {
@@ -121,6 +128,13 @@ const propsData = computed(() => {
           title: item.uiElement.mainTitle.title,
         })),
       };
+    // 热门播客
+    case "HOMEPAGE_VOICELIST_RCMD":
+      // console.log(props.data)
+      return {
+        name: props.data.creatives[0].uiElement.mainTitle.title,
+        creatives: props.data.creatives
+      }
     default:
       return null;
   }
@@ -130,9 +144,6 @@ const propsData = computed(() => {
 
 <template>
   <div>
-    <component
-      :is="blockTypeComponentMap[props.data.blockCode]"
-      :data="propsData"
-    ></component>
+    <component :is="blockTypeComponentMap[props.data.blockCode]" :data="propsData"></component>
   </div>
 </template>

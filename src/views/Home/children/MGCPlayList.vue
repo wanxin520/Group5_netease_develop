@@ -9,7 +9,6 @@ function clickMore(){
   
 }
 
-console.log(props.data);
 const isChecked = (id,title) => {
   console.log(id+title);
 };

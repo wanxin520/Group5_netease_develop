@@ -8,7 +8,6 @@ const props = defineProps({
   data: {},
 });
 
-console.log(props.data.children);
 const isChecked = (id) => {
   console.log(id);
   let query = { id: id };
