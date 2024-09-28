@@ -11,11 +11,11 @@ const { data: pageData } = useRequest(getHomePageData)
 </script>
 
 <template>
-    <div class="h-[100vh]">
+    <div class="min-h-[100vh] content">
         <header>
             <TopSearch></TopSearch>
         </header>
-        <div class="content">
+        <div>
             <BlockType v-for="item in pageData" :data="item" :key="item.blockCode" class="min-h-[100%]"></BlockType>
             <div style="height: 50px;"></div>
         </div>
