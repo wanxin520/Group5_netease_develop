@@ -1,6 +1,8 @@
 <script setup>
+// eslint-disable-next-line no-unused-vars
 import { ref } from "vue";
 import { Icon } from "@iconify/vue";
+// eslint-disable-next-line no-unused-vars
 import { useRoute, useRouter } from "vue-router";
 
 const router = useRouter();
@@ -11,7 +13,7 @@ const props = defineProps({
 // console.log(props.data.children);
 const isChecked = (id) => {
   console.log(id);
-  let query = { id: id };
+  const query = { id: id };
   router.push({ name: "detail", query });
 };
 </script>
