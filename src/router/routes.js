@@ -54,6 +54,7 @@ export default [
 
   },
 
-  // 主页圆形图标菜单子路由
+  // 歌单详情路由
+  { path: "/listdetail", name: "listdetail", component: () => import("@/components/ListDetail.vue") },
 
 ];
