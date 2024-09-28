@@ -30,6 +30,16 @@ watch(data, () => {
   // console.log(userStore.userInfo.cookie);
   // 同时还将用户数据储存在localForeage里面
   localforage.setItem("userInfo", data.value)
+  .then((res)=>{
+    console.log(res);
+    showToast("登录成功,正在前往首页")
+    setTimeout(()=>{
+      router.push({name:"homepage"})
+    },2000)
+  })
+  .catch(()=>{
+    showToast("登录失败!")
+  })
   // localforage.getItem("userInfo")
   // .then((res)=>{
   //     console.log(res);
