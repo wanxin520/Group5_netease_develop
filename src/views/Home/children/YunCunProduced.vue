@@ -21,42 +21,20 @@ const isChecked = (id) => {
       <div class="text-[#707070] text-[14px] font-bold">
         {{ props.data.name }}
       </div>
-      <Icon
-        icon="weui:arrow-filled"
-        width="1.2rem"
-        height="1.2rem"
-        style="color: #666666"
-      />
+      <Icon icon="weui:arrow-filled" width="1.2rem" height="1.2rem" style="color: #666666" />
     </div>
-    <Icon
-      @click="emit('clickMore')"
-      icon="material-symbols:more-vert"
-      class="text-[1.2rem] mr-1 text-[#707070]"
-    />
+    <Icon icon="material-symbols:more-vert" class="text-[1.2rem] mr-1 text-[#707070]" />
   </div>
-  <div class="w-[100vw] flex justify-center items-center">
-    <van-swipe
-      :width="150"
-      :stop-propagation="false"
-      :loop="false"
-      :show-indicators="false"
-    >
-      <van-swipe-item
-        class="p-2"
-        v-for="item in props.data.children"
-        :key="item.id"
-      >
+  <div class="w-[100vw] h-[30vh] flex justify-center items-center">
+    <van-swipe :width="300" :height="180" :stop-propagation="false" :loop="false" :show-indicators="false">
+      <van-swipe-item class="p-2" v-for="item in props.data.children" :key="item.id">
         <div @click="isChecked(item.id)" class="flex flex-col items-center">
-          <div>
+          <div class="relative">
             <div
-              class="w-[4rem] h-[2rem] absolute flex justify-center items-center top-[6%] left-[50%] z-1 bg-[#ffffff1b] rounded-[30%] font-bold text-[white] text-[0.6rem]"
-            ></div>
-            <img class="rounded-[20px]" :src="item.imageUrl" alt="" />
-          </div>
-           <div
-            class="w-[80%] my-3 flex justify-center items-center text-[#4d4c4c] text-[13px]"
-          >
-            {{ item.title }}
+              class="absolute w-[100%] flex justify-center items-center text-[#ffffff] text-[13px] top-[76%] bg-[#1d137a] overflow-hidden rounded-b-[10px]">
+              <van-text-ellipsis :content="item.title" class="h-[2rem]" rows="1"/>
+            </div>
+            <img class="rounded-[10px] h-[8rem]" :src="item.imageUrl" alt="" />
           </div>
         </div>
       </van-swipe-item>

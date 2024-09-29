@@ -46,27 +46,26 @@ const props = defineProps({
 
 const propsData = computed(() => {
   switch (props.data.blockCode) {
+    // 轮播图
+    case "HOMEPAGE_BANNER":
+      return props.data.extInfo.banners; 
     // 首页圆形图标菜单
     case "HOMEPAGE_BLOCK_OLD_DRAGON_BALL":
       return props.data.creatives[0].resources.map((item) => ({
         name: item.uiElement.mainTitle.title,
         iconUrl: item.uiElement.image.imageUrl,
       }));
-    // 轮播图
-    case "HOMEPAGE_BANNER":
-      return props.data.extInfo.banners;
     // 推荐歌单
     case "HOMEPAGE_BLOCK_PLAYLIST_RCMD":
       return {
         name: props.data.uiElement.subTitle.title,
         children: props.data.creatives.map((item) => ({
-          id: item.resources[0].resourceId,
-          playCount: item.resources[0].resourceExtInfo.playCount,
+          resourceId: item.resources[0].resourceId,
           imageUrl: item.resources[0].uiElement.image.imageUrl,
           title: item.resources[0].uiElement.mainTitle.title,
         })),
         resourceExtInfo: props.data.creatives.map((item) => ({
-          id: item.creativeId,
+          creativeId: item.creativeId,
           playCount: item.resources[0].resourceExtInfo.playCount,
           highQuality: item.resources[0].resourceExtInfo.highQuality,
           hasListened: item.resources[0].resourceExtInfo.hasListened,
@@ -84,13 +83,12 @@ const propsData = computed(() => {
       return {
         name: props.data.uiElement.subTitle.title,
         children: props.data.creatives.map((item) => ({
-          id: item.resources[0].resourceId,
-          playCount: item.resources[0].resourceExtInfo.playCount,
+          resourceId: item.resources[0].resourceId,
           imageUrl: item.resources[0].uiElement.image.imageUrl,
           title: item.resources[0].uiElement.mainTitle.title,
         })),
         resourceExtInfo: props.data.creatives.map((item) => ({
-          id: item.creativeId,
+          creativeId: item.creativeId,
           playCount: item.resources[0].resourceExtInfo.playCount,
           highQuality: item.resources[0].resourceExtInfo.highQuality,
           hasListened: item.resources[0].resourceExtInfo.hasListened,
@@ -108,13 +106,12 @@ const propsData = computed(() => {
       return {
         name: props.data.uiElement.subTitle.title,
         children: props.data.creatives.map((item) => ({
-          id: item.resources[0].resourceId,
-          playCount: item.resources[0].resourceExtInfo.playCount,
+          resourceId: item.resources[0].resourceId,
           imageUrl: item.resources[0].uiElement.image.imageUrl,
           title: item.resources[0].uiElement.mainTitle.title,
         })),
         resourceExtInfo: props.data.creatives.map((item) => ({
-          id: item.creativeId,
+          creativeId: item.creativeId,
           playCount: item.resources[0].resourceExtInfo.playCount,
           highQuality: item.resources[0].resourceExtInfo.highQuality,
           hasListened: item.resources[0].resourceExtInfo.hasListened,
@@ -170,26 +167,24 @@ const propsData = computed(() => {
       return {
         name: props.data.uiElement.subTitle.title,
         creatives: props.data.creatives
-      }
+      };
     //  热门话题
     case "HOMEPAGE_BLOCK_HOT_TOPIC":
       return {
         name: props.data.uiElement.subTitle.title,
         creatives: props.data.creatives,
       };
-
     // 视频合辑
     case "HOMEPAGE_BLOCK_VIDEO_PLAYLIST":
       return {
         name: props.data.uiElement.subTitle.title,
         children: props.data.creatives.map((item) => ({
-          id: item.resources[0].resourceId,
-          playCount: item.resources[0].resourceExtInfo.playCount,
+          resourceId: item.resources[0].resourceId,
           imageUrl: item.resources[0].uiElement.image.imageUrl,
           title: item.resources[0].uiElement.mainTitle.title,
         })),
         resourceExtInfo: props.data.creatives.map((item) => ({
-          id: item.creativeId,
+          creativeId: item.creativeId,
           playCount: item.resources[0].resourceExtInfo.playCount,
           highQuality: item.resources[0].resourceExtInfo.highQuality,
           hasListened: item.resources[0].resourceExtInfo.hasListened,
@@ -202,7 +197,20 @@ const propsData = computed(() => {
         name: props.data.dslData.home_old_common_title_n0ti5cy3af.title,
         item: props.data.dslData.items,
       };
-    default:
+    // 精选音乐视频
+    case "HOMEPAGE_MUSIC_MLOG":
+      return {
+        name: props.data.uiElement.subTitle.title,
+        extInfo: props.data.extInfo.map((item) => ({
+          id: item.id,
+          mlogBaseData: item.resource.mlogBaseData,
+          userProfile: item.resource.userProfile,
+          mlogExtVO: item.resource.mlogExtVO,
+          shareUrl: item.resource.shareUrl
+        })),
+      };
+    
+      default:
       return null;
   }
 

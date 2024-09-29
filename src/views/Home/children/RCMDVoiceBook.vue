@@ -7,8 +7,8 @@ const router = useRouter();
 const props = defineProps({
   data: {},
 });
-console.log(props.data.item[0].items[1]);
-console.log(props.data.item);
+// console.log(props.data.item[0].items[1]);
+// console.log(props.data.item);
 
 const isChecked = (id) => {
   console.log(id);
@@ -25,7 +25,7 @@ const isChecked = (id) => {
       </div>
       <Icon icon="weui:arrow-filled" width="1.2rem" height="1.2rem" style="color: #666666" />
     </div>
-    <Icon @click="emit('clickMore')" icon="material-symbols:more-vert" class="text-[1.2rem] mr-1 text-[#707070]" />
+    <Icon icon="material-symbols:more-vert" class="text-[1.2rem] mr-1 text-[#707070]" />
   </div>
   <div class="w-[100vw] flex justify-center items-center">
     <van-swipe :width="500" :height="120" :stop-propagation="false" :loop="false" :show-indicators="false" vertical>
@@ -35,7 +35,6 @@ const isChecked = (id) => {
             <van-swipe-item class="p-2" v-for="(inItem, inIndex) in props.data.item[index].items" :key="inItem">
               <div @click="isChecked(items)" class="flex flex-col items-center text-[#4d4c4c] text-[10px]">
                 <img class="rounded-[20px] w-[5rem]" :src="inItem.coverUrl" alt="" />{{ inItem.title }}
-                <!-- <div>{{ inItem.coverUrl }}</div> -->
               </div>
             </van-swipe-item>
           </van-swipe>
