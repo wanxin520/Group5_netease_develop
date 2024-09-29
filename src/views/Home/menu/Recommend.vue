@@ -1,6 +1,11 @@
 <script setup>
   import { ref } from "vue"
+import { getRecommendList } from "@/api";
+import { useRequest } from "vue-request";
 
+
+const {data:recommendPageData} =useRequest(getRecommendList)
+console.log(recommendPageData);
 
 </script>
 
