@@ -14,9 +14,9 @@ http.interceptors.request.use(async (config) => {
   const userStore = useUserStore();
   
   const extParams = {};
-  if (userStore.cookie) extParams.cookie = userStore.cookie;
-  // get请求没有通过params传递参数 config是不存在params这个属性的
-  config.params = Object.assign(config.params || {}, extParams);
+  // if (userStore.cookie) extParams.cookie = userStore.cookie;
+  // // get请求没有通过params传递参数 config是不存在params这个属性的
+  // config.params = Object.assign(config.params || {}, extParams);
  
   // config.headers.set("Cookie", userStore.cookie);
   return config;
