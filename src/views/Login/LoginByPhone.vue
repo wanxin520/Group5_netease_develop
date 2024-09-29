@@ -23,7 +23,7 @@ function onSubmit(){
   if(password.value === ""){
     alert("密码不能为空")
   }else{
-      console.log(phone,password);
+      console.log(phone._rawValue,password._rawValue);
       const { data: phonePageData } = useRequest(loginByPhone);
       console.log(phonePageData);
   }
@@ -110,7 +110,7 @@ function onSubmit(){
       :rules="[{ required: true, message: '请填写密码' }]"
     />
   </van-cell-group>
-  <div style="margin: 16px;">
+  <div style="margin: 16px;" >
     <van-button round block type="primary" native-type="submit">
       提交
     </van-button>

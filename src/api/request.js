@@ -12,13 +12,13 @@ http.interceptors.request.use(async (config) => {
   // 在请求拦截器需要获取登陆凭证（cookie、token） userStore => localStorage
   // 在组件外使用需要注意：使用useXXXStore()一定需要在app.use(pinia)之后
   const userStore = useUserStore();
-  /*
+  
   const extParams = {};
   if (userStore.cookie) extParams.cookie = userStore.cookie;
   // get请求没有通过params传递参数 config是不存在params这个属性的
   config.params = Object.assign(config.params || {}, extParams);
-  */
-  config.headers.set("Cookie", userStore.cookie);
+ 
+  // config.headers.set("Cookie", userStore.cookie);
   return config;
 });
 // 配置响应拦截器（回调函数）
