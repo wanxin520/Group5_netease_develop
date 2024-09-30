@@ -1,12 +1,18 @@
 import { createApp } from "vue";
 import "@/style.css";
 import "vant/lib/index.css";
-import { Icon } from "@iconify/vue";
+// 导入vant(移动端组件库)组件
+import Vant from 'vant';
 import App from "@/App.vue";
-import initErrorHandle from "@/utils/initErrorHandle";
 import router from "./router";
 import pinia from "./store";
 
+import initErrorHandle from "@/utils/initErrorHandle";
 initErrorHandle();
 
-createApp(App).use(router).use(pinia).use(Icon).mount("#app");
+
+const app = createApp(App);
+app.use(router)
+app.use(Vant)
+app.use(pinia)
+app.mount("#app");
