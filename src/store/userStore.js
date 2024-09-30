@@ -15,6 +15,7 @@ export const useUserStore = defineStore("user", {
   actions: {
     // 设置储存userInfo的函数
     setUserInfo(data) {
+      console.log(data);
       this.userInfo = data
     }
   },

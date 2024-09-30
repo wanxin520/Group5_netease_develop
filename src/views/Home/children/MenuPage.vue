@@ -49,7 +49,7 @@ const isClicked = (name) => {
 <template>
     <div class="m-auto">
         <div class="w-[100vw] flex justify-center items-center">
-            <van-swipe class="my-swipe" :width="90" :height="80" :stop-propagation="false" :loop="false"
+            <van-swipe class="my-swipe" :width="80" :height="80" :stop-propagation="false" :loop="false"
                 :show-indicators="false">
                 <van-swipe-item @click="isClicked(item.name)" v-for="(item, index) in props.data" :key="item.name">
                     <div class="flex flex-col items-center">

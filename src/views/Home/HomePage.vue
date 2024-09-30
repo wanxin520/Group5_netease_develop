@@ -1,7 +1,7 @@
 <script setup>
 import { getHomePageData } from "@/api";
 import { useRequest } from "vue-request";
-import TopSearch from "./children/TopSearch.vue";
+import TopSearch from "./top/TopSearch.vue";
 import BlockType from "./children/BlockType.vue";
 import Bottom from "./children/Bottom.vue";
 

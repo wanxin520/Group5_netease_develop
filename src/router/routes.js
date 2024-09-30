@@ -15,7 +15,7 @@ export default [
     path: "/login",
     name: "login",
     children: [
-      { path: "/login", redirect: "/login/phone" },
+      { path: "/login", redirect: "/login/tourist" },
       // 二维码登录
       {
         path: "qrcode",

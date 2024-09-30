@@ -1,6 +1,6 @@
 <script setup>
-  import { ref } from "vue";
-  import { useRoute, useRouter } from "vue-router";
+import { ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { Icon } from "@iconify/vue";
 
 const router = useRouter();
@@ -22,49 +22,19 @@ const isChecked = (id) => {
       <div class="text-[#707070] text-[14px] font-bold">
         {{ props.data.name }}
       </div>
-      <Icon
-        icon="weui:arrow-filled"
-        width="1.2rem"
-        height="1.2rem"
-        style="color: #666666"
-      />
+      <Icon icon="weui:arrow-filled" width="1.2rem" height="1.2rem" style="color: #666666" />
     </div>
-    <Icon
-      @click="emit('clickMore')"
-      icon="material-symbols:more-vert"
-      class="text-[1.2rem] mr-1 text-[#707070]"
-    />
+    <Icon icon="material-symbols:more-vert" class="text-[1.2rem] mr-1 text-[#707070]" />
   </div>
   <div class="w-[100vw] flex justify-center items-center">
-    <van-swipe
-      :width="150"
-      :stop-propagation="false"
-      :loop="false"
-      :show-indicators="false"
-    >
-      <van-swipe-item
-        class="p-2"
-        v-for="item in props.data.children"
-        :key="item.id"
-      >
-        <div @click="isChecked(item.id)" class="flex flex-col items-center">
-          <div>
-            <div
-              class="w-[4rem] h-[2rem] absolute flex justify-center items-center top-[6%] left-[50%] z-1 bg-[#ffffff1b] rounded-[30%] font-bold text-[white] text-[0.6rem]"
-            ></div>
-            <img class="rounded-[20px]" :src="item.imageUrl" alt="" />
-          </div>
-           <div
-            class="w-[80%] my-3 flex justify-center items-center text-[#4d4c4c] text-[13px]"
-          >
-            {{ item.title }}
-          </div>
+    <van-swipe :width="150" :height="200" :stop-propagation="false" :loop="false" :show-indicators="false">
+      <van-swipe-item class="p-2" v-for="item in props.data.children" :key="item.id">
+        <div @click="isChecked(item.id)" class="h-[100%] flex flex-col justify-around items-center">
+          <img class="rounded-[20px]" :src="item.imageUrl" alt="" />
+          <van-text-ellipsis :content="item.title" class="text-[12px]" rows="1" />
         </div>
       </van-swipe-item>
     </van-swipe>
   </div>
 </template>
-<style scoped>
-
-
-</style>
+<style scoped></style>

@@ -14,11 +14,11 @@ const isClicked = (id) => {
 </script>
 
 <template>
-  <div>
+  <div class="w-[96%] m-auto my-[10px]">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="item in props.data" :key="item.bannerId">
         <div @click="isClicked(item.bannerId)">
-          <img class="w-[100%]" :src="item.pic" alt="" />
+          <img class="w-[100%] rounded-[1.1rem]" :src="item.pic" alt="" />
         </div>
       </van-swipe-item>
     </van-swipe>

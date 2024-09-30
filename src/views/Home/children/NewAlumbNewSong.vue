@@ -24,7 +24,7 @@ const getResourceId = (resourceId) => {
                 <div class="text-[#707070] text-[14px] font-bold">{{ props.data.name }}</div>
                 <Icon icon="weui:arrow-filled" width="1.2rem" height="1.2rem" style="color: #666666" />
             </div>
-            <Icon @click="emit('clickMore')" icon="material-symbols:more-vert"
+            <Icon icon="material-symbols:more-vert"
                 class="text-[1.2rem] mr-1 text-[#707070]" />
         </div>
         <div class="w-[100vw] flex justify-center items-center">
