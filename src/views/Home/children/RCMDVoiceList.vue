@@ -7,10 +7,6 @@ const router = useRouter()
 const props = defineProps({
   data: {},
 })
-// setTimeout(() => {
-//     console.log(props.data.creatives)
-// }, 1000)
-
 const getResourceId = (resourceId) => {
   console.log(resourceId)
 }
@@ -24,7 +20,7 @@ const getResourceId = (resourceId) => {
         <div class="text-[#707070] text-[14px] font-bold">{{ props.data.name }}</div>
         <Icon icon="weui:arrow-filled" width="1.2rem" height="1.2rem" style="color: #666666" />
       </div>
-      <Icon @click="emit('clickMore')" icon="material-symbols:more-vert" class="text-[1.2rem] mr-1 text-[#707070]" />
+      <Icon icon="material-symbols:more-vert" class="text-[1.2rem] mr-1 text-[#707070]" />
     </div>
     <div class="w-[100vw] flex justify-center items-center">
       <van-swipe :width="350" :height="230" :stop-propagation="false" :loop="false" loop="false"
@@ -32,7 +28,7 @@ const getResourceId = (resourceId) => {
         <van-swipe-item class="p-2" v-for="(item, index) in props.data.creatives" :key="item.id">
           <div class="flex flex-col items-center">
             <van-swipe :width="305" :height="65" :loop="false" :show-indicators="false" vertical>
-              <van-swipe-item @click="getResourceId(inItem.resourceExtInfo.songData.id)"
+              <van-swipe-item @click="getResourceId(inItem.resourceId)"
                 v-for="inItem in props.data.creatives[index].resources">
                 <div class="h-[100%] flex justify-center items-start">
                   <div class="h-[100%] flex justify-center items-center">

@@ -1,11 +1,6 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/prefer-default-export */
 import { defineStore } from "pinia";
-import to from "await-to-js";
-import { loginByPhone } from "@/api";
-import router from "@/router";
-
 export const useUserStore = defineStore("user", {
+  // 类似于data
   state() {
     return {
       userInfo: null,
@@ -16,14 +11,12 @@ export const useUserStore = defineStore("user", {
       return state.userInfo?.cookie;
     },
   },
+  // 类似于methods
   actions: {
-    async userLogin(data) {
-      const [err, res] = await to(loginByPhone(data));
-      if (res) {
-        this.userInfo = res.data;
-        // router.replace("/");
-      }
-    },
+    // 设置储存userInfo的函数
+    setUserInfo(data) {
+      this.userInfo = data
+    }
   },
   persist: true,
 });

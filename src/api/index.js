@@ -15,7 +15,7 @@ import request from "./request";
 export const getHomePageData = async () => {
   const [error, res] = await to(request.get("/homepage/block/page"));
   if (error) return console.log("请求出错！");
-  // console.log(res);
+  console.log(res);
   return res.data.data.blocks;
 };
 
@@ -104,7 +104,7 @@ password: 密码
 调用例子: /login/cellphone ? phone = xxx & password=yyy / login / cellphone ? phone = xxx & md5_password=yyy / login / cellphone ? phone = xxx & captcha=1234
 */
 export const loginByPhone = async (data) => {
-  const [error, res] = await to(request.post("/login/cellphone"), data);
+  const [error, res] = await to(request.post("/login/cellphone?noCookie=true"), data);
   if (error) return console.log("请求出错！");
   return res.data;
 };
@@ -117,7 +117,7 @@ export const loginByPhone = async (data) => {
 调用例子 : /captcha/sent?phone=13xxx
  */
 export const sendValidCode = async (data) => {
-  const [error, res] = await to(request.post("/captcha/sent"), data);
+  const [error, res] = await to(request.post("/captcha/sent?noCookie=true"), data);
   if (error) return console.log("请求出错！");
   return res.data;
 };
@@ -133,7 +133,7 @@ export const sendValidCode = async (data) => {
 调用例子 : /captcha/verify?phone=13xxx&captcha=1597
 */
 export const verifyCaptcha = async (data) => {
-  const [error, res] = await to(request.post("/captcha/verify"), data);
+  const [error, res] = await to(request.post("/captcha/verify?noCookie=true"), data);
   if (error) return console.log("请求出错！");
   return res.data;
 };
@@ -149,7 +149,7 @@ export const verifyCaptcha = async (data) => {
 调用例子 : /login?email=xxx@163.com&password=yyy
 */
 export const loginByEmail = async (data) => {
-  const [error, res] = await to(request.post("/login"), data);
+  const [error, res] = await to(request.post("/login?noCookie=true"), data);
   if (error) return console.log("请求出错！");
   return res.data;
 };
@@ -160,8 +160,8 @@ export const loginByEmail = async (data) => {
 说明: 调用此接口可生成一个 key
 接口地址 : /login/qr/key
 */
-export const getQRCodeKey = async () => {
-  const [error, res] = await to(request.get("/login/qr/key"));
+export const getQRCodeKey = async (data) => {
+  const [error, res] = await to(request.post("/login/qr/key?noCookie=true"),data);
   if (error) return console.log("请求出错！");
   return res.data;
 };
@@ -173,8 +173,8 @@ export const getQRCodeKey = async () => {
 接口地址 : /login/qr/create
 调用例子 : /login/qr/create?key=xxx
 */
-export const createQRCodeIMG = async () => {
-  const [error, res] = await to(request.get("/login/qr/create"));
+export const createQRCodeIMG = async (data) => {
+  const [error, res] = await to(request.post(`/login/qr/create?key=${data.key}&qrimg=${data.qrimg}&timestamp=${data.timestamp}&noCookie=true`));
   if (error) return console.log("请求出错！");
   return res.data;
 };
@@ -187,6 +187,7 @@ export const createQRCodeIMG = async () => {
 */
 export const checkQRLoginIsSuccessful = async (data) => {
   const [error, res] = await to(request.post("/login/qr/check"), data);
+  console.log(res);
   if (error) return console.log("请求出错！");
   return res.data;
 };
@@ -195,8 +196,8 @@ export const checkQRLoginIsSuccessful = async (data) => {
 /* 
 接口地址 : /register/anonimous
 */
-export const LoginByTourist = async (data) => {
-  const [error, res] = await to(request.post("/register/anonimous"), data);
+export const loginByTourist = async () => {
+  const [error, res] = await to(request.get("/register/anonimous?noCookie=true"));
   if (error) return console.log("请求出错！");
   return res.data;
 };
