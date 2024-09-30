@@ -10,7 +10,7 @@ const props = defineProps({
 const isClicked = (id) => {
   console.log(id);
 };
-console.log(props.data);
+// console.log(props.data);
 </script>
 
 <template>
