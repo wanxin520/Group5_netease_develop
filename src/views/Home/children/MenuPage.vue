@@ -39,9 +39,10 @@ const isClicked = (name) => {
             router.push({ name: "collector" })
 
         default:
-            return
+            break
     }
 }
+
 
 </script>
 

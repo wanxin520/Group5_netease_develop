@@ -8,17 +8,24 @@ import OfficialPlayList from "./OfficialPlayList.vue";
 import BroadCast from "./BroadCast.vue";
 import YunCunProduced from "./YunCunProduced.vue";
 import RCMDStyle from "./RCMDStyle.vue";
+import RCMDVoiceList from "./RCMDVoiceList.vue";
 
 const blockTypeComponentMap = {
   HOMEPAGE_BANNER: Banner, // 轮播图
   HOMEPAGE_BLOCK_OLD_DRAGON_BALL: MenuPage, // 圆形图标
-  HOMEPAGE_BLOCK_PLAYLIST_RCMD: RCMDPlayList,  //  推荐歌单
-  HOMEPAGE_BLOCK_STYLE_RCMD: RCMDStyle,  // 为你定制精选歌曲
+  HOMEPAGE_BLOCK_PLAYLIST_RCMD: RCMDPlayList, //  推荐歌单
+  HOMEPAGE_BLOCK_STYLE_RCMD: RCMDStyle, // 为你定制精选歌曲
   HOMEPAGE_BLOCK_MGC_PLAYLIST: MGCPlayList, //网易云音乐的雷达歌单
-  HOMEPAGE_BLOCK_OFFICIAL_PLAYLIST: OfficialPlayList, //专属场景歌单
-  HOMEPAGE_BLOCK_YUNCUN_PRODUCED: YunCunProduced, // 云村出品
-  HOMEPAGE_PODCAST24: BroadCast,  // 广播
+  HOMEPAGE_VOICELIST_RCMD: RCMDVoiceList,  // 热门播客
+  // HOMEPAGE_BLOCK_HOT_TOPIC: HotTopic, //  热门话题
   // HOMEPAGE_BLOCK_NEW_HOT_COMMENT: HotComment, // 热评歌曲
+  HOMEPAGE_BLOCK_OFFICIAL_PLAYLIST: OfficialPlayList, //专属场景歌单
+  // HOMEPAGE_BLOCK_VIDEO_PLAYLIST: VideoPlayList, // 视频合辑
+  HOMEPAGE_BLOCK_YUNCUN_PRODUCED: YunCunProduced, // 云村出品
+  // HOMEPAGE_MUSIC_CALENDAR: MusicCalender, // 音乐日历
+  // HOMEPAGE_MUSIC_MLOG: MusicMlog, // 精选音乐视频
+  HOMEPAGE_PODCAST24: BroadCast, // 广播
+  // HOMEPAGE_VOICEBOOK_RCMD: RCMDVoiceBook, // 有声书
 };
 const props = defineProps({
   data: {
@@ -54,16 +61,16 @@ const propsData = computed(() => {
           playCount: item.resources[0].resourceExtInfo.playCount,
           highQuality: item.resources[0].resourceExtInfo.highQuality,
           hasListened: item.resources[0].resourceExtInfo.hasListened,
-          specialType: item.resources[0].resourceExtInfo.specialType
-        }))
-      }
+          specialType: item.resources[0].resourceExtInfo.specialType,
+        })),
+      };
     // 为你定制精选歌曲
     case "HOMEPAGE_BLOCK_STYLE_RCMD":
       // console.log(props.data)
       return {
         name: props.data.uiElement.subTitle.title,
-        creatives: props.data.creatives
-      }
+        creatives: props.data.creatives,
+      };
 
     // 网易云音乐的雷达歌单
     case "HOMEPAGE_BLOCK_MGC_PLAYLIST":
@@ -80,9 +87,9 @@ const propsData = computed(() => {
           playCount: item.resources[0].resourceExtInfo.playCount,
           highQuality: item.resources[0].resourceExtInfo.highQuality,
           hasListened: item.resources[0].resourceExtInfo.hasListened,
-          specialType: item.resources[0].resourceExtInfo.specialType
-        }))
-      }
+          specialType: item.resources[0].resourceExtInfo.specialType,
+        })),
+      };
     // 专属场景歌单
     case "HOMEPAGE_BLOCK_OFFICIAL_PLAYLIST":
       return {
@@ -98,9 +105,9 @@ const propsData = computed(() => {
           playCount: item.resources[0].resourceExtInfo.playCount,
           highQuality: item.resources[0].resourceExtInfo.highQuality,
           hasListened: item.resources[0].resourceExtInfo.hasListened,
-          specialType: item.resources[0].resourceExtInfo.specialType
-        }))
-      }
+          specialType: item.resources[0].resourceExtInfo.specialType,
+        })),
+      };
     // 云村出品
     case "HOMEPAGE_BLOCK_YUNCUN_PRODUCED":
       return {
@@ -110,7 +117,7 @@ const propsData = computed(() => {
           imageUrl: item.resources[0].uiElement.image.imageUrl,
           title: item.resources[0].uiElement.mainTitle.title,
         })),
-      }
+      };
     // 24小时广播
     case "HOMEPAGE_PODCAST24":
       // console.log(props.data);
@@ -119,14 +126,20 @@ const propsData = computed(() => {
         children: props.data.creatives[0].resources.map((item) => ({
           imageUrl: item.uiElement.image.imageUrl,
           title: item.uiElement.mainTitle.title,
-        }))
+        })),
+      };
+    // 热门播客
+    case "HOMEPAGE_VOICELIST_RCMD":
+      // console.log(props.data)
+      return {
+        name: props.data.creatives[0].uiElement.mainTitle.title,
+        creatives: props.data.creatives
       }
     default:
       return null;
   }
   return [];
 });
-// console.log(props.data);
 </script>
 
 <template>
