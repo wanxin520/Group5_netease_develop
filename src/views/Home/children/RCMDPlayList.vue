@@ -47,7 +47,7 @@ const isChecked = (id) => {
               {{ props.data.resourceExtInfo[index].playCount }}
             </div>
           </div>
-          <img class="rounded-[20px]" :src="item.imageUrl" />
+          <img class="rounded-[20px] w-[10rem] h-[8.8rem]" :src="item.imageUrl" />
           <van-text-ellipsis class="w-[90%] h-[2.2rem] overflow-hidden text-[12px] text-[#583c3c]" :content="item.title"
             rows="2" />
         </div>

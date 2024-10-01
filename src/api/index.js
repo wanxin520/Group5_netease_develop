@@ -15,7 +15,6 @@ import request from "./request";
 export const getHomePageData = async () => {
   const [error, res] = await to(request.get("/homepage/block/page"));
   if (error) return console.log("请求出错！");
-  console.log(res);
   return res.data.data.blocks;
 };
 
@@ -161,7 +160,7 @@ export const loginByEmail = async (data) => {
 接口地址 : /login/qr/key
 */
 export const getQRCodeKey = async (data) => {
-  const [error, res] = await to(request.post("/login/qr/key?noCookie=true"),data);
+  const [error, res] = await to(request.post("/login/qr/key?noCookie=true"), data);
   if (error) return console.log("请求出错！");
   return res.data;
 };
@@ -219,8 +218,14 @@ export const refreshLoginStatus = async (data) => {
 接口地址 : /login/status
 */
 export const getLoginStatus = async (data) => {
-  const [error, res] = await to(request.post("/login/status"), data);
-  if (error) return console.log("请求出错！");
+  const [error, res] = await to(request.post(`/login/status?timestamp=${Date.now()}&cookie=${data.cookie}`));
+  if (error) {
+    if(error.data.data.code == 200){
+      return error.data.data
+    } else{
+      return console.log("请求出错！")
+    }
+  } 
   return res.data;
 };
 

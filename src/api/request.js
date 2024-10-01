@@ -3,7 +3,7 @@ import { useUserStore } from "@/store";
 
 const http = axios.create({
   baseURL: import.meta.env.VITE_BASEURL,
-  withCredentials: true,
+  // withCredentials: true,
 });
 // 配置请求拦截器(回调函数)
 // 在服务器还没有接收到数据之前 拦截器先拿到

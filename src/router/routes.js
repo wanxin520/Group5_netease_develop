@@ -8,7 +8,7 @@
  */
 
 export default [
-  { path: "/", redirect: "/homepage" },
+  { path: "/", redirect: "/discover" },
 
   // 登录路由
   {
@@ -43,17 +43,14 @@ export default [
     ],
   },
 
-  // HomePage页面
+  // tabBar路由
+  // 主页
   {
-    path: "/homepage",
+    path: "/discover",
     // 主页圆形图标菜单栏的子路由
     children: [
+      { path:"",name: "discover",component: () => import("@/views/TabBar/DiscoverBar.vue"),},
       // 主页
-      {
-        path: "",
-        name: "homepage",
-        component: () => import("@/views/Home/HomePage.vue"),
-      },
       // 每日推荐
       {
         path: "recommend",
@@ -104,6 +101,11 @@ export default [
       },
     ],
   },
+  { path: "/podcast", name: "podcast", component: () => import("@/views/TabBar/PodcastBar.vue") },
+  { path: "/personal", name: "personal", component: () => import("@/views/TabBar/PersonalBar.vue") },
+  { path: "/attention", name: "attention", component: () => import("@/views/TabBar/AttentionBar.vue") },
+  { path: "/dynamic", name: "dynamic", component: () => import("@/views/TabBar/DynamicBar.vue") },
+
 
   // 歌单详情路由
   {
