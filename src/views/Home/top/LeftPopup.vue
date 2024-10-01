@@ -15,7 +15,6 @@ watch(loginStatus, () => {
     console.log(loginStatus.value);
     userInfo.value = loginStatus.value.profile
 })
-const container = ref()
 
 // 弹出层
 const showLeft = ref(false);
@@ -30,7 +29,6 @@ const showPopup = () => {
         <van-badge :content="200" max="99">
             <Icon @click="showPopup" icon="ion:menu" width="1.5rem" style="color: #b5b5b5" />
         </van-badge>
-
         <!-- 左侧弹出 -->
         <van-popup v-model:show="showLeft" position="left" :style="{ width: '80%', height: '100%' }">
             <van-loading v-if="loading" type="spinner" size="24px" />

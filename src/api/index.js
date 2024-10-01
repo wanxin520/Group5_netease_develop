@@ -474,156 +474,156 @@ export const getSongUrl = async (data) => {
 */
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:"+ error);
+//   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
