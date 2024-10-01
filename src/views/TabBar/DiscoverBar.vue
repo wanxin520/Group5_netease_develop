@@ -1,9 +1,9 @@
 <script setup>
 import { getHomePageData } from "@/api";
 import { useRequest } from "vue-request";
-import TopSearch from "./top/TopSearch.vue";
-import BlockType from "./children/BlockType.vue";
-import Bottom from "./children/Bottom.vue";
+import TopSearch from "@/views/Home/top/TopSearch.vue";
+import BlockType from "@/views/Home/children/BlockType.vue";
+import Bottom from "../Home/bottom/Bottom.vue";
 
 // useRequest传入的是一个返回Promise值的请求函数,data就是返回的数据
 const { data: pageData } = useRequest(getHomePageData)

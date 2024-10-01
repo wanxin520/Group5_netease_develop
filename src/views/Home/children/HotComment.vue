@@ -59,7 +59,6 @@ const isChecked = (id) => {
                   {{ item.replyCount }}
                 </div>
               </div>
-
             </div>
           </div>
         </div>

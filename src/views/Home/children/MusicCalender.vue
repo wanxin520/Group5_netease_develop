@@ -31,7 +31,8 @@ function clickMore() {
                             v-for="inItem in props.data.creatives[index].resources" :key="inItem.id" class="p-2">
                             <div class="flex flex-col items-center">
                                 <div>
-                                    <img class="rounded-[20px]" :src="inItem.uiElement.image.imageUrl" alt="" />
+                                    <img class="rounded-[20px]  w-[10rem] h-[8.8rem]"
+                                        :src="inItem.uiElement.image.imageUrl" alt="" />
                                 </div>
 
                                 <div class="w-[80%] my-3 flex justify-center items-center text-[#4d4c4c] text-[13px]">

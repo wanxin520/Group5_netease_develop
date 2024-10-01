@@ -9,6 +9,6 @@ import { RouterView } from 'vue-router';
 <template>
   <div>
     <!-- 路由总入口 -->
-    <RouterView></RouterView>
+     <RouterView></RouterView>
   </div>
 </template>
