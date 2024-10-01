@@ -30,7 +30,7 @@ const isChecked = (id) => {
     <van-swipe :width="150" :height="200" :stop-propagation="false" :loop="false" :show-indicators="false">
       <van-swipe-item class="p-2" v-for="item in props.data.children" :key="item.id">
         <div @click="isChecked(item.id)" class="h-[100%] flex flex-col justify-around items-center">
-          <img class="rounded-[20px]" :src="item.imageUrl" alt="" />
+          <img class="rounded-[20px]  w-[10rem] h-[8.8rem]" :src="item.imageUrl" alt="" />
           <van-text-ellipsis :content="item.title" class="text-[12px]" rows="1" />
         </div>
       </van-swipe-item>
