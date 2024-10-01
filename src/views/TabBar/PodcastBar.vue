@@ -1,5 +1,4 @@
 <script setup>
-  import { ref } from "vue"
 import Bottom from "../Home/bottom/Bottom.vue";
 
 </script>
@@ -12,7 +11,4 @@ import Bottom from "../Home/bottom/Bottom.vue";
     </footer>
   </div>
 </template>
-<style scoped>
-
-
-</style>
+<style scoped></style>
