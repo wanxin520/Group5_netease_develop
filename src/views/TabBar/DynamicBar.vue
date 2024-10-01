@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from "vue"
 import Bottom from "../Home/bottom/Bottom.vue";
 
 </script>
