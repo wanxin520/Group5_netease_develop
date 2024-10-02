@@ -231,54 +231,6 @@ export const getLoginStatus = async (data) => {
   return res.data;
 };
 
-// 获取用户详情
-/* 
-说明 : 登录后调用此接口 , 传入用户 id, 可以获取用户详情
-必选参数 : uid : 用户 id
-接口地址 : /user/detail
-调用例子 : /user/detail?uid=32953014
-*/
-export const getUserDetail = async (data) => {
-  const [error, res] = await to(request.post("/user/detail"), data);
-  if (error) return console.log("请求出错:" + error);
-  return res.data;
-};
-
-// 获取账号信息
-/* 
-说明 : 登录后调用此接口 ,可获取用户账号信息
-接口地址 : /user/account
-调用例子 : /user/account
-*/
-export const getUserAccount = async (data) => {
-  const [error, res] = await to(request.get("/user/account"), data);
-  if (error) return console.log("请求出错:" + error);
-  return res.data;
-};
-
-// 获取用户信息 , 歌单，收藏，mv, dj 数量
-/* 
-说明 : 登录后调用此接口 , 可以获取用户信息
-接口地址 : /user/subcount
-调用例子 : /user/subcount
-*/
-export const getUserSubcount = async (data) => {
-  const [error, res] = await to(request.get("/user/subcount"), data);
-  if (error) return console.log("请求出错:" + error);
-  return res.data;
-};
-
-// 获取用户等级信息
-/* 
-接口地址 : /user/level
-调用例子 : /user/level
-*/
-export const getUserLevel = async (data) => {
-  const [error, res] = await to(request.get("/user/level"), data);
-  if (error) return console.log("请求出错:" + error);
-  return res.data;
-};
-
 // 获取每日推荐歌单
 /* 
 说明 : 调用此接口 , 可获得每日推荐歌单 ( 需要登录 )

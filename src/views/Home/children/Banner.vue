@@ -18,6 +18,7 @@ const isClicked = (id) => {
 
 const Banners = ref()
 const userStore = useUserStore()
+
 const { data: banner } = useRequest(() => getBannerImage({ "timestamp": Date.now(), "cookie": userStore.userInfo.cookie }))
 watch(banner, () => {
   // console.log(banner.value.banners);

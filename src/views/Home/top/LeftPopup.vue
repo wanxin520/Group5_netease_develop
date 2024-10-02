@@ -12,7 +12,7 @@ const userStore = useUserStore()
 const { data: loginStatus, loading } = useRequest(() => getLoginStatus({ "timestamp": Date.now(), "cookie": userStore.userInfo.cookie }))
 
 watch(loginStatus, () => {
-    console.log(loginStatus.value);
+    // console.log(loginStatus.value);
     userInfo.value = loginStatus.value.profile
 })
 
