@@ -8,6 +8,7 @@ import { useUserStore } from "@/store";
 import { Icon } from "@iconify/vue";
 import { useRoute, useRouter } from "vue-router";
 import { useRequest } from "vue-request";
+import to from "await-to-js";
 
 const route = useRoute();
 const router = useRouter();
@@ -18,7 +19,7 @@ const isClicked = ref(false)
 // 当需要手动发送请求的时候，需要使manual的值为true，并调用们方法执行
 // 发起登录请求
 const { run: login, data, loading } = useRequest(() => loginByTourist(), { manual: true })
-watch(data, () => {
+watch(data, async () => {
   if (data.value.code !== 200) {
     showToast(data.message)
   } else {
@@ -29,19 +30,11 @@ watch(data, () => {
   userStore.setUserInfo(data.value)
   // console.log(userStore.userInfo.cookie);
   // 同时还将用户数据储存在localForeage里面
-  localforage.setItem("userInfo", data.value)
-    .then((res) => {
-      console.log(res);
-      showToast("登录成功,正在前往首页")
-      setTimeout(() => {
-        router.push({ name: "homepage" })
-      }, 2000)
-    })
-    .catch(() => {
-      showToast("登录失败!")
-    })
+  const [error] = await to(localforage.setItem("userInfo", data.value))
+  if (error) return showToast("数据存储失败")
+  showToast("登录成功,正在前往首页")
+  router.push({ name: "discover" })
 })
-
 const toBack = () => {
   router.push({ name: "phone" });
 };

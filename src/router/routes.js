@@ -9,11 +9,9 @@
 
 export default [
   { path: "/", redirect: "/discover" },
-
   // 登录路由
   {
     path: "/login",
-    name: "login",
     children: [
       { path: "/login", redirect: "/login/tourist" },
       // 二维码登录
@@ -49,7 +47,7 @@ export default [
     path: "/discover",
     // 主页圆形图标菜单栏的子路由
     children: [
-      { path:"",name: "discover",component: () => import("@/views/TabBar/DiscoverBar.vue"),},
+      { path:"", name: "discover",component: () => import("@/views/TabBar/DiscoverBar.vue"),},
       // 主页
       // 每日推荐
       {

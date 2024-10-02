@@ -21,14 +21,6 @@ import { Icon } from "@iconify/vue";
                     </div>
                 </div>
             </van-tabbar-item>
-            <van-tabbar-item replace to="/personal">
-                <div class="flex flex-col justify-center items-center">
-                    <Icon icon="mingcute:music-line" width="1.6rem" />
-                    <div class="flex flex-col justify-around items-center">
-                        <span>我的</span>
-                    </div>
-                </div>
-            </van-tabbar-item>
             <van-tabbar-item replace to="/attention">
                 <div class="flex flex-col justify-center items-center">
                     <Icon icon="icon-park-outline:personal-collection" width="1.6rem" />
@@ -41,7 +33,15 @@ import { Icon } from "@iconify/vue";
                 <div class="flex flex-col justify-center items-center">
                     <Icon icon="hugeicons:message-multiple-01" width="1.5rem" />
                     <div>
-                        <span>社区</span>
+                        <span>动态</span>
+                    </div>
+                </div>
+            </van-tabbar-item>
+            <van-tabbar-item replace to="/personal">
+                <div class="flex flex-col justify-center items-center">
+                    <Icon icon="mingcute:music-line" width="1.6rem" />
+                    <div class="flex flex-col justify-around items-center">
+                        <span>我的</span>
                     </div>
                 </div>
             </van-tabbar-item>
