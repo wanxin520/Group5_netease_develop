@@ -9,17 +9,6 @@
 import to from "await-to-js";
 import request from "./request";
 
-/* 
-国家编码列表
-说明 : 调用此接口,可获取国家编码列表
-接口地址 : /countries/code/list
-*/
-export const getCountriesCodeList = async (data) => {
-    const [error, res] = await to(request.post(`/countries/code/list`));
-    if (error) return console.log("请求出错:" + error);
-    return res.data;
-};
-
 // banner
 /* 
 说明 : 调用此接口 , 可获取 banner( 轮播图 ) 数据
@@ -50,7 +39,6 @@ export const getUserAccount = async (data) => {
     return res.data;
 };
 /* 
-
 获取用户详情
 说明 : 登录后调用此接口 , 传入用户 id, 可以获取用户详情
 必选参数 : uid : 用户 id
@@ -80,7 +68,6 @@ export const getUserSubcount = async (data) => {
 说明 : 登录后调用此接口 , 可以获取用户等级信息,包含当前登录天数,听歌次数,下一等级需要的登录天数和听歌次数,当前等级进度,对应 https://music.163.com/#/user/level
 接口地址 : /user/level
 调用例子 : /user/level
-
 */
 export const getUserLevel = async (data) => {
     const [error, res] = await to(request.post(`/user/account?timestamp=${data.timestamp}&cookie=${data.cookie}`));
@@ -89,20 +76,42 @@ export const getUserLevel = async (data) => {
 };
 
 /* 
-国家编码列表
-说明 : 调用此接口,可获取国家编码列表
-接口地址 : /countries/code/list
+获取用户歌单
+说明 : 登录后调用此接口 , 传入用户 id, 可以获取用户歌单
+必选参数 : uid : 用户 id
+可选参数 :
+limit : 返回数量 , 默认为 30
+offset : 偏移数量，用于分页 , 如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0
+接口地址 : /user/playlist
+调用例子 : /user/playlist?uid=32953014
 */
+export const getUserPlayList = async (data) => {
+    const [error, res] = await to(request.post(`/user/playlist?uid=${data.uid}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
 
 /* 
-国家编码列表
-说明: 调用此接口, 可获取国家编码列表
-接口地址: /countries/code / list 
+获取用户动态
+说明 : 登录后调用此接口 , 传入用户 id, 可以获取用户动态
+必选参数 : uid : 用户 id
+可选参数 : limit : 返回数量 , 默认为 30
+lasttime : 返回数据的 lasttime ,默认-1,传入上一次返回结果的 lasttime,将会返回下一页的数据
+接口地址 : /user/event
+调用例子 : /user/event?uid=32953014 /user/event?uid=32953014&limit=1&lasttime=1558011138743
+返回结果的type参数对应:
+18 分享单曲
+19 分享专辑
+17、28 分享电台节目
+22 转发
+39 发布视频
+35、13 分享歌单
+24 分享专栏文章
+41、21 分享视频
 */
 
-
-/* 
-国家编码列表
-说明 : 调用此接口,可获取国家编码列表
-接口地址 : /countries/code/list
-*/
+export const getUserEvent = async (data) => {
+    const [error, res] = await to(request.post(`/user/event?uid=${data.uid}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};

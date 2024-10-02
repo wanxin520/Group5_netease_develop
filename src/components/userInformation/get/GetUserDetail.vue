@@ -1,17 +1,14 @@
 <script setup>
 import { ref, watch } from "vue"
 import { useRequest } from "vue-request";
-import { getUserDetail, getCountriesCodeList } from "@/api/userIndex";
+import { getUserDetail} from "@/api/userIndex";
 
-// vip : https://p6.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/32582186486/9f31/5cfe/207c/2846c11ce0bd05aae1754aed7e63ca58.png
-// no vip https://p6.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/32582187194/7a26/f253/f690/47da2b91bced041709bbcdb68cd0867f.png
 const props = defineProps({
-    account: {
-        type: Object
+    uid:{
+        
     }
 })
-console.log(props.account);
-const { data: userDetail, loading } = useRequest(() => getUserDetail({ "timestamp": Date.now(), "uid": props.account.id }))
+const { data: userDetail, loading } = useRequest(() => getUserDetail({ "timestamp": Date.now(), "uid": props.uid }))
 
 // watch(userDetail, () => {
 //     console.log(userDetail.value);
