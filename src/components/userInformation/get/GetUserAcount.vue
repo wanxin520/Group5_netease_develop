@@ -16,7 +16,6 @@ const props = defineProps({
 const scrollDate = ref()
 const bgc = ref()
 const scroll = () => {
-    // console.log(window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop);
     scrollDate.value = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
     scrollDate.value > 150 ? bgc.value = `rgba(255, 255, 255,${(scrollDate.value - 150) / 100})` : bgc.value = `rgba(255, 255, 255,0)`
 }

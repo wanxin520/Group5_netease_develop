@@ -4,7 +4,7 @@ import Bottom from "../Home/bottom/Bottom.vue";
 import GetUserAcount from "@/components/userInformation/get/GetUserAcount.vue";
 import LeftPopup from "../Home/top/LeftPopup.vue";
 import GetUserPlayList from "@/components/userInformation/get/GetUserPlayList.vue";
-import { ref, watch,reactive,onMounted,onUnmounted } from "vue"
+import { ref, watch, reactive, onMounted, onUnmounted } from "vue"
 import { useRequest } from 'vue-request';
 import { getUserAccount, getUserDetail } from '@/api/userIndex';
 import { useUserStore } from "@/store";
@@ -12,18 +12,15 @@ import GetUserDynamic from "@/components/userInformation/get/GetUserDynamic.vue"
 
 const userStore = useUserStore()
 const { data, loading } = useRequest(() => getUserAccount({ "timestamp": Date.now(), "cookie": userStore.userInfo.cookie }))
-
 // watch(data, () => {
 //     console.log(data.value);
 // })
 const checked = ref(0)
-
-
 </script>
 
 <template>
-  <div v-if="!loading" class="h-[100vh] flex flex-col justify-start">
-    <main>
+  <div class="h-[100vh] flex flex-col justify-start">
+    <main v-if="!loading">
       <!-- 上面的主页 -->
       <div>
         <GetUserAcount :data="data">
@@ -74,7 +71,8 @@ const checked = ref(0)
       <!-- 下面的详细信息 -->
       <div>
         <div class="h-[340vh]">
-          <van-tabs v-model:active="checked" offset-top="48px" sticky animated color="red" title-inactive-color="gray" line-width="10">
+          <van-tabs v-model:active="checked" offset-top="48px" sticky animated color="red" title-inactive-color="gray"
+            line-width="10">
             <van-tab title="音乐">
               <GetUserPlayList :data="data"></GetUserPlayList>
             </van-tab>
