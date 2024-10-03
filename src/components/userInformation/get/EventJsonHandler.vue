@@ -9,22 +9,16 @@ const props = defineProps({
 
     }
 })
-console.log(props.eventType);
-console.log(props.events);
-
-
+// console.log(props.eventType);
+// console.log(props.events);
 const eventDetail = ref(JSON.parse(props.events.json))
 const transmitionEvent = ref()
-
-console.log(eventDetail.value);
+// console.log(eventDetail.value);
 if (eventDetail.value.event) {
     // console.log(eventDetail.value.event.json);
     transmitionEvent.value = JSON.parse(eventDetail.value.event.json)
-    console.log(transmitionEvent.value);
+    // console.log(transmitionEvent.value);
 }
-
-
-
 </script>
 <!-- :style="{ width: `${eventDetail.resource.mlogBaseData.coverWidth}`, height: `${eventDetail.resource.mlogBaseData.coverHeight}`}" -->
 <template>
