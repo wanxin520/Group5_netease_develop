@@ -33,7 +33,7 @@ watch(data, async () => {
   const [error] = await to(localforage.setItem("userInfo", data.value))
   if (error) return showToast("数据存储失败")
   showToast("登录成功,正在前往首页")
-  router.push({ name: "discover" })
+  router.replace({ name: "discover" })
 })
 const toBack = () => {
   router.push({ name: "phone" });
@@ -54,7 +54,7 @@ const toBack = () => {
     <div class="flex justify-center items-center">
       <van-button @click="login" v-if="!loading" class="w-[16rem]" type="warning"
         color="linear-gradient(to right, #ff6034, #ee0a24)">游客登录</van-button>
-      <van-button v-else class="w-[16rem]" loading=" isLoding" loading-type="spinner" disabled="isClecked"
+      <van-button v-else class="w-[16rem]" :loading="loading" loading-type="spinner" :disabled="isClicked"
         color="linear-gradient(to right, #ff6034, #ee0a24)" loading-text=" 正在登录..." />
     </div>
     <div class="w-[100%] h-[30vh]" style="

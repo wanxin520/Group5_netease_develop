@@ -9,21 +9,20 @@
 import to from "await-to-js";
 import request from "./request";
 
-// banner
+// 获取登录状态
 /* 
-说明 : 调用此接口 , 可获取 banner( 轮播图 ) 数据
-可选参数 :
-type:资源类型,对应以下类型,默认为 0 即 PC
-0: pc
-1: android
-2: iphone
-3: ipad
-接口地址 : /banner
-调用例子 : /banner, /banner?type=2
+说明 : 调用此接口,可获取登录状态
+接口地址 : /login/status
 */
-export const getBannerImage = async (data) => {
-    const [error, res] = await to(request.post(`/banner?timestamp=${data.timestamp}&cookie=${data.cookie}`));
-    if (error) return console.log("请求出错:" + error);
+export const getLoginStatus = async (data) => {
+    const [error, res] = await to(request.post(`/login/status?timestamp=${Date.now()}&cookie=${data.cookie}`));
+    if (error) {
+        if (error.data.data.code == 200) {
+            return error.data.data
+        } else {
+            return console.log("请求出错！")
+        }
+    }
     return res.data;
 };
 
@@ -112,6 +111,18 @@ lasttime : 返回数据的 lasttime ,默认-1,传入上一次返回结果的 las
 
 export const getUserEvent = async (data) => {
     const [error, res] = await to(request.post(`/user/event?uid=${data.uid}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+
+/* 
+私信和通知接口
+说明 : 登录后调用此接口,可获取私信和通知数量信息
+接口地址 : /pl/count
+调用例子 : /pl/count
+*/
+export const getUserPLCount = async (data) => {
+    const [error, res] = await to(request.post(`/pl/count?timestamp=${data.timestamp}&cookie=${data.cookie}`));
     if (error) return console.log("请求出错:" + error);
     return res.data;
 };

@@ -50,8 +50,6 @@ const { data: songList, loading } = useRequest(() => getUserPlayList({ "timestam
                     </van-cell>
                 </div>
             </div>
-
-
         </div>
     </div>
 
