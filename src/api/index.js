@@ -212,23 +212,6 @@ export const refreshLoginStatus = async (data) => {
   return res.data;
 };
 
-// 获取登录状态
-/* 
-说明 : 调用此接口,可获取登录状态
-接口地址 : /login/status
-*/
-export const getLoginStatus = async (data) => {
-  const [error, res] = await to(request.post(`/login/status?timestamp=${Date.now()}&cookie=${data.cookie}`));
-  if (error) {
-    if (error.data.data.code == 200) {
-      return error.data.data
-    } else {
-      return console.log("请求出错！")
-    }
-  }
-  return res.data;
-};
-
 // 获取每日推荐歌单
 /* 
 说明 : 调用此接口 , 可获得每日推荐歌单 ( 需要登录 )

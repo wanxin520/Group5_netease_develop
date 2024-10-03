@@ -3,15 +3,23 @@ import { ref, watch } from "vue"
 import { Icon } from "@iconify/vue";
 import { useRequest } from "vue-request";
 import { useRouter } from "vue-router";
-import { getLoginStatus } from "@/api";
+import { getLoginStatus, getUserPLCount } from "@/api/userIndex";
 import { useUserStore } from "@/store";
 
 const userInfo = ref()
 const router = useRouter()
 const userStore = useUserStore()
+const MSGCount = ref()
+const defaultAvatar = ref("http://p1.music.126.net/SUeqMM8HOIpHv9Nhl9qt9w==/109951165647004069.jpg")
+const defaultBGIMG = ref("http://p1.music.126.net/_f8R60U9mZ42sSNvdPn2sQ==/109951162868126486.jpg")
 // 获取登录状态
 const { data: loginStatus, loading } = useRequest(() => getLoginStatus({ "timestamp": Date.now(), "cookie": userStore.userInfo.cookie }))
-
+// 获取消息数量
+const { data: messageCount, loading: messageCountLoading } = useRequest(() => getUserPLCount({ cookie: useUserStore().cookie }))
+watch(messageCount, () => {
+    // console.log(messageCount.value);
+    MSGCount.value = messageCount.value.msg
+})
 watch(loginStatus, () => {
     // console.log(loginStatus.value);
     userInfo.value = loginStatus.value.profile
@@ -31,7 +39,7 @@ const showPopup = () => {
 
 <template>
     <div>
-        <van-badge :content="200" max="99">
+        <van-badge :content="MSGCount" :show-zero="false" max="99">
             <Icon @click="showPopup" icon="ion:menu" width="1.5rem" style="color: #b5b5b5" />
         </van-badge>
         <!-- 左侧弹出 -->
@@ -40,23 +48,15 @@ const showPopup = () => {
                 <van-loading type="spinner" size="24px" />
             </div>
             <div v-else class="w-[100%] h-[100%] bg-[#e7e7e7] flex flex-col justify-start items-center" ref="container">
-                <div v-if="!loginStatus.account.anonimousUser"
-                    class="w-[100%] h-[10vh] flex justify-between items-center p-3 bg-[#ffffff]">
+                <div class="w-[100%] h-[10vh] flex justify-between items-center p-3 bg-[#ffffff]">
                     <div class="w-[70%] flex justify-start items-center">
-                        <img class="w-[2rem] rounded-[50%]" :src="userInfo.avatarUrl" alt="">
-                        <div class="text-[13px] font-semibold p-2 text-[#585757]">{{ userInfo.nickname }}</div>
-                        <div>
-                            <Icon icon="weui:arrow-filled" width="1.2rem" height="1.2rem" style="color: #adadad" />
+                        <img class="w-[2rem] rounded-[50%]"
+                            :src="(loginStatus.account.anonimousUser ? defaultAvatar : data.profile.avatarUrl)" alt="">
+                        <div @click="toLoginByPhone" v-if="loginStatus.account.anonimousUser"
+                            class="text-[13px] font-semibold p-2 text-[#585757]">
+                            立刻登录
                         </div>
-                    </div>
-                    <div class="flex w-[20%] justify-end">
-                        <van-icon name="scan" size="large" />
-                    </div>
-                </div>
-                <div v-else class="w-[100%] h-[10vh] flex justify-between items-center p-3 bg-[#ffffff]">
-                    <div class="w-[70%] flex justify-start items-center">
-                        <Icon icon="fa6-solid:circle-user" width="1.6rem" class="text-[#ffafaf]" />
-                        <div @click="toLoginByPhone" class="text-[15px] text-[#707070] font-bold p-2">立刻登录</div>
+                        <div v-else class="text-[13px] font-semibold p-2 text-[#585757]">{{ userInfo.nickname }}</div>
                         <div>
                             <Icon icon="weui:arrow-filled" width="1.2rem" height="1.2rem" style="color: #adadad" />
                         </div>
@@ -113,7 +113,9 @@ const showPopup = () => {
                 </div>
                 <div class="w-[100%] mt-2 flex justify-center items-center">
                     <van-cell-group class="w-[100%]" inset>
-                        <van-cell title="我的消息" icon="envelop-o" is-link />
+                        <van-badge :show-zero="false" :content="MSGCount" :offset="[15, 12]" position="top-left">
+                            <van-cell title="我的消息" icon="envelop-o" is-link />
+                        </van-badge>
                         <van-cell title="云贝中心" icon="location-o" is-link />
                         <van-cell title="徽章中心" icon="medal-o" is-link />
                         <van-cell title="装扮中心" icon="location-o" is-link />

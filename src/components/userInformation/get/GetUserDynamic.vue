@@ -15,10 +15,6 @@ const { data: eventList, loading } = useRequest(() => getUserEvent({ "timestamp"
 watch(eventList, () => {
     // console.log(eventList.value.events);
 })
-// 跳转至手机登录
-const toLoginByPhone = () => {
-    router.replace({ name: "phone" })
-}
 </script>
 
 <template>
@@ -28,7 +24,7 @@ const toLoginByPhone = () => {
                 <Icon icon="mingcute:music-line" />
                 <span class="ml-1">分享你喜欢的音乐吧</span>
             </div>
-            <div @click="toLoginByPhone"
+            <div
                 class="mt-4 text-[12px] font-semibold text-[#5c5b5b] w-[4rem] h-[1.7rem] flex justify-center items-center bg-[#ffffff] rounded-[20px] p-1"
                 style="border: 1px solid gray;">
                 去分享
