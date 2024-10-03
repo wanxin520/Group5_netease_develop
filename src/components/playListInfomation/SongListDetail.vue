@@ -14,8 +14,8 @@ watch(data, () => {
 
 </script>
 <template>
-  <div>
-    <div v-if="!loading" class="w-[100%] flex flex-col justify-around"
+  <div v-if="!loading">
+    <div class="w-[100%] flex flex-col justify-around"
       :style="{ backgroundImage: `url(${data.playlist.creator.backgroundUrl})` }"
       style="background-repeat: no-repeat; background-size: cover;">
       <!-- top -->
@@ -96,7 +96,7 @@ watch(data, () => {
     </div>
     <!-- 歌曲列表 -->
     <div>
-      <SongListHandler></SongListHandler>
+      <SongListHandler :tracks="data.playlist.tracks"></SongListHandler>
     </div>
   </div>
 </template>
