@@ -6,7 +6,7 @@
 
 <template>
   <div>
-<h1>歌单详情页面</h1>
+
 
   </div>
 </template>

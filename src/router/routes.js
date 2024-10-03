@@ -115,6 +115,13 @@ export default [
   {
     path: "/listdetail",
     name: "listdetail",
-    component: () => import("@/components/ListDetail.vue"),
+    component: () => import("@/components/playListInfomation/SongListDetail.vue"),
+  },
+
+  // 歌单所有歌曲路由
+  {
+    path: "/listallsongs",
+    name: "listallsongs",
+    component: () => import("@/components/playListInfomation/getPlaylistAllSongs.vue"),
   },
 ];
