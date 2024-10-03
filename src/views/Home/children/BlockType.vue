@@ -1,5 +1,6 @@
 <script setup>
 import { computed, defineProps } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import MGCPlayList from "./MGCPlayList.vue";
 import RCMDPlayList from "./RCMDPlayList.vue";
 import OfficialPlayList from "./OfficialPlayList.vue";
@@ -38,6 +39,33 @@ const props = defineProps({
     require: true,
   },
 });
+const route = useRoute()
+const router = useRouter()
+// 路由传参
+const pushSearchId = (id) => {
+  // 获取歌单的id和索引
+  let query = { id: id }
+  router.push({ name: "detail", query })
+}
+
+// 给子组件绑定自定义监听事件
+const emit = defineEmits(["transmitePlaylistId", "transmiteSongId", "transmiteVideoId"])
+const getPlaylistDetail = (id) => {
+  // 获取歌单的id和索引
+  let query = { id: id }
+  router.push({ name: "listdetail", query })
+}
+const getSongDetail = (id) => {
+  // 获取歌曲的id和索引
+  // let query = { id: id }
+  // router.push({ name: "detail", query })
+}
+const getVideoDetail = (id) => {
+  // 获取视频的id和索引
+  // let query = { id: id }
+  // router.push({ name: "detail", query })
+}
+
 // console.log(props.data);
 
 const propsData = computed(() => {
@@ -207,6 +235,7 @@ const propsData = computed(() => {
 
 <template>
   <div>
-    <component :is="blockTypeComponentMap[props.data.blockCode]" :data="propsData"></component>
+    <component :is="blockTypeComponentMap[props.data.blockCode]" :data="propsData" @transmiteSongId="getSongDetail"
+      @transmiteVideoId="getVideoDetail" @transmitePlaylistId="getPlaylistDetail"></component>
   </div>
 </template>

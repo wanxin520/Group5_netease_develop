@@ -6,9 +6,12 @@ const props = defineProps({
   data: {},
 });
 // console.log(props.data);
+const emit = defineEmits(["transmitePlaylistId", "transmiteSongId", "transmiteVideoId"])
+
 
 const isChecked = (id) => {
-  console.log(id);
+  // console.log(id);
+  emit("transmitePlaylistId",id)
 };
 </script>
 

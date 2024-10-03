@@ -6,11 +6,23 @@ import { Icon } from '@iconify/vue';
 import { useRoute, useRouter } from 'vue-router';
 import SongListHandler from "./SongListHandler.vue";
 
-const { data, loading } = useRequest(() => getPlaylistDetail({ id: "24381616" }))
+
+// 获取歌单搜索id
+const route = useRoute()
+const { data, loading } = useRequest(() => getPlaylistDetail({
+  id: route.query.id
+}))
 
 watch(data, () => {
-  console.log(data.value.playlist);
+  // console.log(data.value.playlist);
 })
+// 监听屏幕滚动事件
+const scrollDate = ref()
+const bgimg = ref()
+const scroll = () => {
+  scrollDate.value = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+  scrollDate.value > 150 ? bgimg.value = data.value.playlist.creator.backgroundUrl : bgimg.value = null
+}
 
 </script>
 <template>
@@ -19,18 +31,24 @@ watch(data, () => {
       :style="{ backgroundImage: `url(${data.playlist.creator.backgroundUrl})` }"
       style="background-repeat: no-repeat; background-size: cover;">
       <!-- top -->
-      <div class="w-[100%] h-[10vh] flex justify-between items-center text-[#ffffff] ">
-        <div @click="toBack" class="flex  text-[15px] ">
-          <Icon icon="iconamoon:arrow-left-2-light" width="1.5rem" />
-          <div class="flex justify-center item-center"><span>歌单</span></div>
-        </div>
-        <div class="flex justify-between items-center ">
-          <div class="flex">
-            <Icon icon="ic:twotone-search" width="1.5rem" class=" mx-2" />
-            <Icon icon="material-symbols:more-vert" width="1.5rem" />
+      <van-sticky @scroll="scroll">
+        <div class="w-[100%] h-[10vh] flex justify-between items-center text-[#ffffff]"
+          :style="{ backgroundImage: `url(${bgimg})` }">
+          <div @click="toBack" class="flex  text-[15px] ">
+            <Icon icon="iconamoon:arrow-left-2-light" width="1.5rem" />
+            <div class="flex justify-center item-center"><span>歌单</span></div>
+          </div>
+          <div v-if="bgimg" class=" font-bold text-[14px] text-[#ffffff]">
+            {{ data.playlist.name }}
+          </div>
+          <div class="flex justify-between items-center ">
+            <div class="flex">
+              <Icon icon="ic:twotone-search" width="1.5rem" class=" mx-2" />
+              <Icon icon="material-symbols:more-vert" width="1.5rem" />
+            </div>
           </div>
         </div>
-      </div>
+      </van-sticky>
       <!-- banner -->
       <div class="flex w-[100%] items-start justify-start">
         <div class="mx-1 flex justify-center items-center rounded-[30px] relative">
@@ -38,7 +56,8 @@ watch(data, () => {
           <div class=" absolute text-[#ffffffd8] flex justify-center items-center self-start left-12 top-2 text-[10px]">
             <Icon icon="fluent:play-28-filled" />
             <div class="ml-1">
-              {{ data.playlist.playCount }}
+              {{ data.playlist.playCount > 10000 ? (data.playlist.playCount / 10000).toFixed(1) + "万" :
+                data.playlist.playCount }}
             </div>
           </div>
         </div>
@@ -46,14 +65,12 @@ watch(data, () => {
           <div class="text-[#ffffff] text-[14px] font-semibold mb-1">
             <span> {{ data.playlist.name }} </span>
           </div>
-          <div class="w-[100%] flex justify-start items-center">
+          <div class="w-[100%] flex justify-start items-center relative">
             <img class="flex justify-center items-center w-[1.6rem] h-[1.6rem] rounded-[50%]"
               :src="data.playlist.creator.avatarUrl" alt="">
-
             <img v-if="data.playlist.creator.avatarDetail"
-              class="flex justify-center items-center w-[2rem] rounded-[50%]"
+              class="flex justify-center items-center w-[0.8rem] h-[0.8rem] rounded-[50%] absolute top-4 left-4"
               :src="(data.playlist.creator.avatarDetail.identityIconUrl)" alt="">
-
             <div class="h-[100%] flex justify-center items-center mx-2 text-[#d8d8d8] text-[10px] ">
               {{ data.playlist.creator.nickname }}</div>
             <div

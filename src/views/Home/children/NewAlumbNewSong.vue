@@ -11,8 +11,12 @@ const props = defineProps({
 //     console.log(props.data.creatives)
 // }, 1000)
 
+const emit = defineEmits(["transmitePlaylistId", "transmiteSongId", "transmiteVideoId"])
+
+
 const getResourceId = (resourceId) => {
-    console.log(resourceId)
+    // console.log(resourceId)
+    emit("transmiteSongId",resourceId)
 }
 
 </script>

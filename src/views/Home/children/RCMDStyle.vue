@@ -7,8 +7,11 @@ const router = useRouter();
 const props = defineProps({
   data: {},
 });
+const emit = defineEmits(["transmitePlaylistId", "transmiteSongId", "transmiteVideoId"])
+
 const getResourceId = (resourceId) => {
-  console.log(resourceId);
+  // console.log(resourceId);
+  emit("transmiteSongId",resourceId)
 };
 </script>
 
