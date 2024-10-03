@@ -47,7 +47,7 @@ export default [
     path: "/discover",
     // 主页圆形图标菜单栏的子路由
     children: [
-      { path:"", name: "discover",component: () => import("@/views/TabBar/DiscoverBar.vue"),},
+      { path: "", name: "discover", component: () => import("@/views/TabBar/DiscoverBar.vue"), },
       // 主页
       // 每日推荐
       {
@@ -96,6 +96,12 @@ export default [
         path: "collector",
         name: "collector",
         component: () => import("@/views/Home/menu/Collector.vue"),
+      },
+      // 歌房
+      {
+        path: "musicroom",
+        name: "musicroom",
+        component: () => import("@/views/Home/menu/MusicRoom.vue"),
       },
     ],
   },

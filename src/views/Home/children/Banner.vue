@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watch } from "vue"
 import { useRequest } from "vue-request";
-import { getBannerImage } from "@/api/userIndex";
+import { getBannerImage } from "@/api";
 import { useUserStore } from "@/store";
 
 const isClicked = (targetId) => {

@@ -11,7 +11,37 @@ import request from "./request";
 // 使用async和await的语法糖的写法 async和await就是Promise的语法糖
 // 使用to函数实现捕获请求的过程中会出现的错误
 
-// HomePage页面数据渲染
+// banner
+/* 
+说明 : 调用此接口 , 可获取 banner( 轮播图 ) 数据
+可选参数 :
+type:资源类型,对应以下类型,默认为 0 即 PC
+0: pc
+1: android
+2: iphone
+3: ipad
+接口地址 : /banner
+调用例子 : /banner, /banner?type=2
+*/
+export const getBannerImage = async (data) => {
+  const [error, res] = await to(request.post(`/banner?timestamp=${data.timestamp}&cookie=${data.cookie}`));
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
+};
+
+/* 
+首页-发现-圆形图标入口列表
+说明 : 调用此接口 , 可获取 APP 首页圆形图标入口列表
+接口地址 : /homepage/dragon/ball
+*/
+export const getDragonBall = async (data) => {
+  const [error, res] = await to(request.post(`/homepage/dragon/ball?timestamp=${data.timestamp}&cookie=${data.cookie}`));
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
+};
+
+
+// discover页面数据渲染
 export const getHomePageData = async () => {
   const [error, res] = await to(request.get("/homepage/block/page"));
   if (error) return console.log("请求出错:" + error);

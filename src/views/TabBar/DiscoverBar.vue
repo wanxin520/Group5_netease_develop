@@ -5,6 +5,7 @@ import TopSearch from "@/views/Home/top/TopSearch.vue";
 import BlockType from "@/views/Home/children/BlockType.vue";
 import Bottom from "../Home/bottom/Bottom.vue";
 import Banner from "../Home/children/Banner.vue";
+import MenuPage from "../Home/children/MenuPage.vue";
 
 // useRequest传入的是一个返回Promise值的请求函数,data就是返回的数据
 const { data: pageData } = useRequest(getHomePageData)
@@ -18,6 +19,7 @@ const { data: pageData } = useRequest(getHomePageData)
         </header>
         <div>
             <Banner></Banner>
+            <MenuPage></MenuPage>
             <BlockType v-for="item in pageData" :data="item" :key="item.blockCode" class="min-h-[100%]"></BlockType>
             <div style="height: 50px;"></div>
         </div>
