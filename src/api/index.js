@@ -117,8 +117,6 @@ export const loginByPhone = async (data) => {
  */
 export const sendValidCode = async (data) => {
   const [error, res] = await to(request.post(`/captcha/sent?phone=${data.phone}`));
-  console.log(data);
-  console.log(error);
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };

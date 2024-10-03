@@ -10,15 +10,13 @@ const props = defineProps({
         type: Object
     }
 })
-// console.log(props.data);
+console.log(props.data);
 
-const eventJSON = ref()
 
 const { data: eventList, loading } = useRequest(() => getUserEvent({ "timestamp": Date.now(), "uid": props.data.account.id }))
 
 watch(eventList, () => {
-    console.log(eventList.value);
-    eventJSON.value = eventList.value.events.json
+    console.log(eventList.value.events);
 })
 
 </script>
@@ -26,8 +24,16 @@ watch(eventList, () => {
 <template>
 
     <div v-if="!loading" class="mt-1 w-[100%]">
-        <div v-for="(item, index) in eventList.events" class="w-[100%] flex flex-col justify-around items-around">
-            <div class="flex justify-center items-center p-1 mt-10 ">
+        <div v-if="eventList.events.length == 0">
+            <div>
+                分享你喜欢的音乐吧
+            </div>
+            <div>
+                去分享
+            </div>
+        </div>
+        <div v-else v-for="(item, index) in eventList.events" class="w-[100%] flex flex-col justify-around items-around">
+            <div class="flex justify-center items-center p-1 mt-5 ">
                 <div class="w-[100%] flex justify-between items-start ">
                     <div class="flex justify-center">
                         <img class="w-[3rem] h-[3rem] rounded-[50%]" :src="item.user.avatarUrl" alt="">
@@ -55,7 +61,7 @@ watch(eventList, () => {
                             </div>
                         </div>
                         <div class="text-[10px] mt-1 text-[#777676]">
-                            <div v-if="((Date.now() - item.eventTime) / 60000) > 60">
+                            <div v-if="((Date.now() - item.eventTime) / 60000) < 60">
                                 {{ new Date(Date.now() - item.eventTime).getMinutes() }}分钟前
                             </div>
                             <div v-else>
@@ -63,15 +69,14 @@ watch(eventList, () => {
                                 {{ new Date(item.eventTime).getMonth() }} 月
                                 {{ new Date(item.eventTime).getDate() }} 日
                                 {{ new Date(item.eventTime).getHours() > 10 ? new Date(item.eventTime).getHours() : "0"
-                                + new Date(item.eventTime).getHours() }}:
+                                    + new Date(item.eventTime).getHours() }}:
                                 {{ new Date(item.eventTime).getMinutes() > 10 ? new Date(item.eventTime).getMinutes() :
-                                "0" + new Date(item.eventTime).getMinutes() }}:
+                                    "0" + new Date(item.eventTime).getMinutes() }}:
                                 {{ new Date(item.eventTime).getSeconds() }}
                             </div>
                         </div>
-
                         <div class="mt-2 container">
-                            <EventJsonHandler :eventJson="item.json"></EventJsonHandler>
+                            <EventJsonHandler :events="item" :eventType="item.type"></EventJsonHandler>
                         </div>
                         <div class="w-[100%] flex justify-between items-center mt-5 text-[10px]">
                             <div class="flex justify-between items-center">

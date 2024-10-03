@@ -53,7 +53,7 @@ watch(qrimg, () => {
               clearInterval(checkStatusTimer)
               setTimeout(() => {
                 router.push({ name: "discover" })
-              }, 1000)
+              }, 1500)
             })
             .catch(() => {
               showToast("登录失败!")
