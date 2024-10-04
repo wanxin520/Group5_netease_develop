@@ -59,7 +59,7 @@ const toBack = () => {
       <div class="flex w-[100%] items-start justify-start">
         <div class="mx-1 flex justify-center items-center rounded-[30px] relative">
           <img class="w-[6rem] h-[6rem] rounded-[1rem]" :src="data.playlist.coverImgUrl" alt="">
-          <div class=" absolute text-[#ffffffd8] flex justify-center items-center self-start left-12 top-2 text-[10px]">
+          <div class=" absolute text-[#ffffffd8] flex justify-center items-center self-start left-12 top-2 text-[8px]">
             <Icon icon="fluent:play-28-filled" />
             <div v-if="data.playlist.playCount > 100000000" class="ml-1">
               {{ data.playlist.playCount > 10000 ? (data.playlist.playCount / 100000000).toFixed(1) + "亿" :
@@ -108,7 +108,7 @@ const toBack = () => {
           <Icon icon="weui:arrow-outlined" width="0.6rem" class="mr-3" />
         </div>
       </div>
-      <div class="flex justify-around items-center mt-3 mb-5">
+      <div class="flex justify-around items-center mt-3 mb-5 text-[11px]">
         <div class="flex justify-center items-center w-[6rem] h-[2rem] rounded-[1rem] text-[#ffffff] bg-[#ffffff5b]">
           <Icon icon="mingcute:share-forward-fill" />
           <span v-if="data.playlist.shareCount > 10000" class=" mx-1">{{ (data.playlist.shareCount /

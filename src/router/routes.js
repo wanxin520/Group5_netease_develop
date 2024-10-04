@@ -124,17 +124,10 @@ export default [
     name: "listallsongs",
     component: () => import("@/components/playListInfomation/getPlaylistAllSongs.vue"),
   },
-  // 音乐详情页面
+  // 音乐详情页面（播放页面）
   {
     path: "/musicdetail",
     name: "musicdetail",
     component: () => import("@/components/musicInfo/getMusicDetail.vue"),
-  },
-
-  // 播放页面
-  {
-    path: "/music",
-    name: "music",
-    component: () => import("@/components/musicInfo/MusicPlayPage.vue"),
   },
 ];

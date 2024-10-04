@@ -58,8 +58,8 @@ const getPlaylistDetail = (id) => {
 const getSongDetail = (id) => {
   // 获取歌曲的id和索引
   console.log(id);
-  // let query = { id: id }
-  // router.push({ name: "detail", query })
+  let query = { id: id }
+  router.push({ name: "musicdetail", query })
 }
 const getVideoDetail = (id) => {
   // 获取视频的id和索引

@@ -1,14 +1,18 @@
 <script setup>
 import { ref } from "vue"
 import { Icon } from "@iconify/vue";
+import { useRouter } from "vue-router";
 
 const props = defineProps({
     tracks: {}
 })
 // console.log(props.tracks);
+const router = useRouter()
 // 获取歌曲id
 const getSongId = (songId) => {
-    console.log(songId);
+    // console.log(songId);
+    let query = { id: songId }
+    router.push({ name: "musicdetail", query })
 }
 // 获取视频id
 const getVedioId = (vedioId) => {

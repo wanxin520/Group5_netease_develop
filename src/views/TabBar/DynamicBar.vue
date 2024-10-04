@@ -14,7 +14,7 @@ const eventList = ref()
 const active = ref()
 const { data, loading } = useRequest(() => getDynamicMessage({ "timestamp": Date.now(), "cookie": userStore.userInfo.cookie }))
 watch(data, () => {
-  console.log(data.value);
+  // console.log(data.value);
   eventList.value = data.value.event
 })
 </script>

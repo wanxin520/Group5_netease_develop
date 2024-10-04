@@ -12,6 +12,7 @@ const musicPlayingData = ref({
     playingStatus: false,
     duration: 0,
     playedTime: 0,
+    playedProgress: 0,
     volume: 1,
     muted: false,
     loop: false,
@@ -35,6 +36,8 @@ const music = new Howl({
         console.log("开始播放");
         getPlayedTimeInterval = setInterval(() => {
             musicPlayingData.value.playedTime = music.seek() * 1000
+            // console.log(((musicPlayingData.value.playedTime / 1000) / musicPlayingData.value.duration) * 100)
+            musicPlayingData.value.playedProgress = ((musicPlayingData.value.playedTime / 1000) / musicPlayingData.value.duration) * 100
         }, 1000)
         musicPlayingData.value.playingStatus = true
     },
@@ -110,9 +113,9 @@ const music = new Howl({
                     </div>
                 </div>
                 <div class="w-[85%] m-auto mt-5 text-[#ffffff]">
-                    <van-progress :percentage="0" pivot-text="&nbsp" :show-pivot="true" text-color="#ffffff"
-                        pivot-color="#ffffff" style="--van-progress-pivot-font-size:3px" stroke-width="2"
-                        color="linear-gradient(to right, #be99ff, #7232dd)" />
+                    <van-progress :percentage="musicPlayingData.playedProgress" pivot-text="&nbsp" :show-pivot="true"
+                        text-color="#ffffff" pivot-color="#ffffff" style="--van-progress-pivot-font-size:3px"
+                        stroke-width="2" color="linear-gradient(to right, #be99ff, #7232dd)" />
                     <div class="flex w-[100%] justify-between items-center text-[9px] mt-2">
                         <div class=" text-[#ffffff]">
                             <span>{{ new Date(musicPlayingData.playedTime).getMinutes() < 10 ? "0" + new

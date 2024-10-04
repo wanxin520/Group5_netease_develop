@@ -56,8 +56,8 @@ const isClicked = (name) => {
                 :show-indicators="false">
                 <van-swipe-item @click="isClicked(item.name)" v-for="(item, index) in data.data" :key="item.name">
                     <div class="flex flex-col items-center">
-                        <div class="">
-                            <img class="filter w-[2.4rem]" :src="item.iconUrl" alt="">
+                        <div class=" w-[2.4rem]  h-[2.4rem]">
+                            <img class="filter h-[2.4rem]  w-[2.4rem]" :src="item.iconUrl" alt="">
                         </div>
                         <div class="text-[#4d4c4c] text-[11px]">
                             {{ item.name }}

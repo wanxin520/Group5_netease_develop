@@ -10,7 +10,7 @@ const props = defineProps({
 const emit = defineEmits(["transmitePlaylistId", "transmiteSongId", "transmiteVideoId"])
 
 const getResourceId = (resourceId) => {
-  console.log(resourceId);
+  // console.log(resourceId);
   emit("transmiteSongId",resourceId)
 };
 </script>
