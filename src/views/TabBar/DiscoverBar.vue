@@ -1,11 +1,11 @@
 <script setup>
 import { getHomePageData } from "@/api";
 import { useRequest } from "vue-request";
-import TopSearch from "@/views/Home/top/TopSearch.vue";
-import BlockType from "@/views/Home/children/BlockType.vue";
-import Bottom from "../Home/bottom/Bottom.vue";
-import Banner from "../Home/children/Banner.vue";
-import MenuPage from "../Home/children/MenuPage.vue";
+import TopSearch from "../Top/TopSearch.vue";
+import BlockType from "@/views/Pages/Discover/children/BlockType.vue";
+import Bottom from "../Bottom/Bottom.vue";
+import Banner from "../Pages/Discover/children/Banner.vue";
+import MenuPage from "../Pages/Discover/children/MenuPage.vue";
 
 // useRequest传入的是一个返回Promise值的请求函数,data就是返回的数据
 const { data: pageData } = useRequest(getHomePageData)

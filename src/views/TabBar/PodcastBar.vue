@@ -1,5 +1,5 @@
 <script setup>
-import Bottom from "../Home/bottom/Bottom.vue";
+import Bottom from "../Bottom/Bottom.vue";
 
 </script>
 

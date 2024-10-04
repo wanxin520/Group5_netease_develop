@@ -1,8 +1,8 @@
 <script setup>
 import { Icon } from "@iconify/vue";
-import Bottom from "../Home/bottom/Bottom.vue";
+import Bottom from "../Bottom/Bottom.vue";
 import GetUserAcount from "@/components/userInformation/get/GetUserAcount.vue";
-import LeftPopup from "../Home/top/LeftPopup.vue";
+import LeftPopup from "../Top/LeftPopup.vue";
 import GetUserPlayList from "@/components/userInformation/get/GetUserPlayList.vue";
 import { ref, watch, reactive, onMounted, onUnmounted } from "vue"
 import { useRequest } from 'vue-request';
@@ -15,7 +15,7 @@ const { data, loading } = useRequest(() => getUserAccount({ "timestamp": Date.no
 watch(data, () => {
   // console.log(data.value);
 })
-const checked = ref(0)
+const checked = ref(2)
 </script>
 
 <template>

@@ -9,7 +9,6 @@ const route = useRoute()
 const router = useRouter()
 const isShow = ref(false)
 const Data_SongDetail = ref("")
-
 const { data } = useRequest(() => getPlaylistAllSongs({ id: "24381616" }))
 
 watch(data, () => {

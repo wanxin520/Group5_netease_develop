@@ -9,10 +9,13 @@ import SongListHandler from "./SongListHandler.vue";
 
 // 获取歌单搜索id
 const route = useRoute()
-const { data, loading } = useRequest(() => getPlaylistDetail({
+const router = useRouter()
+const { run, data, loading } = useRequest(() => getPlaylistDetail({
   id: route.query.id
 }))
-
+if (route.query.id) {
+  run()
+}
 watch(data, () => {
   // console.log(data.value.playlist);
 })
@@ -23,7 +26,10 @@ const scroll = () => {
   scrollDate.value = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
   scrollDate.value > 150 ? bgimg.value = data.value.playlist.creator.backgroundUrl : bgimg.value = null
 }
-
+// 返回上一个页面
+const toBack = () => {
+  router.go(-1)
+}
 </script>
 <template>
   <div v-if="!loading">
@@ -53,11 +59,18 @@ const scroll = () => {
       <div class="flex w-[100%] items-start justify-start">
         <div class="mx-1 flex justify-center items-center rounded-[30px] relative">
           <img class="w-[6rem] h-[6rem] rounded-[1rem]" :src="data.playlist.coverImgUrl" alt="">
-          <div class=" absolute text-[#ffffffd8] flex justify-center items-center self-start left-12 top-2 text-[10px]">
+          <div class=" absolute text-[#ffffffd8] flex justify-center items-center self-start left-12 top-2 text-[8px]">
             <Icon icon="fluent:play-28-filled" />
-            <div class="ml-1">
-              {{ data.playlist.playCount > 10000 ? (data.playlist.playCount / 10000).toFixed(1) + "万" :
+            <div v-if="data.playlist.playCount > 100000000" class="ml-1">
+              {{ data.playlist.playCount > 10000 ? (data.playlist.playCount / 100000000).toFixed(1) + "亿" :
                 data.playlist.playCount }}
+            </div>
+            <div v-else-if="data.playlist.playCount > 10000" class="ml-1">
+              {{ data.playlist.playCount > 10000 ? (data.playlist.playCount / 10000).toFixed(2) + "万" :
+                data.playlist.playCount }}
+            </div>
+            <div v-else class="ml-1">
+              {{ data.playlist.playCount }}
             </div>
           </div>
         </div>
@@ -95,19 +108,25 @@ const scroll = () => {
           <Icon icon="weui:arrow-outlined" width="0.6rem" class="mr-3" />
         </div>
       </div>
-      <div class="flex justify-around items-center mt-3 mb-5">
+      <div class="flex justify-around items-center mt-3 mb-5 text-[11px]">
         <div class="flex justify-center items-center w-[6rem] h-[2rem] rounded-[1rem] text-[#ffffff] bg-[#ffffff5b]">
           <Icon icon="mingcute:share-forward-fill" />
-          <span class=" mx-1">{{ data.playlist.shareCount }}</span>
+          <span v-if="data.playlist.shareCount > 10000" class=" mx-1">{{ (data.playlist.shareCount /
+            10000).toFixed(1) + "万" }}</span>
+          <span v-else class=" mx-1">{{ data.playlist.shareCount }}</span>
         </div>
         <div class="flex justify-center items-center w-[6rem] h-[2rem] rounded-[1rem] text-[#ffffff] bg-[#ffffff5e]"
           style="background-color: rgba(255, 255, 255,0.2);">
           <Icon icon="eva:message-circle-fill" />
-          <span class="mx-1">{{ data.playlist.commentCount }}</span>
+          <span v-if="data.playlist.commentCount > 10000" class=" mx-1">{{ (data.playlist.commentCount /
+            10000).toFixed(1) + "万" }}</span>
+          <span v-else class=" mx-1">{{ data.playlist.commentCount }}</span>
         </div>
         <div class="flex justify-center items-center w-[6rem] h-[2rem] rounded-[1rem] text-[#ffffff] bg-[#ff4646]">
           <Icon icon="mingcute:new-folder-fill" />
-          <span class=" mx-1">{{ data.playlist.subscribedCount }}</span>
+          <span v-if="data.playlist.subscribedCount > 10000" class=" mx-1">{{ (data.playlist.subscribedCount /
+            10000).toFixed(1) + "万" }}</span>
+          <span v-else class=" mx-1">{{ data.playlist.subscribedCount }}</span>
         </div>
       </div>
     </div>
