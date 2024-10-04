@@ -5,7 +5,7 @@ import { Icon } from "@iconify/vue";
 const props = defineProps({
     tracks: {}
 })
-// console.log(props.tracks[1]);
+// console.log(props.tracks);
 // 获取歌曲id
 const getSongId = (songId) => {
     console.log(songId);
@@ -53,11 +53,11 @@ const getVedioId = (vedioId) => {
                 </div>
                 <div class="flex h-[2vh] my-2">
                     <!-- 是否是超清母带音质歌曲 -->
-                    <div v-if="item.hr"
+                    <!-- <div v-if="item.hr"
                         class="w-[2rem] h-[0.7rem] flex justify-center items-center text-[6px] rounded-[5px] text-[#ffad50] mr-1"
-                        style="border: 1px solid #ffad50;">超清母带</div>
+                        style="border: 1px solid #ffad50;">超清母带</div> -->
                     <!-- 是否是SQ歌曲 -->
-                    <div v-else-if="item.sq"
+                    <div v-if="item.sq"
                         class="w-[1rem] h-[0.7rem] flex justify-center items-center text-[6px] rounded-[5px] text-[#ff4b45] mr-1"
                         style="border: 1px solid #ff4b45;">SQ</div>
                     <!-- 是否是VIP歌曲 -->

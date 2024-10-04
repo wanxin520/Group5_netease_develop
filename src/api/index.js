@@ -399,19 +399,6 @@ export const checkMusic = async (data) => {
   return res.data;
 };
 
-// 获取音乐 url - 新版
-/* 
-说明 : 使用注意事项同上
-必选参数 : id : 音乐 id level: 播放音质等级, 分为 standard => 标准,higher => 较高, exhigh=>极高, lossless=>无损, hires=>Hi-Res, jyeffect => 高清环绕声, sky => 沉浸环绕声, dolby => 杜比全景声, jymaster => 超清母带
-接口地址 : /song/url/v1
-调用例子 : /song/url/v1?id=33894312&level=exhigh /song/url/v1?id=405998841,33894312&level=lossless
-说明：杜比全景声音质需要设备支持，不同的设备可能会返回不同码率的url。cookie需要传入os=pc保证返回正常码率的url。
-*/
-export const getSongUrl = async (data) => {
-  const [error, res] = await to(request.post("/song/url/v1"), data);
-  if (error) return console.log("请求出错:" + error);
-  return res.data;
-};
 
 // 所有榜单
 /*
