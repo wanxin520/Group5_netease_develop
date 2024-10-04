@@ -52,7 +52,7 @@ watch(qrimg, () => {
               showToast("登录成功,正在前往首页")
               clearInterval(checkStatusTimer)
               setTimeout(() => {
-                router.push({ name: "homepage" })
+                router.push({ name: "discover" })
               }, 1000)
             })
             .catch(() => {
