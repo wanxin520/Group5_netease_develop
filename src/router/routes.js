@@ -11,9 +11,8 @@ export default [
   { path: "/", redirect: "/discover" },
   // 登录路由
   {
-    path: "/login",
+    path: "/login", redirect: "/login/tourist",
     children: [
-      { path: "/login", redirect: "/login/tourist" },
       // 二维码登录
       {
         path: "qrcode",
