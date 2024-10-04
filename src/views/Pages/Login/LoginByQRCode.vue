@@ -71,21 +71,17 @@ const reFresh = () => {
   getUnikey()
 }
 
-// 游客登录
-const toLoginByTourist = () => {
-  router.push({ name: "tourist", query: { originPath: route.query.originPath } })
-}
+// 手机登录
+const loginByPhone = () => {
+  router.push({ name: "phone" });
+};
 </script>
 
 <template>
   <div class="w-[100vw] h-[100vh] flex flex-col justify-between bg-[#fcfcfc]">
     <div class="w-[100%] h-[10vh] flex justify-between">
-      <div @click="toBack" class="text-[2rem]  flex justify-center items-center mx-2">
+      <div @click="loginByPhone" class="text-[2rem]  flex justify-center items-center mx-2">
         <Icon icon="iconamoon:arrow-left-2-light" width="2rem" style="color: gray" />
-      </div>
-      <div class="flex justify-center items-center text-[#838383] mx-4" @click="toLoginByTourist">
-        <Icon class="mr-2" icon="ic:outline-people" width="1.2rem" height="1.2rem" style="color: #40d4ca" />
-        <span class="text-[13px]">游客登录</span>
       </div>
     </div>
     <div class="flex w-[100%] h-[10vh] justify-center items-center ">

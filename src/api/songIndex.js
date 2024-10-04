@@ -18,9 +18,9 @@ import request from "./request";
 */
 
 export const getPlaylistDetail = async (data) => {
-    const [error, res] = await to(request.post(`/playlist/detail?id=${data.id}`));
-    if (error) return console.log("请求出错:" + error);
-    return res.data;
+  const [error, res] = await to(request.post(`/playlist/detail?id=${data.id}`));
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
 };
 
 /* 
@@ -37,9 +37,9 @@ export const getPlaylistDetail = async (data) => {
 如果你设置limit=50&offset=100，你就会得到第101-150首歌曲
 */
 export const getPlaylistAllSongs = async (data) => {
-    const [error, res] = await to(request.post(`/playlist/detail?id=${data.id}`));
-    if (error) return console.log("请求出错:" + error);
-    return res.data;
+  const [error, res] = await to(request.post(`/playlist/detail?id=${data.id}`));
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
 };
 
 
@@ -52,9 +52,9 @@ export const getPlaylistAllSongs = async (data) => {
 说明：杜比全景声音质需要设备支持，不同的设备可能会返回不同码率的url。cookie需要传入os=pc保证返回正常码率的url。
 */
 export const getSongsUrl = async (data) => {
-    const [error, res] = await to(request.post(`/song/url?id=${data.id}&cookie=${data.cookie}`));
-    if (error) return console.log("请求出错:" + error);
-    return res.data;
+  const [error, res] = await to(request.post(`/song/url?id=${data.id}&cookie=${data.cookie}`));
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
 };
 
 
@@ -154,7 +154,21 @@ privilege:权限相关信息
   maxBrLevel；歌曲最高音质
 */
 export const getSongsDetail = async (data) => {
-    const [error, res] = await to(request.post(`/song/detail?ids=${data.id}&cookie=${data.cookie}`));
-    if (error) return console.log("请求出错:" + error);
-    return res.data;
+  const [error, res] = await to(request.post(`/song/detail?ids=${data.id}&cookie=${data.cookie}`));
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
+};
+
+/* 
+获取声音歌词
+说明: 调用此接口可以获取声音歌词
+接口地址: /voice/lyric
+必选参数： id: 声音id
+*/
+export const getSongsLyric = async (data) => {
+  const [error, res] = await to(request.post(`/voice/lyric?id=${data.id}&cookie=${data.cookie}`));
+  console.log(error.data);
+  console.log(data);
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
 };

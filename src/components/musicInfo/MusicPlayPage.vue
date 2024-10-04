@@ -2,11 +2,17 @@
 import { ref, watch } from "vue"
 import { Icon } from "@iconify/vue";
 import { Howl, Howler } from "howler";
+import { useRouter } from "vue-router";
+import getMusicLyric from "./getMusicLyric.vue";
 
+
+
+const router = useRouter()
 const props = defineProps({
     songsUrlData: {},
     songsDetailData: {}
 })
+console.log(props.songsDetailData);
 const musicPlayingData = ref({
     songFile: "",
     playingStatus: false,
@@ -20,7 +26,7 @@ const musicPlayingData = ref({
 })
 let getPlayedTimeInterval
 const music = new Howl({
-    loop: false,
+    loop: true,
     rate: 1,
     autoplay: false,
     src: [props.songsUrlData[0].url],
@@ -78,7 +84,8 @@ const music = new Howl({
         <div class="w-[100%] h-[100%] flex flex-col justify-between items-center z-40">
             <!-- top -->
             <div class="h-[12vh] w-[100%] flex justify-between items-center text-[#ffffff]">
-                <Icon icon="iconamoon:arrow-down-2-light" width="1.6rem" height="1.6rem" class="ml-3" />
+                <Icon @click="router.go(-1)" icon="iconamoon:arrow-down-2-light" width="1.6rem" height="1.6rem"
+                    class="ml-3" />
                 <Icon icon="hugeicons:share-04" width="1.2rem" height="1.2rem" class="mr-3" />
             </div>
             <div class="cdcard" :class="{ songimgRotate: musicPlayingData.playingStatus }">

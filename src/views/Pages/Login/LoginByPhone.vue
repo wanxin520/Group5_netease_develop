@@ -62,13 +62,19 @@ const showAreYouOk = () => {
         <van-button @click="getValidCode" :disabled="!(userInfo.phone.length > 10 && checked == true)" v-else
           class="w-[18rem]" color="rgb(255, 55, 55)" round text="验证码登录" />
       </div>
-      <div class="flex flex-col justify-center items-center mt-3">
+      <div class="flex flex-col justify-center items-center mt-4">
         <van-radio-group v-model="checked" shape="square">
-          <van-radio class="text-[10px]" name="1" checked-color="rgb(154, 156, 158)" icon-size="10px">
-            <span>我已阅读并同意</span><span class="text-[#4986e2] text-[12px]">《服务条款》、《隐私政策》</span>
+          <van-radio class="text-[8px]" name="1" checked-color="rgb(154, 156, 158)" icon-size="10px">
+            <span>我已阅读并同意</span><span class="text-[#4986e2] text-[8px]">《服务条款》、《隐私政策》</span>
           </van-radio>
         </van-radio-group>
-        <span class="text-[#4986e2] text-[12px]">《中国移动认证服务协议》</span>
+        <span class="text-[#4986e2] text-[8px]">《中国移动认证服务协议》</span>
+      </div>
+      <div class="w-[100%] flex justify-evenly mt-6">
+        <van-icon name="wechat" color="#54cf79" size="20" class="text-[#4562e2]" />
+        <van-icon name="qq" color="#4562e2" size="20" />
+        <van-icon name="weibo" color="#e24f4f" size="20" />
+        <van-icon name="alipay" color="#66a8ff" size="20" />
       </div>
     </div>
     <div v-else class="flex flex-col justify-start items-center">
@@ -89,8 +95,9 @@ const showAreYouOk = () => {
         class="mt-5 h-[4rem] w-[4rem] rounded-[50%] bg-[#ec4e39] flex justify-center items-center">
         <Icon icon="fluent:arrow-right-12-filled" width="1.3rem" class="text-[#ffffff]" />
       </div>
+
     </div>
-    <div @click="showBottom = !showBottom" class="h-[10%] text-[11px] text-[#999999]">
+    <div @click="showBottom = !showBottom" class="text-[11px] text-[#999999] mb-8">
       使用其他方式登录
     </div>
     <!-- 底部弹出层 -->

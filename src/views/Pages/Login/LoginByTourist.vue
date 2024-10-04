@@ -35,38 +35,35 @@ watch(data, async () => {
   showToast("登录成功,正在前往首页")
   router.replace({ name: "discover" })
 })
-const toBack = () => {
+const loginByPhone = () => {
   router.push({ name: "phone" });
 };
 </script>
 
 <template>
-  <div class="w-[100vw] h-[100vh] flex flex-col justify-between bg-[#fcfcfc] content">
-    <div class="w-[100%] h-[10vh] flex justify-between">
-      <div @click="toBack" class="text-[13px] flex justify-center items-center mx-2">
-        <Icon icon="iconamoon:arrow-left-2-light" width="2rem" class="text-[#ffffff]" />
-        <span class="text-[#ffffff]">返回手机登录</span>
+  <div class="w-[100vw] h-[100vh] flex flex-col justify-around bg-[#fcfcfc] content">
+    <div class="h-[40%] flex justify-center items-center">
+      <div class=" bg-[#ff0000] rounded-[50%]">
+        <!-- <Icon icon="ri:netease-cloud-music-fill" width="5.6rem" height="5.6rem" /> -->
+        <Icon icon="simple-icons:neteasecloudmusic" width="4.6rem" height="4.6rem" class="text-[#ffffff]" />
       </div>
     </div>
-    <div class="flex w-[100%] h-[10vh] justify-center items-center">
-      <img class="w-[12rem]" src="/public/logo.fill.svg" alt="" />
+    <div class="">
+      <div @click="loginByPhone" class="h-[4rem] flex flex-col justify-between items-center">
+        <van-button class="w-[18rem]" color="rgb(255, 0, 0)" round text="手机号登录" />
+      </div>
+      <div @click="login" v-if="!loading" class="h-[4rem] flex flex-col justify-between items-center">
+        <van-button class="w-[18rem]" color="rgb(255, 55, 55)" plain round text="立即体验" />
+      </div>
+      <div v-else class="h-[4rem] flex flex-col justify-between items-center">
+        <van-button class="w-[18rem]" color="rgb(255, 55, 55)" :loading="loading" plain round text="正在使用游客登录" />
+      </div>
     </div>
-    <div class="flex justify-center items-center">
-      <van-button @click="login" v-if="!loading" class="w-[16rem]" type="warning"
-        color="linear-gradient(to right, #ff6034, #ee0a24)">游客登录</van-button>
-      <van-button v-else class="w-[16rem]" :loading="loading" loading-type="spinner" :disabled="isClicked"
-        color="linear-gradient(to right, #ff6034, #ee0a24)" loading-text=" 正在登录..." />
-    </div>
-    <div class="w-[100%] h-[30vh]" style="
-        background-image: url(/public/loginbg.png);
-        opacity: 0.6;
-        background-repeat: no-repeat;
-        background-size: cover;
-      "></div>
   </div>
 </template>
 <style scoped>
 .content {
-  background-image: linear-gradient(to bottom, #f58a8a 10%, rgb(255, 255, 255) 60%);
+  height: 100vh;
+  background-image: linear-gradient(to bottom, rgb(255, 168, 168), rgb(255, 255, 255));
 }
 </style>
