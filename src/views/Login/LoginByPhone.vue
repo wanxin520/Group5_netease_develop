@@ -19,7 +19,7 @@ const userInfo = ref({
   phone: "",
   captcha: ""
 })
-const { run: login, data: resolveLoginData } = useRequest(() =>
+const { run: login, data: resolveLoginData, loading: loginLoading } = useRequest(() =>
   loginByPhone({ "phone": userInfo.value.phone, "captcha": userInfo.value.captcha }), { manual: true })
 watch(resolveLoginData, async () => {
   // 登陆成功之后将返回的用户数据以及登录cookie储存在userStore里面
@@ -27,7 +27,10 @@ watch(resolveLoginData, async () => {
   // console.log(resolveLoginData.value.token);
   const [error] = await to(localforage.setItem("userInfo", resolveLoginData.value))
   if (error) return showToast("数据存储失败")
-  router.push({ name: "discover" })
+  showToast("登录成功，正在跳转至首页...")
+  setTimeout(() => {
+    router.replace({ name: "discover" })
+  }, 1500)
 })
 // 当需要手动发送请求的时候，需要使manual的值为true，并调用们方法执行
 // 获取验证码
@@ -37,6 +40,7 @@ watch(resolveValidCode, () => {
   showInputValidCode.value = true
   showToast("验证码发送成功！")
 })
+
 const showAreYouOk = () => {
   showToast("你行不行啊？")
 }
@@ -44,11 +48,8 @@ const showAreYouOk = () => {
 
 <template>
   <div class="container flex flex-col justify-around items-center">
-    <div class="flex self-start p-2">
-      <van-icon name="arrow-left" />
-    </div>
     <div class="h-[40%] flex justify-center items-center">
-      <Icon icon="simple-icons:neteasecloudmusic" width="4.6rem" style="color: #ff0000" />
+      <Icon icon="simple-icons:neteasecloudmusic" width="4.6rem" class="text-[#ff1919]" />
     </div>
     <div v-if="!showInputValidCode">
       <div class="h-[8rem] flex flex-col justify-between items-center">
@@ -80,8 +81,13 @@ const showAreYouOk = () => {
           <span @click="getValidCode" class="text-[10px]">重新获取</span>
         </template>
       </van-field>
-      <div @click="login" class="mt-5 h-[4rem] w-[4rem] rounded-[50%] bg-[#ffffff] flex justify-center items-center">
-        <Icon icon="ion:enter-outline" width="1.6rem" height="1.6rem" class="text-[#000000]" />
+      <div v-if="loginLoading"
+        class="mt-5 h-[4rem] w-[4rem] rounded-[50%] bg-[#ffa296] flex justify-center items-center">
+        <van-button class=" h-[4rem] w-[4rem]" round color="#ffa296" loading type="primary" loading-type="spinner" />
+      </div>
+      <div v-else @click="login"
+        class="mt-5 h-[4rem] w-[4rem] rounded-[50%] bg-[#ec4e39] flex justify-center items-center">
+        <Icon icon="fluent:arrow-right-12-filled" width="1.3rem" class="text-[#ffffff]" />
       </div>
     </div>
     <div @click="showBottom = !showBottom" class="h-[10%] text-[11px] text-[#999999]">

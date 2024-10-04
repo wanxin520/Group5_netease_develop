@@ -1,7 +1,5 @@
 <script setup>
 import { computed, defineProps } from "vue";
-import Banner from "@/views/Home/children/Banner.vue";
-import MenuPage from "@/views/Home/children/MenuPage.vue";
 import MGCPlayList from "./MGCPlayList.vue";
 import RCMDPlayList from "./RCMDPlayList.vue";
 import OfficialPlayList from "./OfficialPlayList.vue";
@@ -19,8 +17,6 @@ import RCMDVoiceBook from "./RCMDVoiceBook.vue";
 
 
 const blockTypeComponentMap = {
-  HOMEPAGE_BANNER: Banner, // 轮播图
-  HOMEPAGE_BLOCK_OLD_DRAGON_BALL: MenuPage, // 圆形图标
   HOMEPAGE_BLOCK_PLAYLIST_RCMD: RCMDPlayList, //  推荐歌单
   HOMEPAGE_BLOCK_STYLE_RCMD: RCMDStyle, // 为你定制精选歌曲
   HOMEPAGE_BLOCK_MGC_PLAYLIST: MGCPlayList, //网易云音乐的雷达歌单
@@ -46,15 +42,6 @@ const props = defineProps({
 
 const propsData = computed(() => {
   switch (props.data.blockCode) {
-    // 轮播图
-    case "HOMEPAGE_BANNER":
-      return props.data.extInfo.banners; 
-    // 首页圆形图标菜单
-    case "HOMEPAGE_BLOCK_OLD_DRAGON_BALL":
-      return props.data.creatives[0].resources.map((item) => ({
-        name: item.uiElement.mainTitle.title,
-        iconUrl: item.uiElement.image.imageUrl,
-      }));
     // 推荐歌单
     case "HOMEPAGE_BLOCK_PLAYLIST_RCMD":
       return {
@@ -209,8 +196,8 @@ const propsData = computed(() => {
           shareUrl: item.resource.shareUrl
         })),
       };
-    
-      default:
+
+    default:
       return null;
   }
 

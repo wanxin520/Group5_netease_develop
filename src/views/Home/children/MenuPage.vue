@@ -1,16 +1,17 @@
 <script setup>
+import { ref, watch } from 'vue'
 import { defineProps } from "vue";
 import { useRouter } from "vue-router";
+import { getDragonBall } from "@/api";
+import { useRequest } from "vue-request";
+import { useUserStore } from "@/store";
 
-const props = defineProps({
-    data: {
-        type: Array,
-        required: true,
-    },
-});
-// console.log(props.data);
-
+const userStore = useUserStore()
 const router = useRouter()
+const { data, loading } = useRequest(() => getDragonBall({ "timestamp": Date.now(), "cookie": userStore.userInfo.cookie }))
+watch(data, () => {
+    // console.log(data.value);
+})
 
 const isClicked = (name) => {
     switch (name) {
@@ -37,7 +38,10 @@ const isClicked = (name) => {
             break
         case "收藏家":
             router.push({ name: "collector" })
-
+            break
+        case "歌房":
+            router.push({ name: "musicroom" })
+            break
         default:
             break
     }
@@ -47,14 +51,14 @@ const isClicked = (name) => {
 </script>
 
 <template>
-    <div class="m-auto">
-        <div class="w-[100vw] flex justify-center items-center">
+    <div class="m-auto h-[15vh]">
+        <div v-if="!loading" class="w-[100vw] flex justify-center items-center">
             <van-swipe class="my-swipe" :width="80" :height="80" :stop-propagation="false" :loop="false"
                 :show-indicators="false">
-                <van-swipe-item @click="isClicked(item.name)" v-for="(item, index) in props.data" :key="item.name">
+                <van-swipe-item @click="isClicked(item.name)" v-for="(item, index) in data.data" :key="item.name">
                     <div class="flex flex-col items-center">
                         <div class="">
-                            <img class="filter w-[2.6rem]" :src="item.iconUrl" alt="">
+                            <img class="filter w-[2.4rem]" :src="item.iconUrl" alt="">
                         </div>
                         <div class="text-[#4d4c4c] text-[11px]">
                             {{ item.name }}

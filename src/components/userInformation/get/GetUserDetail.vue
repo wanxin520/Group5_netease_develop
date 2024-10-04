@@ -1,23 +1,40 @@
 <script setup>
 import { ref, watch } from "vue"
+import { Icon } from "@iconify/vue";
 import { useRequest } from "vue-request";
 import { getUserDetail} from "@/api/userIndex";
+import { useRouter } from "vue-router";
 
+const router = useRouter()
 const props = defineProps({
-    uid:{
-        
-    }
+    uid:{},
+    anonimousUser:{}
 })
-const { data: userDetail, loading } = useRequest(() => getUserDetail({ "timestamp": Date.now(), "uid": props.uid }))
-
+const { run,data: userDetail, loading } = useRequest(() => getUserDetail({ "timestamp": Date.now(), "uid": props.uid }),{manual:true})
+if(!props.anonimousUser){
+    run()
+}
 // watch(userDetail, () => {
 //     console.log(userDetail.value);
 // })
+// 跳转至手机登录
+const toLoginByPhone = () => {
+    router.replace({ name: "phone" })
+}
+
 </script>
 
 <template>
     <div class="w-[100%] h-[18vh] flex flex-col justify-between ">
-        <div v-if="!loading" class="w-[100%] flex flex-col justify-between items-center">
+        <div v-if="anonimousUser"
+        @click="toLoginByPhone"
+            class="w-[100%] justify-center items-center mt-5 h-[1.2rem] flex text-[#ffffff] text-[16px] ">
+            <div class=" font-bold mr-2">
+                立即登录
+            </div>
+            <Icon icon="weui:arrow-filled" class="text-[1.5rem]"/>
+        </div>
+        <div v-else-if="!loading" class="w-[100%] flex flex-col justify-between items-center">
             <!-- 昵称 和 vip -->
             <div class="w-[100%] justify-center items-center mt-5 h-[1.2rem] flex ">
                 <div class="text-[#ffffff] text-[16px] font-bold mr-2">{{ userDetail.profile.nickname }}</div>

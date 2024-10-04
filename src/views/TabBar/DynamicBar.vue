@@ -1,4 +1,5 @@
 <script setup>
+import GetUserPLCount from "@/components/userInformation/get/GetUserPLCount.vue";
 import Bottom from "../Home/bottom/Bottom.vue";
 
 </script>
@@ -6,6 +7,7 @@ import Bottom from "../Home/bottom/Bottom.vue";
 <template>
   <div>
     <h1>动态</h1>
+    <GetUserPLCount></GetUserPLCount>
 
     <footer class="fixed bottom-0 left-0 right-0 z-index-1008">
       <Bottom></Bottom>
