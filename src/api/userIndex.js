@@ -126,3 +126,18 @@ export const getUserPLCount = async (data) => {
     if (error) return console.log("请求出错:" + error);
     return res.data;
 };
+
+/* 
+获取动态消息
+说明 : 调用此接口 , 可获取各种动态 , 对应网页版网易云，朋友界面里的各种动态消息 ，如分享的视频，音乐，照片等！
+必选参数 : pagesize : 每页数据,默认 20
+lasttime : 返回数据的 lasttime ,默认-1,传入上一次返回结果的 lasttime,将会返回下一页的数据
+接口地址 : /event
+调用例子 : /event?pagesize=30&lasttime=1556740526369
+*/
+export const getDynamicMessage = async (data) => {
+    const [error, res] = await to(request.post(`/event?pagesize=80&lasttime=-1&timestamp=${data.timestamp}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+
