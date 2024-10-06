@@ -52,7 +52,7 @@ watch(qrimg, () => {
               showToast("登录成功,正在前往首页")
               setTimeout(() => {
                 router.push({ name: "discover" })
-              }, 1500)
+              }, 1000)
             })
             .catch(() => {
               showToast("登录失败!")
