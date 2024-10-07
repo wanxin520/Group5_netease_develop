@@ -4,8 +4,8 @@ import { Icon } from "@iconify/vue";
 import { getSongsUrl, getSongsDetail } from "@/api/songIndex";
 import { useRequest } from "vue-request";
 import { useUserStore, usePlayStore } from "@/store";
-import MusicPlayPage from "../play/music/MusicPlayPage.vue";
 import { useRoute } from "vue-router";
+import BottomPlayBar from "../play/music/BottomPlayBar.vue";
 
 const route = useRoute()
 const songsUrlData = ref()
@@ -30,10 +30,7 @@ watch(songsDetail, () => {
 
 <template>
     <div>
-        <MusicPlayer></MusicPlayer>
+        <BottomPlayBar></BottomPlayBar>
     </div>
-    <!-- <div v-if="!url & !detail">
-        <MusicPlayPage :songsUrlData="songsUrlData" :songsDetailData="songsDetailData"></MusicPlayPage>
-    </div> -->
 </template>
 <style scoped></style>

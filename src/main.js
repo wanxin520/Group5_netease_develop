@@ -14,5 +14,10 @@ initErrorHandle();
 const app = createApp(App);
 app.use(router)
 app.use(Vant)
+// 全局配置懒加载
+app.use(Vant.Lazyload, {
+    lazyComponent: true,
+});
+
 app.use(pinia)
 app.mount("#app");

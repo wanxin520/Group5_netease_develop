@@ -7,6 +7,7 @@ const router = useRouter();
 const props = defineProps({
   data: {},
 });
+const emit = defineEmits(["transmitePlaylistId", "transmiteSongId", "transmiteVideoId"])
 // console.log(props.data.resourceExtInfo[0].playCount);
 // console.log(props.data.children);
 const isChecked = (id) => {

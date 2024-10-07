@@ -8,7 +8,11 @@
 
 import to from "await-to-js";
 import request from "./request";
-
+import { useUserStore } from "@/store";
+const userStore = useUserStore()
+const params = new URLSearchParams()
+params.append("cookie", userStore.userInfo.cookie)
+params.append("timestamp", Date.now())
 // 获取登录状态
 /* 
 说明 : 调用此接口,可获取登录状态
@@ -110,7 +114,7 @@ lasttime : 返回数据的 lasttime ,默认-1,传入上一次返回结果的 las
 */
 
 export const getUserEvent = async (data) => {
-    const [error, res] = await to(request.post(`/user/event?uid=${data.uid}`));
+    const [error, res] = await to(request.post(`/user/event?uid=${data.uid}&cookie=${data.cookie}`));
     if (error) return console.log("请求出错:" + error);
     return res.data;
 };
@@ -136,7 +140,7 @@ lasttime : 返回数据的 lasttime ,默认-1,传入上一次返回结果的 las
 调用例子 : /event?pagesize=30&lasttime=1556740526369
 */
 export const getDynamicMessage = async (data) => {
-    const [error, res] = await to(request.post(`/event?pagesize=80&lasttime=-1&timestamp=${data.timestamp}`));
+    const [error, res] = await to(request.post(`/event?pagesize=80&lasttime=-1&timestamp=${data.timestamp}`, params));
     if (error) return console.log("请求出错:" + error);
     return res.data;
 };

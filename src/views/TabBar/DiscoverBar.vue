@@ -25,7 +25,7 @@ const { data: pageData } = useRequest(getHomePageData)
             <div style="height: 50px;"></div>
         </div>
         <div class="fixed bottom-[50px] left-0 right-0 z-index-1008">
-            <BottomPlayBar></BottomPlayBar>
+             <BottomPlayBar></BottomPlayBar>
         </div>
         <footer class="fixed bottom-0 left-0 right-0 z-index-1008">
             <Bottom></Bottom>

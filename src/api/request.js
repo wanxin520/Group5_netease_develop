@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useUserStore } from "@/store";
+const userStore = useUserStore();
 
 const http = axios.create({
   baseURL: import.meta.env.VITE_BASEURL,
@@ -11,7 +12,7 @@ const http = axios.create({
 http.interceptors.request.use(async (config) => {
   // 在请求拦截器需要获取登陆凭证（cookie、token） userStore => localStorage
   // 在组件外使用需要注意：使用useXXXStore()一定需要在app.use(pinia)之后
-  const userStore = useUserStore();
+
 
   const extParams = {};
   // if (userStore.cookie) extParams.cookie = userStore.cookie;

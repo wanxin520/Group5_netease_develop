@@ -9,18 +9,16 @@ const props = defineProps({
 songImg.value = props.songImg
 playingStatus.value = props.playingStatus
 watch(props, () => {
-    console.log("传过来的数据更新了");
+    // console.log("传过来的数据更新了");
     songImg.value = props.songImg
     playingStatus.value = props.playingStatus
-    console.log(props.songImg);
-    console.log(props.playingStatus);
 })
 
 </script>
 
 <template>
     <div class="cdcard" :class="{ songimgRotate: playingStatus }">
-        <img class="" :src="songImg" alt="">
+        <img class="" :src="songImg ? songImg : `../../../../public/cd1.png`">
     </div>
 </template>
 <style scoped lang="less">

@@ -8,6 +8,7 @@ const props = defineProps({
   data: {},
 });
 
+const emit = defineEmits(["transmitePlaylistId", "transmiteSongId", "transmiteVideoId"])
 const isChecked = (id) => {
   console.log(id);
   const query = { id: id };

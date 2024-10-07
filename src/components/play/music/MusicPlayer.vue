@@ -1,25 +1,22 @@
 <script setup>
-import { ref, watch } from "vue"
+import { ref, watch, watchEffect } from "vue"
 import { Icon } from "@iconify/vue";
-import { Howl, Howler } from "howler";
-import { useRouter } from "vue-router";
-import { usePlayStore } from "@/store";
 const songMessage = ref()
+const defaultIMG = ref("../../../../public/cd1.png")
 const musicPlayingData = ref()
 const props = defineProps({
   songMessage: {},
   musicPlayingData: {}
 })
-songMessage.value = props.songMessage,
-  musicPlayingData.value = props.musicPlayingData
+
+songMessage.value = props.songMessage
+musicPlayingData.value = props.musicPlayingData
 watch(props, () => {
-  songMessage.value = props.songMessage,
-    musicPlayingData.value = props.musicPlayingData
-  // console.log(props.musicPlayingData);
+  songMessage.value = props.songMessage
+  musicPlayingData.value = props.musicPlayingData
 })
 
-const emit = defineEmits(["closePlayBar", "nextSong", "backSong"])
-
+const emit = defineEmits(["closePlayBar", "nextSong", "backSong", "play", "pause"])
 const closePoup = () => {
   emit("closePlayBar", false)
 }
@@ -28,7 +25,7 @@ const closePoup = () => {
 
 <template>
   <div class="h-[100vh] flex flex-col items-center justify-between relative"
-    :style="{ backgroundImage: `url(${songMessage.songPicUrl})` }"
+    :style="{ backgroundImage: `url(${songMessage.songPicUrl ? songMessage.songPicUrl : defaultIMG})` }"
     style="background-repeat: no-repeat; background-size: cover;">
     <div class=" absolute w-[100%] h-[100vh] bg-[#585858da]"></div>
     <div class="w-[100%] h-[100%] flex flex-col justify-between items-center z-40">
@@ -39,7 +36,10 @@ const closePoup = () => {
       <RotateCDIMG :playingStatus="musicPlayingData.playingStatus" :songImg="songMessage.songPicUrl"> </RotateCDIMG>
       <div class="w-[100%] flex flex-col items-center text-[#ffffff]">
         <div class=" flex w-[85%] justify-between items-center">
-          <div class="flex flex-col justify-center items-center ml-1">
+          <div v-if="!songMessage.artistName & !songMessage.songPicUrl">
+            暂无数据
+          </div>
+          <div v-else class="flex flex-col justify-center items-center ml-1">
             <div class="flex justify-start items-center">
               <div class="flex justify-center items-center font-bold">
                 {{ songMessage.songName }}
@@ -72,7 +72,7 @@ const closePoup = () => {
           </van-slider>
           <div class="flex w-[100%] justify-between items-center text-[9px] mt-2">
             <div class=" text-[#ffffff]">
-              <TimesHandler :times="musicPlayingData.playedTime"></TimesHandler>
+              <TimesHandler :times="musicPlayingData.current"></TimesHandler>
             </div>
             <div class="text-[10px]">
               极高
@@ -90,16 +90,16 @@ const closePoup = () => {
                 <Icon icon="entypo:controller-next" width="1.5rem" height="1.5rem" style="color: #ffffff" />
               </div>
               <div>
-                <div v-if="musicPlayingData.loadingStatus"
+                <div v-if="!musicPlayingData.ready"
                   class="bg-[#888585] w-[3rem] h-[3rem] flex justify-center items-center rounded-[50%]">
                   <van-button loading loading-type="spinner" size="small" color="#888585" />
                 </div>
-                <div v-else-if="!musicPlayingData.playingStatus" @click="music.play()">
-                  <van-icon @click="musicPlayingData.playingStatus = true" name="play-circle-o" color="#ffffff"
+                <div v-else-if="!musicPlayingData.playing" @click="emit(`play`)">
+                  <van-icon @click="musicPlayingData.playing = true" name="play-circle-o" color="#ffffff"
                     size="3rem" />
                 </div>
-                <div v-else @click="music.pause()">
-                  <van-icon @click="musicPlayingData.playingStatus = false" name="pause-circle-o" color="#ffffff"
+                <div v-else @click="emit(`pause`)">
+                  <van-icon @click="musicPlayingData.playing = false" name="pause-circle-o" color="#ffffff"
                     size="3rem" />
                 </div>
               </div>

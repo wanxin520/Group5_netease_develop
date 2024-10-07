@@ -7,6 +7,7 @@ const props = defineProps({
 
 // console.log(props.data);
 
+const emit = defineEmits(["transmitePlaylistId", "transmiteSongId", "transmiteVideoId"])
 function clickMore() {
     console.log("音乐日历更多被点击");
 }

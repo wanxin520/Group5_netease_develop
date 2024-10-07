@@ -172,3 +172,18 @@ export const getSongsLyric = async (data) => {
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };
+
+/* 
+最近播放-歌曲
+说明 : 调用此接口 , 可获得最近播放-歌曲
+可选参数 : limit : 返回数量 , 默认为 100
+接口地址 : /record/recent/song
+调用例子 : /record/recent/song?limit=1
+*/
+export const getRecordSongs = async (data) => {
+  const [error, res] = await to(request.post(`/record/recent/song?cookie=${data.cookie}`));
+  console.log(error.data);
+  console.log(data);
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
+};
