@@ -8,7 +8,95 @@
  */
 
 export default [
-  { path: "/", redirect: "/discover" },
+  { path: "/", redirect: "/home/discover" },
+  {
+    path: "/home", component: () => import("@/views/HomePage.vue"),
+    children: [
+      // tabBar路由
+      // 主页
+      {
+        path: "discover",
+        // 主页圆形图标菜单栏的子路由
+        children: [
+          { path: "", name: "discover", component: () => import("@/views/TabBar/DiscoverBar.vue"), },
+          // 主页
+          // 每日推荐
+          {
+            path: "recommend",
+            name: "recommend",
+            component: () => import("@/views/Pages/Discover/menu/Recommend.vue"),
+          },
+          // 私人FM
+          {
+            path: "personalfm",
+            name: "personalfm",
+            component: () => import("@/views/Pages/Discover/menu/PersonalFM.vue"),
+          },
+          // 歌单
+          {
+            path: "personalized",
+            name: "personalized",
+            component: () => import("@/views/Pages/Discover/menu/PersonaLized.vue"),
+          },
+          // 排行榜
+          {
+            path: "toplist",
+            name: "toplist",
+            component: () => import("@/views/Pages/Discover/menu/TopList.vue"),
+          },
+          // 有声书
+          {
+            path: "radiostation",
+            name: "radiostation",
+            component: () => import("@/views/Pages/Discover/menu/RadioStation.vue"),
+          },
+          // 数字专辑
+          {
+            path: "albumList",
+            name: "albumList",
+            component: () => import("@/views/Pages/Discover/menu/AlbumList.vue"),
+          },
+          // 关注新歌
+          {
+            path: "concernartist",
+            name: "concernartist",
+            component: () => import("@/views/Pages/Discover/menu/ConcernArtist.vue"),
+          },
+          // 收藏家
+          {
+            path: "collector",
+            name: "collector",
+            component: () => import("@/views/Pages/Discover/menu/Collector.vue"),
+          },
+          // 歌房
+          {
+            path: "musicroom",
+            name: "musicroom",
+            component: () => import("@/views/Pages/Discover/menu/MusicRoom.vue"),
+          },
+        ],
+      },
+      { path: "podcast", name: "podcast", component: () => import("@/views/TabBar/PodcastBar.vue") },
+      { path: "personal", name: "personal", component: () => import("@/views/TabBar/PersonalBar.vue") },
+      { path: "attention", name: "attention", component: () => import("@/views/TabBar/AttentionBar.vue") },
+      { path: "dynamic", name: "dynamic", component: () => import("@/views/TabBar/DynamicBar.vue") },
+
+
+      // 歌单详情路由
+      {
+        path: "listdetail",
+        name: "listdetail",
+        component: () => import("@/components/playListInfomation/SongListDetail.vue"),
+      },
+
+      // 歌单所有歌曲路由
+      {
+        path: "listallsongs",
+        name: "listallsongs",
+        component: () => import("@/components/playListInfomation/getPlaylistAllSongs.vue"),
+      },
+    ]
+  },
   // 登录路由
   {
     path: "/login", redirect: "/login/tourist",
@@ -40,93 +128,11 @@ export default [
     ],
   },
 
-  // tabBar路由
-  // 主页
-  {
-    path: "/discover",
-    // 主页圆形图标菜单栏的子路由
-    children: [
-      { path: "", name: "discover", component: () => import("@/views/TabBar/DiscoverBar.vue"), },
-      // 主页
-      // 每日推荐
-      {
-        path: "recommend",
-        name: "recommend",
-        component: () => import("@/views/Pages/Discover/menu/Recommend.vue"),
-      },
-      // 私人FM
-      {
-        path: "personalfm",
-        name: "personalfm",
-        component: () => import("@/views/Pages/Discover/menu/PersonalFM.vue"),
-      },
-      // 歌单
-      {
-        path: "personalized",
-        name: "personalized",
-        component: () => import("@/views/Pages/Discover/menu/PersonaLized.vue"),
-      },
-      // 排行榜
-      {
-        path: "toplist",
-        name: "toplist",
-        component: () => import("@/views/Pages/Discover/menu/TopList.vue"),
-      },
-      // 有声书
-      {
-        path: "radiostation",
-        name: "radiostation",
-        component: () => import("@/views/Pages/Discover/menu/RadioStation.vue"),
-      },
-      // 数字专辑
-      {
-        path: "albumList",
-        name: "albumList",
-        component: () => import("@/views/Pages/Discover/menu/AlbumList.vue"),
-      },
-      // 关注新歌
-      {
-        path: "concernartist",
-        name: "concernartist",
-        component: () => import("@/views/Pages/Discover/menu/ConcernArtist.vue"),
-      },
-      // 收藏家
-      {
-        path: "collector",
-        name: "collector",
-        component: () => import("@/views/Pages/Discover/menu/Collector.vue"),
-      },
-      // 歌房
-      {
-        path: "musicroom",
-        name: "musicroom",
-        component: () => import("@/views/Pages/Discover/menu/MusicRoom.vue"),
-      },
-    ],
-  },
-  { path: "/podcast", name: "podcast", component: () => import("@/views/TabBar/PodcastBar.vue") },
-  { path: "/personal", name: "personal", component: () => import("@/views/TabBar/PersonalBar.vue") },
-  { path: "/attention", name: "attention", component: () => import("@/views/TabBar/AttentionBar.vue") },
-  { path: "/dynamic", name: "dynamic", component: () => import("@/views/TabBar/DynamicBar.vue") },
 
-
-  // 歌单详情路由
-  {
-    path: "/listdetail",
-    name: "listdetail",
-    component: () => import("@/components/playListInfomation/SongListDetail.vue"),
-  },
-
-  // 歌单所有歌曲路由
-  {
-    path: "/listallsongs",
-    name: "listallsongs",
-    component: () => import("@/components/playListInfomation/getPlaylistAllSongs.vue"),
-  },
   // 音乐详情页面（播放页面）
-  {
-    path: "/musicdetail",
-    name: "musicdetail",
-    component: () => import("@/components/musicInfo/getMusicDetail.vue"),
-  },
+  // {
+  //   path: "/musicdetail",
+  //   name: "musicdetail",
+  //   component: () => import("@/components/musicInfo/getMusicDetail.vue"),
+  // },
 ];

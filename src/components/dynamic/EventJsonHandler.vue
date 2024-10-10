@@ -76,13 +76,16 @@ if (eventDetail.value.event) {
         </div>
         <div class="text-[10px] p-1">{{ eventDetail.msg }}</div>
         <div class="w-[100%] h-[3.5rem] flex justify-start items-center bg-[#f0f0f0] rounded-[10px] mt-2 p-1">
-            <img class="w-[3rem] rounded-[10px]" :src="eventDetail.resource.coverImgUrl" alt="">
+            <img v-if="eventDetail.resource" class="w-[3rem] rounded-[10px]" :src="eventDetail.resource.coverImgUrl"
+                alt="">
             <div class="ml-2 flex flex-col justify-between items-satrt">
                 <div class="flex justify-start items-center ">
-                    <div class="w-[70%] text-[10px] text-[#6e6e6e] overflow-hidden text-ellipsis whitespace-nowrap">{{
-                        eventDetail.resource.title }}</div>
+                    <div v-if="eventDetail.resource"
+                        class="w-[70%] text-[10px] text-[#6e6e6e] overflow-hidden text-ellipsis whitespace-nowrap">{{
+                            eventDetail.resource.title }}</div>
                 </div>
-                <div class="text-[8px] text-[#4b4b4b] mt-1">by {{ eventDetail.resource.subTitle }}</div>
+                <div v-if="eventDetail.resource" class="text-[8px] text-[#4b4b4b] mt-1">by {{
+                    eventDetail.resource.subTitle }}</div>
             </div>
         </div>
         <!-- 话题标签 -->

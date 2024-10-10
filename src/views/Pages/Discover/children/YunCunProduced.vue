@@ -8,6 +8,7 @@ const props = defineProps({
   data: {},
 });
 
+const emit = defineEmits(["transmitePlaylistId", "transmiteSongId", "transmiteVideoId"])
 const isChecked = (id) => {
   console.log(id);
   let query = { id: id };
@@ -32,7 +33,7 @@ const isChecked = (id) => {
           <div class="relative">
             <div
               class="absolute w-[100%] flex justify-center items-center text-[#ffffff] text-[13px] top-[76%] bg-[#1d137a] overflow-hidden rounded-b-[10px]">
-              <van-text-ellipsis :content="item.title" class="h-[2rem]" rows="1"/>
+              <van-text-ellipsis :content="item.title" class="h-[2rem]" rows="1" />
             </div>
             <img class="rounded-[10px] h-[8rem]" :src="item.imageUrl" alt="" />
           </div>

@@ -1,4 +1,5 @@
 <script setup>
+import { watch, ref } from "vue";
 import { getHomePageData } from "@/api";
 import { useRequest } from "vue-request";
 import TopSearch from "../Top/TopSearch.vue";
@@ -6,6 +7,18 @@ import BlockType from "@/views/Pages/Discover/children/BlockType.vue";
 import Bottom from "../Bottom/Bottom.vue";
 import Banner from "../Pages/Discover/children/Banner.vue";
 import MenuPage from "../Pages/Discover/children/MenuPage.vue";
+import BottomPlayBar from "@/components/play/music/BottomPlayBar.vue";
+import { usePlayStore } from "@/store";
+const playStore = usePlayStore()
+
+
+
+
+watch(playStore, () => {
+    console.log("库里数据变了");
+})
+
+playStore.setPlayIndex(1)
 
 // useRequest传入的是一个返回Promise值的请求函数,data就是返回的数据
 const { data: pageData } = useRequest(getHomePageData)
@@ -23,9 +36,6 @@ const { data: pageData } = useRequest(getHomePageData)
             <BlockType v-for="item in pageData" :data="item" :key="item.blockCode" class="min-h-[100%]"></BlockType>
             <div style="height: 50px;"></div>
         </div>
-        <footer class="fixed bottom-0 left-0 right-0 z-index-1008">
-            <Bottom></Bottom>
-        </footer>
     </div>
 </template>
 <style scoped>

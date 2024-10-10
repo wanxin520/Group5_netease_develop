@@ -19,6 +19,7 @@ import { ref, watch } from "vue"
 import { Icon } from "@iconify/vue";
 import { useRequest } from "vue-request";
 import { getUserPlayList } from "@/api/userIndex";
+import { useRouter } from "vue-router";
 
 const props = defineProps({
     data: {
@@ -26,19 +27,25 @@ const props = defineProps({
     }
 })
 // console.log(props.data);
-
+const router = useRouter()
 const { data: songList, loading } = useRequest(() => getUserPlayList({ "timestamp": Date.now(), "uid": props.data.account.id }))
 
-// watch(songList, () => {
-//     console.log(songList.value.playlist);
-// })
+watch(songList, () => {
+    // console.log(songList.value.playlist);
+})
+
+const getPlayListId = (playListId) => {
+    console.log(playListId);
+    let query = { id: playListId }
+    router.push({ name: "listdetail", query })
+}
 
 </script>
 
 <template>
     <div v-if="!loading" class="mt-5 w-[100%]">
         <div v-for="(item, index) in songList.playlist" class="w-[100%]">
-            <div class="flex justify-center items-center p-1">
+            <div @click="getPlayListId(item.id)" class="flex justify-center items-center p-1">
                 <div>
                     <img class="w-[3.5rem] rounded-[8px]" :src="item.coverImgUrl" alt="">
                 </div>

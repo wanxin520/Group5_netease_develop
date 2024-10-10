@@ -19,6 +19,7 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "howler": "^2.2.4",
     "localforage": "^1.10.0",
+    "mitt": "^3.0.1",
     "pinia": "^2.2.2",
     "pinia-plugin-persistedstate": "^4.0.2",
     "plyr": "^3.7.8",

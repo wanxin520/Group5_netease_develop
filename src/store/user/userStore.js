@@ -4,12 +4,16 @@ export const useUserStore = defineStore("user", {
   state() {
     return {
       userInfo: null,
+      anonimousUser:false,
     };
   },
   getters: {
     cookie(state) {
       return state.userInfo?.cookie;
     },
+    getLoginStatus(state){
+      return state.anonimousUser
+    }
   },
   // 类似于methods
   actions: {
@@ -17,6 +21,9 @@ export const useUserStore = defineStore("user", {
     setUserInfo(data) {
       console.log(data);
       this.userInfo = data
+    },
+    setLoginStatus(isLogin){
+      this.anonimousUser = isLogin
     }
   },
   persist: true,

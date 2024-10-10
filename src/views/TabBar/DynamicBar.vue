@@ -6,6 +6,7 @@ import { useUserStore } from "@/store";
 import { useRequest } from "vue-request";
 import { getDynamicMessage } from "@/api/userIndex";
 import LeftPopup from "../Top/LeftPopup.vue";
+import BottomPlayBar from "@/components/play/music/BottomPlayBar.vue";
 import DynamicList from "@/components/dynamic/DynamicList.vue";
 
 const userStore = useUserStore()
@@ -43,9 +44,6 @@ watch(data, () => {
       </div>
     </van-sticky>
     <DynamicList :events="eventList"></DynamicList>
-    <footer class="fixed bottom-0 left-0 right-0 z-index-1008">
-      <Bottom></Bottom>
-    </footer>
   </div>
 
 </template>

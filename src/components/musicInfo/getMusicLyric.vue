@@ -4,7 +4,7 @@ import { Icon } from "@iconify/vue";
 import { getSongsLyric } from "@/api/songIndex";
 import { useRequest } from "vue-request";
 import { useUserStore } from "@/store";
-import MusicPlayPage from "./MusicPlayPage.vue";
+import MusicPlayPage from "../play/music/MusicPlayPage.vue";
 import { useRoute } from "vue-router";
 
 const props = defineProps({
