@@ -3,13 +3,10 @@ import { defineStore } from "pinia";
 export const usePlayStore = defineStore("musicData", {
     state() {
         return {
+            showPlayBar: false,
             songsUrl: null,
             songsDetail: null,
             playIndex: 0,
-            loadingStatus: true,
-            playingStatus: false,
-            playedTime: 0,
-            progress: 0,
         }
     },
     getters: {
@@ -23,18 +20,10 @@ export const usePlayStore = defineStore("musicData", {
         getPlayIndex(state) {
             return state.playIndex
         },
-        // getloadingStatus(state) {
-        //     return state.loadingStatus
-        // },
-        // getplayingStatus(state) {
-        //     return state.playingStatus
-        // },
-        // getplayedTime(state) {
-        //     return state.playedTime
-        // },
-        // getprogress(state) {
-        //     return state.progress
-        // },
+        getShowPlayBar(state) {
+            return state.showPlayBar
+        },
+
     },
     actions: {
         // 设置需要播放学音乐的信息
@@ -47,18 +36,9 @@ export const usePlayStore = defineStore("musicData", {
         setPlayIndex(playIndex) {
             this.playIndex = playIndex
         },
-        // setloadingStatus(loadingStatus) {
-        //     this.playIndex = loadingStatus
-        // },
-        // setplayingStatus(playingStatus) {
-        //     this.playIndex = playingStatus
-        // },
-        // setplayedTime(playedTime) {
-        //     this.playIndex = playedTime
-        // },
-        // setprogress(progress) {
-        //     this.playIndex = progress
-        // },
+        setShowPlayBar(showPlayBar) {
+            this.showPlayBar = showPlayBar
+        },
     },
     // 开启数据持久化
     persist: true

@@ -1,6 +1,7 @@
 <script setup>
 import { computed, defineProps } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { usePlayStore, useSourseStore } from "@/store";
 import MGCPlayList from "./MGCPlayList.vue";
 import RCMDPlayList from "./RCMDPlayList.vue";
 import OfficialPlayList from "./OfficialPlayList.vue";
@@ -41,11 +42,10 @@ const props = defineProps({
 });
 const route = useRoute()
 const router = useRouter()
-// 路由传参
-const pushSearchId = (id) => {
+const playStore = usePlayStore()
+const sourseStore = useSourseStore()
+const pushSearchId = (songId) => {
   // 获取歌单的id和索引
-  let query = { id: id }
-  router.push({ name: "detail", query })
 }
 
 // 给子组件绑定自定义监听事件
@@ -55,11 +55,10 @@ const getPlaylistDetail = (id) => {
   let query = { id: id }
   router.push({ name: "listdetail", query })
 }
-const getSongDetail = (id) => {
+const getSongDetail = (songId) => {
   // 获取歌曲的id和索引
-  console.log(id);
-  let query = { id: id }
-  router.push({ name: "musicdetail", query })
+  sourseStore.setMusicSourseIds(songId)
+
 }
 const getVideoDetail = (id) => {
   // 获取视频的id和索引

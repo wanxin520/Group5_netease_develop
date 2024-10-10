@@ -1,28 +1,30 @@
 <script setup>
 import { ref } from "vue"
-import Bottom from "../Bottom/Bottom.vue";
-import { usePlayStore } from "@/store";
-import BottomPlayBar from "@/components/play/music/BottomPlayBar.vue";
-import { loadDate } from "@/components/play/music/tool/loadHandler";
+import { usePlayStore,useSourseStore,useUserStore } from "@/store";
+import { getSongsUrl, getSongsDetail } from "@/api/songIndex";
+import { useRequest } from "vue-request";
+import { watch } from "vue";
 
-// loadDate([25906124, 1331819951, 534542079, 28285910])
 
 const playStore = usePlayStore()
-// setTimeout(()=>{
-// playStore.setPlayIndex(0)
-// },1000)
-// 
+const userStore = useUserStore()
+const sourseStore = useSourseStore()
+const { run: loadUrl, data: songsUrl } = useRequest(() => getSongsUrl({ "id": [sourseStore.getMusicSourseIds], "cookie": userStore.userInfo.cookie }), { manual: true })
+
+const login = () => {
+  loadUrl()
+  // getSongsUrl({ "id": [sourseStore.getMusicSourseIds], "cookie": userStore.userInfo.cookie })
+  console.log("请求了");
+}
+watch(songsUrl, () => {
+  console.log(songsUrl.value);
+})
+
 </script>
 
 <template>
   <div>
-    <h1>关注</h1>
-    <div class="fixed bottom-[50px] left-0 right-0 z-index-1008">
-      <BottomPlayBar></BottomPlayBar>
-    </div>
-    <footer class="fixed bottom-0 left-0 right-0 z-index-1008">
-      <Bottom></Bottom>
-    </footer>
+    <h1 @click="login">关注</h1>
   </div>
 </template>
 <style scoped></style>

@@ -1,6 +1,5 @@
 <script setup>
 import { Icon } from "@iconify/vue";
-import Bottom from "../Bottom/Bottom.vue";
 import GetUserAcount from "@/components/userInformation/get/GetUserAcount.vue";
 import LeftPopup from "../Top/LeftPopup.vue";
 import GetUserPlayList from "@/components/userInformation/get/GetUserPlayList.vue";
@@ -8,7 +7,6 @@ import { ref, watch, reactive, onMounted, onUnmounted } from "vue"
 import { useRequest } from 'vue-request';
 import { getUserAccount } from '@/api/userIndex';
 import { useUserStore } from "@/store";
-import BottomPlayBar from "@/components/play/music/BottomPlayBar.vue";
 import GetUserDynamic from "@/components/userInformation/get/GetUserDynamic.vue";
 
 const userStore = useUserStore()
@@ -86,12 +84,6 @@ const checked = ref(2)
       </div>
 
     </main>
-    <div class="fixed bottom-[50px] left-0 right-0 z-index-1008">
-      <BottomPlayBar></BottomPlayBar>
-    </div>
-    <footer class="fixed bottom-0 left-0 right-0 z-index-1008">
-      <Bottom></Bottom>
-    </footer>
   </div>
 </template>
 <style scoped></style>

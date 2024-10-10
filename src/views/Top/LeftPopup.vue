@@ -15,14 +15,9 @@ const showLogout = ref(false)
 const defaultAvatar = ref("http://p1.music.126.net/SUeqMM8HOIpHv9Nhl9qt9w==/109951165647004069.jpg")
 const defaultBGIMG = ref("http://p1.music.126.net/_f8R60U9mZ42sSNvdPn2sQ==/109951162868126486.jpg")
 // 获取登录状态
-const { run: loginStatusRequest, data: loginStatus, loading } = useRequest(() => getLoginStatus({ "timestamp": Date.now(), "cookie": userStore.userInfo.cookie }))
+const { data: loginStatus, loading } = useRequest(() => getLoginStatus({ "timestamp": Date.now(), "cookie": userStore.userInfo.cookie }))
 // 获取消息数量
-const { run: userPLCountRequest, data: messageCount } = useRequest(() => getUserPLCount({ cookie: useUserStore().cookie }))
-
-if (userStore.userInfo) {
-    userPLCountRequest()
-    loginStatusRequest()
-}
+const { data: messageCount } = useRequest(() => getUserPLCount({ cookie: useUserStore().cookie }))
 
 watch(messageCount, () => {
     // console.log(messageCount.value);

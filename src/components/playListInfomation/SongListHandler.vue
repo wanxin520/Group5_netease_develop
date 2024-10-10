@@ -2,6 +2,19 @@
 import { ref } from "vue"
 import { Icon } from "@iconify/vue";
 import { useRouter } from "vue-router";
+import { usePlayStore, useSourseStore } from "@/store";
+import { watch } from "vue";
+
+const playStore = usePlayStore()
+const sourseStore = useSourseStore()
+console.log(sourseStore.getMusicSourseIds);
+
+watch(sourseStore, () => {
+    console.log("数据更新了");
+    // console.log(sourseStore.getMusicSourseIds);
+    playStore.getMusicSourseIds
+
+})
 
 const props = defineProps({
     tracks: {}
@@ -11,8 +24,7 @@ const router = useRouter()
 // 获取歌曲id
 const getSongId = (songId) => {
     // console.log(songId);
-    let query = { id: songId }
-    router.push({ name: "musicdetail", query })
+    sourseStore.setMusicSourseIds(songId)
 }
 // 获取视频id
 const getVedioId = (vedioId) => {

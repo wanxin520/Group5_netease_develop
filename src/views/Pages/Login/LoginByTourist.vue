@@ -33,6 +33,7 @@ watch(data, async () => {
   const [error] = await to(localforage.setItem("userInfo", data.value))
   if (error) return showToast("数据存储失败")
   showToast("登录成功,正在前往首页")
+  userStore.setLoginStatus(true)
   router.replace({ name: "discover" })
 })
 const loginByPhone = () => {

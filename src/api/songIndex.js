@@ -160,15 +160,44 @@ export const getSongsDetail = async (data) => {
 };
 
 /* 
-获取声音歌词
-说明: 调用此接口可以获取声音歌词
-接口地址: /voice/lyric
-必选参数： id: 声音id
+获取歌词
+说明 : 调用此接口 , 传入音乐 id 可获得对应音乐的歌词 ( 不需要登录 )
+必选参数 : id: 音乐 id
+接口地址 : /lyric
+调用例子 : /lyric?id=33894312
+获取逐字歌词
+说明 : 此接口的 yrc 字段即为逐字歌词 (可能有歌曲不包含逐字歌词)
+必选参数 : id: 音乐 id
+接口地址 : /lyric/new
+调用例子 : /lyric/new?id=1824020871
+相关讨论可见: Issue
+歌词格式解析 :
+当逐字歌词适用时，yrc的lyric字段包括形式如下的内容
+（可能存在）JSON 歌曲元数据
+{"t":0,"c":[{"tx":"作曲: "},{"tx":"柳重言","li":"http://p1.music.126.net/Icj0IcaOjH2ZZpyAM-QGoQ==/6665239487822533.jpg","or":"orpheus://nm/artist/home?id=228547&type=artist"}]}
+{"t":5403,"c":[{"tx":"编曲: "},{"tx":"Alex San","li":"http://p1.music.126.net/pSbvYkrzZ1RFKqoh-fA9AQ==/109951166352922615.jpg","or":"orpheus://nm/artist/home?id=28984845&type=artist"}]}
+{"t":10806,"c":[{"tx":"制作人: "},{"tx":"王菲","li":"http://p1.music.126.net/1KQVD6XWbs5IAV0xOj1ZIA==/18764265441342019.jpg","or":"orpheus://nm/artist/home?id=9621&type=artist"},{"tx":"/"},{"tx":"梁荣骏","li":"http://p1.music.126.net/QrD8drwrRcegfKLPoiiG2Q==/109951166288436155.jpg","or":"orpheus://nm/artist/home?id=189294&type=artist"}]}
+该字段不一定出现；可能出现的数据意义有：
+t : 数据显示开始时间戳 (毫秒)
+c : 元数据list
+tx: 文字段
+li: 艺术家、歌手头像图url
+or：云音乐app内路径；例中作用即打开艺术家主页
+逐字歌词
+[16210,3460](16210,670,0)还(16880,410,0)没...
+~~~~1 ~~~2  ~~~~3 ~~4 5 ~6 (...) 
+由标号解释:
+歌词行显示开始时间戳 (毫秒)
+歌词行显示总时长(毫秒)
+逐字显示开始时间戳 (毫秒)
+逐字显示时长 (厘秒/0.01s)
+未知
+文字
+yrc的version字段貌似与lyric字段格式无关
 */
 export const getSongsLyric = async (data) => {
-  const [error, res] = await to(request.post(`/voice/lyric?id=${data.id}&cookie=${data.cookie}`));
-  console.log(error.data);
-  console.log(data);
+  const [error, res] = await to(request.post(`/lyric/new?id=${data.id}`));
+
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };

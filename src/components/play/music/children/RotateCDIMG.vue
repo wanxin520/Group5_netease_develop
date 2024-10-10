@@ -19,6 +19,7 @@ watch(props, () => {
 <template>
     <div class="cdcard" :class="{ songimgRotate: playingStatus }">
         <img class="" :src="songImg ? songImg : `../../../../public/cd1.png`">
+        <!-- <img v-lazy="songImg" /> -->
     </div>
 </template>
 <style scoped lang="less">

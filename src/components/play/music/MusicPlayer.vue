@@ -8,13 +8,8 @@ const props = defineProps({
   songMessage: {},
   musicPlayingData: {}
 })
-
 songMessage.value = props.songMessage
 musicPlayingData.value = props.musicPlayingData
-watch(props, () => {
-  songMessage.value = props.songMessage
-  musicPlayingData.value = props.musicPlayingData
-})
 
 const emit = defineEmits(["closePlayBar", "nextSong", "backSong", "play", "pause"])
 const closePoup = () => {
@@ -33,7 +28,7 @@ const closePoup = () => {
         <Icon @click="closePoup" icon="iconamoon:arrow-down-2-light" width="1.6rem" height="1.6rem" class="ml-3" />
         <Icon icon="hugeicons:share-04" width="1.2rem" height="1.2rem" class="mr-3" />
       </div>
-      <RotateCDIMG :playingStatus="musicPlayingData.playingStatus" :songImg="songMessage.songPicUrl"> </RotateCDIMG>
+      <RotateCDIMG :playingStatus="!musicPlayingData.playing" :songImg="songMessage.songPicUrl"> </RotateCDIMG>
       <div class="w-[100%] flex flex-col items-center text-[#ffffff]">
         <div class=" flex w-[85%] justify-between items-center">
           <div v-if="!songMessage.artistName & !songMessage.songPicUrl">
@@ -94,9 +89,8 @@ const closePoup = () => {
                   class="bg-[#888585] w-[3rem] h-[3rem] flex justify-center items-center rounded-[50%]">
                   <van-button loading loading-type="spinner" size="small" color="#888585" />
                 </div>
-                <div v-else-if="!musicPlayingData.playing" @click="emit(`play`)">
-                  <van-icon @click="musicPlayingData.playing = true" name="play-circle-o" color="#ffffff"
-                    size="3rem" />
+                <div v-else-if="musicPlayingData.playing" @click="emit(`play`)">
+                  <van-icon @click="musicPlayingData.playing = true" name="play-circle-o" color="#ffffff" size="3rem" />
                 </div>
                 <div v-else @click="emit(`pause`)">
                   <van-icon @click="musicPlayingData.playing = false" name="pause-circle-o" color="#ffffff"

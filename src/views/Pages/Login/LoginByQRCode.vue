@@ -50,9 +50,10 @@ watch(qrimg, () => {
             .then((res) => {
               // console.log(res);
               showToast("登录成功,正在前往首页")
+              userStore.setLoginStatus(false)
               setTimeout(() => {
                 router.push({ name: "discover" })
-              }, 1000)
+              }, 500)
             })
             .catch(() => {
               showToast("登录失败!")

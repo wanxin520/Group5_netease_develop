@@ -28,6 +28,7 @@ watch(resolveLoginData, async () => {
   const [error] = await to(localforage.setItem("userInfo", resolveLoginData.value))
   if (error) return showToast("数据存储失败")
   showToast("登录成功，正在跳转至首页...")
+  userStore.setLoginStatus(false)
   setTimeout(() => {
     router.replace({ name: "discover" })
   }, 1500)
