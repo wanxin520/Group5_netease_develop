@@ -24,7 +24,9 @@ type:资源类型,对应以下类型,默认为 0 即 PC
 调用例子 : /banner, /banner?type=2
 */
 export const getBannerImage = async (data) => {
-  const [error, res] = await to(request.post(`/banner?timestamp=${data.timestamp}&cookie=${data.cookie}`));
+  const [error, res] = await to(
+    request.post(`/banner?timestamp=${data.timestamp}&cookie=${data.cookie}`)
+  );
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };
@@ -35,11 +37,14 @@ export const getBannerImage = async (data) => {
 接口地址 : /homepage/dragon/ball
 */
 export const getDragonBall = async (data) => {
-  const [error, res] = await to(request.post(`/homepage/dragon/ball?timestamp=${data.timestamp}&cookie=${data.cookie}`));
+  const [error, res] = await to(
+    request.post(
+      `/homepage/dragon/ball?timestamp=${data.timestamp}&cookie=${data.cookie}`
+    )
+  );
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };
-
 
 // discover页面数据渲染
 export const getHomePageData = async () => {
@@ -133,7 +138,9 @@ password: 密码
 调用例子: /login/cellphone ? phone = xxx & password=yyy / login / cellphone ? phone = xxx & md5_password=yyy / login / cellphone ? phone = xxx & captcha=1234
 */
 export const loginByPhone = async (data) => {
-  const [error, res] = await to(request.post(`/login/cellphone?phone=${data.phone}&captcha=${data.captcha}`));
+  const [error, res] = await to(
+    request.post(`/login/cellphone?phone=${data.phone}&captcha=${data.captcha}`)
+  );
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };
@@ -146,7 +153,9 @@ export const loginByPhone = async (data) => {
 调用例子 : /captcha/sent?phone=13xxx
  */
 export const sendValidCode = async (data) => {
-  const [error, res] = await to(request.post(`/captcha/sent?phone=${data.phone}`));
+  const [error, res] = await to(
+    request.post(`/captcha/sent?phone=${data.phone}`)
+  );
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };
@@ -162,7 +171,10 @@ export const sendValidCode = async (data) => {
 调用例子 : /captcha/verify?phone=13xxx&captcha=1597
 */
 export const verifyCaptcha = async (data) => {
-  const [error, res] = await to(request.post("/captcha/verify?noCookie=true"), data);
+  const [error, res] = await to(
+    request.post("/captcha/verify?noCookie=true"),
+    data
+  );
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };
@@ -190,7 +202,10 @@ export const loginByEmail = async (data) => {
 接口地址 : /login/qr/key
 */
 export const getQRCodeKey = async (data) => {
-  const [error, res] = await to(request.post("/login/qr/key?noCookie=true"), data);
+  const [error, res] = await to(
+    request.post("/login/qr/key?noCookie=true"),
+    data
+  );
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };
@@ -203,7 +218,11 @@ export const getQRCodeKey = async (data) => {
 调用例子 : /login/qr/create?key=xxx
 */
 export const createQRCodeIMG = async (data) => {
-  const [error, res] = await to(request.post(`/login/qr/create?key=${data.key}&qrimg=${data.qrimg}&timestamp=${data.timestamp}&noCookie=true`));
+  const [error, res] = await to(
+    request.post(
+      `/login/qr/create?key=${data.key}&qrimg=${data.qrimg}&timestamp=${data.timestamp}&noCookie=true`
+    )
+  );
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };
@@ -226,7 +245,9 @@ export const checkQRLoginIsSuccessful = async (data) => {
 接口地址 : /register/anonimous
 */
 export const loginByTourist = async () => {
-  const [error, res] = await to(request.get("/register/anonimous?noCookie=true"));
+  const [error, res] = await to(
+    request.get("/register/anonimous?noCookie=true")
+  );
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };
@@ -399,22 +420,29 @@ export const checkMusic = async (data) => {
   return res.data;
 };
 
-
 // 所有榜单
 /*
 说明 : 调用此接口,可获取所有榜单 接口地址 : /toplist
 调用例子 : /toplist
 
 */
-// export const  = async (data) => {
-//   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:" + error);
-//   return res.data;
-// }export const  = async (data) => {
-//   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:" + error);
-//   return res.data;
-// }
+export const getRankList = async (data) => {
+  const [error, res] = await to(request.post("/toplist"), data);
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
+};
+
+// 所有榜单内容摘要
+// 说明 : 调用此接口,可获取所有榜单内容摘要
+
+// 接口地址 : /toplist/detail
+
+// 调用例子 : /toplist/detail
+export const getRankListDetail = async (data) => {
+  const [error, res] = await to(request.post("/toplist/detail"), data);
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
+};
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
