@@ -38,6 +38,7 @@ export const getPlaylistDetail = async (data) => {
 */
 export const getPlaylistAllSongs = async (data) => {
   const [error, res] = await to(request.post(`/playlist/detail?id=${data.id}`));
+  console.log(data);
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };
