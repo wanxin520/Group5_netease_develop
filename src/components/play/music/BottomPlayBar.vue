@@ -16,7 +16,7 @@ const emit = defineEmits(["closePlayBar", "nextSong", "backSong"])
 const showBottom = ref(false)
 const showBottomPlayBar = ref(playStore.getShowPlayBar)
 const defaultIMG = ref("../../../../public/cd1.png")
-const showDefault = ref(true)
+const showDefault = ref(false)
 const audio = new Audio()
 const { run: loadUrl, data: songsUrl } = useRequest(() => getSongsUrl({ "id": [sourseStore.getMusicSourseIds], "cookie": userStore.userInfo.cookie }), { manual: true })
 const { run: loadDeatil, data: songsDetail } = useRequest(() => getSongsDetail({ "id": [sourseStore.getMusicSourseIds], "cookie": userStore.userInfo.cookie }), { manual: true })
@@ -51,20 +51,22 @@ const musicPlayingData = ref({
 })
 
 onMounted(() => {
-    songMessage.value.songName = detailStore.getSongsDetail.songs[playStore.playIndex] ? detailStore.getSongsDetail.songs[playStore.playIndex].name : null
-    songMessage.value.artistName = detailStore.getSongsDetail.songs[playStore.playIndex] ? detailStore.getSongsDetail.songs[playStore.playIndex].ar[0].name : null
-    songMessage.value.songPicUrl = detailStore.getSongsDetail.songs[playStore.playIndex] ? detailStore.getSongsDetail.songs[playStore.playIndex].al.picUrl : null
-    songMessage.value.isFee = urlStore.getSongsUrl[playStore.playIndex] ? urlStore.getSongsUrl[playStore.playIndex].fee : null
-    songMessage.value.songDuration = urlStore.getSongsUrl[playStore.playIndex] ? urlStore.getSongsUrl[playStore.playIndex].time : 0
-    songMessage.value.songLevel = urlStore.getSongsUrl[playStore.playIndex] ? urlStore.getSongsUrl[playStore.playIndex].level : null
-    songMessage.value.playListLength = urlStore.getSongsUrl.length ? urlStore.getSongsUrl.length : null
+    songMessage.value.songName = detailStore.getSongsDetail ? detailStore.getSongsDetail.songs[playStore.playIndex].name : null
+    songMessage.value.artistName = detailStore.getSongsDetail ? detailStore.getSongsDetail.songs[playStore.playIndex].ar[0].name : null
+    songMessage.value.songPicUrl = detailStore.getSongsDetail ? detailStore.getSongsDetail.songs[playStore.playIndex].al.picUrl : null
+    songMessage.value.isFee = urlStore.getSongsUrl ? urlStore.getSongsUrl[playStore.playIndex].fee : null
+    songMessage.value.songDuration = urlStore.getSongsUrl ? urlStore.getSongsUrl[playStore.playIndex].time : 0
+    songMessage.value.songLevel = urlStore.getSongsUrl ? urlStore.getSongsUrl[playStore.playIndex].level : null
+    songMessage.value.playListLength = urlStore.getSongsUrl ? urlStore.getSongsUrl.length : null
     musicPlayingData.value.ready = false
     musicPlayingData.value.playing = false
     musicPlayingData.value.current = 0
     musicPlayingData.value.progress = 0
 })
 
-audio.src = urlStore.getSongsUrl[playStore.playIndex] ? urlStore.getSongsUrl[playStore.playIndex].url : null
+if (urlStore.getSongsUrl) {
+    audio.src = urlStore.getSongsUrl[playStore.playIndex].url ? urlStore.getSongsUrl[playStore.playIndex].url : null
+}
 watch(urlStore, () => {
     audio.src = urlStore.getSongsUrl[playStore.playIndex].url
     songMessage.value.isFee = urlStore.getSongsUrl[playStore.playIndex].fee
@@ -79,6 +81,13 @@ watch(detailStore, () => {
     songMessage.value.songPicUrl = detailStore.getSongsDetail.songs[playStore.playIndex].al.picUrl
 })
 watch(playStore, () => {
+    setTimeout(() => {
+        audio.src = urlStore.getSongsUrl[playStore.playIndex].url
+    }, 1000)
+    songMessage.value.isFee = urlStore.getSongsUrl[playStore.playIndex].fee
+    songMessage.value.songDuration = urlStore.getSongsUrl[playStore.playIndex].time
+    songMessage.value.songLevel = urlStore.getSongsUrl[playStore.playIndex].level
+    songMessage.value.playListLength = urlStore.getSongsUrl.length
     songMessage.value.songName = detailStore.getSongsDetail.songs[playStore.playIndex].name
     songMessage.value.artistName = detailStore.getSongsDetail.songs[playStore.playIndex].ar[0].name
     songMessage.value.songPicUrl = detailStore.getSongsDetail.songs[playStore.playIndex].al.picUrl
@@ -119,26 +128,32 @@ const getPlayStatus = () => {
 
 // 检测状态库里面是否已经存在歌曲
 let checkSongsAlreadyExist = setInterval(() => {
-    urlStore.getSongsUrl[playStore.playIndex].url
-        ?
-        [
-            musicPlayingData.value.ready = true,
-            showDefault.value = false,
-            // console.log(urlStore.getSongsUrl[playStore.playIndex].url),
-            clearInterval(playstatuInterval),
-            getPlayStatus(),
-            clearInterval(checkSongsAlreadyExist),
-            setTimeout(() => {
-                clearInterval(playstatuInterval)
-            }, 3000)
-        ]
-        :
-        [
-            showDefault.value = true,
-        ]
+    if (urlStore.getSongsUrl) {
+        console.log(playStore.playIndex);
+        urlStore.getSongsUrl[playStore.playIndex].url
+            ?
+            [
+                musicPlayingData.value.ready = true,
+                showDefault.value = false,
+                // console.log(urlStore.getSongsUrl[playStore.playIndex].url),
+                clearInterval(playstatuInterval),
+                getPlayStatus(),
+                clearInterval(checkSongsAlreadyExist),
+                setTimeout(() => {
+                    clearInterval(playstatuInterval)
+                }, 3000)
+            ]
+            :
+            [
+                playStore.setPlayIndex(0),
+                showDefault.value = true,
+            ]
+    }
     console.log(showDefault.value);
 }, 1000)
-
+if (!urlStore.getSongsUrl) {
+    clearInterval(checkSongsAlreadyExist)
+}
 // 检测用户是否使用游客登录
 watch(sourseStore, () => {
     userStore.getLoginStatus
@@ -151,10 +166,16 @@ watch(sourseStore, () => {
         [
             loadUrl(),
             loadDeatil(),
-            clearInterval(checkReadyInterval),
-            checkDataReady(),
-            clearInterval(playstatuInterval),
-            getPlayStatus(),
+            urlStore.getSongsUrl
+                ?
+                [
+                    clearInterval(checkReadyInterval),
+                    checkDataReady(),
+                    clearInterval(playstatuInterval),
+                    getPlayStatus(),
+                ]
+                :
+                [],
             console.log("歌曲请求函数执行了"),
             setTimeout(() => {
                 showBottomPlayBar.value = true
@@ -239,7 +260,6 @@ watch(playStore, () => {
     showBottomPlayBar.value = playStore.getShowPlayBar
 })
 onBeforeUnmount(() => {
-    audio = null
     clearInterval(playstatuInterval)
     clearInterval(checkReadyInterval)
     clearInterval(checkSongsAlreadyExist)

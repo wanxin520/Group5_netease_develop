@@ -11,14 +11,9 @@ import BottomPlayBar from "@/components/play/music/BottomPlayBar.vue";
 import { usePlayStore } from "@/store";
 const playStore = usePlayStore()
 
-
-
-
 watch(playStore, () => {
     console.log("库里数据变了");
 })
-
-playStore.setPlayIndex(1)
 
 // useRequest传入的是一个返回Promise值的请求函数,data就是返回的数据
 const { data: pageData } = useRequest(getHomePageData)
