@@ -5,11 +5,15 @@ import { useRequest } from "vue-request";
 import { useRouter } from "vue-router";
 import localforage from "localforage";
 import { getLoginStatus, getUserPLCount } from "@/api/userIndex";
-import { useUserStore } from "@/store";
+import { useUserStore,usePlayStore,useSongUrlStore,useSourseStore,useSongDetailStore } from "@/store";
 
 const userInfo = ref()
 const router = useRouter()
 const userStore = useUserStore()
+const playStore = usePlayStore()
+const urlStore = useSongUrlStore()
+const detailStore = useSongDetailStore()
+const sourseStore = useSourseStore()
 const MSGCount = ref()
 const showLogout = ref(false)
 const defaultAvatar = ref("http://p1.music.126.net/SUeqMM8HOIpHv9Nhl9qt9w==/109951165647004069.jpg")
@@ -50,6 +54,9 @@ const logout = (action) => new Promise((resolve, reject) => {
             resolve(action === 'confirm');
             localforage.clear()
             useUserStore().userInfo = null
+            // useSongDetailStore().setSongsDetail = null
+            // useSongUrlStore().setSongsUrl = null
+            // useUserStore().userInfo = null
             router.push({ name: "phone" })
             showToast("退出登录成功!")
         }, 1500);
