@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue"
+import { ref, watch, reactive } from "vue"
 import { useRequest } from "vue-request";
 import { getPlaylistDetail } from "@/api/songIndex";
 import { Icon } from '@iconify/vue';
@@ -10,6 +10,7 @@ import SongListHandler from "./SongListHandler.vue";
 // 获取歌单搜索id
 const route = useRoute()
 const router = useRouter()
+const allSourceIds = ref()
 const { run, data, loading } = useRequest(() => getPlaylistDetail({
   id: route.query.id
 }))
@@ -17,8 +18,9 @@ if (route.query.id) {
   run()
 }
 watch(data, () => {
-  // console.log(data.value.playlist);
+  // console.log(allSourceIds.value);
 })
+
 // 监听屏幕滚动事件
 const scrollDate = ref()
 const bgimg = ref()
@@ -63,11 +65,11 @@ const toBack = () => {
             <Icon icon="fluent:play-28-filled" />
             <div v-if="data.playlist.playCount > 100000000" class="ml-1">
               {{ data.playlist.playCount > 10000 ? (data.playlist.playCount / 100000000).toFixed(1) + "亿" :
-                data.playlist.playCount }}
+              data.playlist.playCount }}
             </div>
             <div v-else-if="data.playlist.playCount > 10000" class="ml-1">
               {{ data.playlist.playCount > 10000 ? (data.playlist.playCount / 10000).toFixed(2) + "万" :
-                data.playlist.playCount }}
+              data.playlist.playCount }}
             </div>
             <div v-else class="ml-1">
               {{ data.playlist.playCount }}
@@ -132,7 +134,7 @@ const toBack = () => {
     </div>
     <!-- 歌曲列表 -->
     <div>
-      <SongListHandler :tracks="data.playlist.tracks"></SongListHandler>
+      <SongListHandler :tracks="data.playlist.tracks" :trackIds="data.playlist.trackIds"></SongListHandler>
     </div>
   </div>
 </template>

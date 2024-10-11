@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue"
+import { ref, reactive, onMounted } from "vue"
 import { Icon } from "@iconify/vue";
 import { useRouter } from "vue-router";
 import { usePlayStore, useSourseStore } from "@/store";
@@ -7,7 +7,7 @@ import { watch } from "vue";
 
 const playStore = usePlayStore()
 const sourseStore = useSourseStore()
-console.log(sourseStore.getMusicSourseIds);
+// console.log(sourseStore.getMusicSourseIds);
 
 watch(sourseStore, () => {
     console.log("数据更新了");
@@ -15,11 +15,18 @@ watch(sourseStore, () => {
     playStore.getMusicSourseIds
 
 })
-
 const props = defineProps({
-    tracks: {}
+    tracks: {},
+    trackIds: {}
 })
-// console.log(props.tracks);
+let ids = new Array()
+props.trackIds.map((item) => {
+    ids.push(item.id)
+})
+const playAllSongs = () => {
+    console.log(ids);
+    sourseStore.setMusicSourseIds(ids)
+}
 const router = useRouter()
 // 获取歌曲id
 const getSongId = (songId) => {
@@ -46,7 +53,7 @@ const getVedioId = (vedioId) => {
     <van-sticky offset-top="66.77">
         <div class="w-[100%] h-[8vh] flex justify-between items-center"
             style="background-color: rgba(255, 255, 255,0.98);">
-            <div class=" h-[5vh] flex justify-between items-center">
+            <div @click="playAllSongs" class=" h-[5vh] flex justify-between items-center">
                 <Icon class="ml-2" icon="icon-park-solid:play" width="1.2rem" height="1.2rem" style="color: #ff0000" />
                 <div class="ml-2 text-[#000000] text-[12px] font-semibold">播放全部</div>
                 <div class="mx-1 text-[9px] text-[#8f8f8f]">({{ props.tracks.length }})</div>
