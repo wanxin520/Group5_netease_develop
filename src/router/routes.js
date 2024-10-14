@@ -76,12 +76,10 @@ export default [
           },
         ],
       },
-      { path: "podcast", name: "podcast", component: () => import("@/views/TabBar/PodcastBar.vue") },
+      { path: "podcast", name: "podcast", component: () => import("@/views/TabBar/MVBar.vue") },
       { path: "personal", name: "personal", component: () => import("@/views/TabBar/PersonalBar.vue") },
       { path: "attention", name: "attention", component: () => import("@/views/TabBar/AttentionBar.vue") },
       { path: "dynamic", name: "dynamic", component: () => import("@/views/TabBar/DynamicBar.vue") },
-
-
       // 歌单详情路由
       {
         path: "listdetail",
@@ -96,6 +94,13 @@ export default [
         component: () => import("@/components/playListInfomation/getPlaylistAllSongs.vue"),
       },
     ]
+  },
+
+  // 搜索页面
+  {
+    path: "/search",
+    name: "search",
+    component: () => import("@/views/Top/children/SearchPagePopup.vue"),
   },
   // 登录路由
   {

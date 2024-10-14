@@ -24,7 +24,7 @@ props.trackIds.map((item) => {
     ids.push(item.id)
 })
 const playAllSongs = () => {
-    console.log(ids);
+    // console.log(ids)
     sourseStore.setMusicSourseIds(ids)
 }
 const router = useRouter()

@@ -5,6 +5,7 @@ import { getPlaylistDetail } from "@/api/songIndex";
 import { Icon } from '@iconify/vue';
 import { useRoute, useRouter } from 'vue-router';
 import SongListHandler from "./SongListHandler.vue";
+import BottomPlayBar from "../play/music/BottomPlayBar.vue";
 
 
 // 获取歌单搜索id
@@ -136,6 +137,9 @@ const toBack = () => {
     <div>
       <SongListHandler :tracks="data.playlist.tracks" :trackIds="data.playlist.trackIds"></SongListHandler>
     </div>
+    <van-sticky :offset-bottom="0" position="bottom">
+      <BottomPlayBar></BottomPlayBar>
+    </van-sticky>
   </div>
 </template>
 <style scoped></style>

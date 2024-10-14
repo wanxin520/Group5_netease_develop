@@ -2,7 +2,7 @@
 import { watch, ref } from "vue";
 import { getHomePageData } from "@/api";
 import { useRequest } from "vue-request";
-import TopSearch from "../Top/TopSearch.vue";
+import TopSearch from "../Top/SearchBar.vue";
 import BlockType from "@/views/Pages/Discover/children/BlockType.vue";
 import Bottom from "../Bottom/Bottom.vue";
 import Banner from "../Pages/Discover/children/Banner.vue";
@@ -21,7 +21,7 @@ const { data: pageData } = useRequest(getHomePageData)
 </script>
 
 <template>
-    <div class="min-h-[100vh] content">
+    <div class="content mb-[80px]">
         <header>
             <TopSearch></TopSearch>
         </header>
@@ -31,6 +31,12 @@ const { data: pageData } = useRequest(getHomePageData)
             <BlockType v-for="item in pageData" :data="item" :key="item.blockCode" class="min-h-[100%]"></BlockType>
             <div style="height: 50px;"></div>
         </div>
+    </div>
+    <div class="fixed bottom-[50px] left-0 right-0 z-index-1008">
+        <BottomPlayBar></BottomPlayBar>
+    </div>
+    <div class="fixed bottom-[0px] left-0 right-0 z-index-1008">
+        <Bottom></Bottom>
     </div>
 </template>
 <style scoped>
