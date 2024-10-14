@@ -5,7 +5,7 @@ import Bottom from "../Bottom/Bottom.vue";
 import { useUserStore } from "@/store";
 import { useRequest } from "vue-request";
 import { getDynamicMessage } from "@/api/userIndex";
-import LeftPopup from "../Top/LeftPopup.vue";
+import LeftPopup from "../Top/children/MenuPopup.vue";
 import BottomPlayBar from "@/components/play/music/BottomPlayBar.vue";
 import DynamicList from "@/components/dynamic/DynamicList.vue";
 
@@ -44,6 +44,12 @@ watch(data, () => {
       </div>
     </van-sticky>
     <DynamicList :events="eventList"></DynamicList>
+    <div class="fixed bottom-[50px] left-0 right-0 z-index-1008">
+      <BottomPlayBar></BottomPlayBar>
+    </div>
+    <div class="fixed bottom-[0px] left-0 right-0 z-index-1008">
+      <Bottom></Bottom>
+    </div>
   </div>
 
 </template>

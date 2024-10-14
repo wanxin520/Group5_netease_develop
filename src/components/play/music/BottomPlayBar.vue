@@ -20,19 +20,13 @@ const showDefault = ref(false)
 const audio = new Audio()
 const { run: loadUrl, data: songsUrl } = useRequest(() => getSongsUrl({ "id": [sourseStore.getMusicSourseIds], "cookie": userStore.userInfo.cookie }), { manual: true })
 const { run: loadDeatil, data: songsDetail } = useRequest(() => getSongsDetail({ "id": [sourseStore.getMusicSourseIds], "cookie": userStore.userInfo.cookie }), { manual: true })
-
-// playStore.setPlayIndex(0)
-
 watch(songsUrl, () => {
-    console.log(songsUrl.value);
     urlStore.setSongsUrl(songsUrl.value.data)
     playStore.setPlayIndex(0)
 })
 watch(songsDetail, () => {
     detailStore.setSongsDetail(songsDetail.value)
-    console.log(songsDetail.value);
 })
-
 const songMessage = ref({
     songName: null,
     artistName: null,
@@ -75,7 +69,7 @@ watch(urlStore, () => {
     songMessage.value.playListLength = urlStore.getSongsUrl.length
 })
 watch(detailStore, () => {
-    console.log(detailStore.getSongsDetail);
+    // console.log(detailStore.getSongsDetail);
     songMessage.value.songName = detailStore.getSongsDetail.songs[playStore.playIndex].name
     songMessage.value.artistName = detailStore.getSongsDetail.songs[playStore.playIndex].ar[0].name
     songMessage.value.songPicUrl = detailStore.getSongsDetail.songs[playStore.playIndex].al.picUrl
@@ -125,7 +119,6 @@ const getPlayStatus = () => {
         songMessage.value.songDuration == 0 ? 0 : musicPlayingData.value.progress = (musicPlayingData.value.current / songMessage.value.songDuration) * 100
     }, 1000)
 }
-
 // 检测状态库里面是否已经存在歌曲
 let checkSongsAlreadyExist = setInterval(() => {
     if (urlStore.getSongsUrl) {

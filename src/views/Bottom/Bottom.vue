@@ -3,7 +3,7 @@ import { Icon } from "@iconify/vue";
 </script>
 
 <template>
-    <div class="flex flex-col justify-end ">
+    <div class="flex flex-col">
         <van-tabbar inactive-color="gray" active-color="#ee0a24" route>
             <van-tabbar-item replace to="/home/discover">
                 <div class="flex flex-col justify-end items-center">
@@ -15,9 +15,9 @@ import { Icon } from "@iconify/vue";
             </van-tabbar-item>
             <van-tabbar-item replace to="/home/podcast">
                 <div class="flex flex-col justify-end items-center">
-                    <Icon icon="mynaui:radio" width="1.6rem" />
+                    <Icon icon="mingcute:video-fill" width="1.5rem" height="1.5rem" />
                     <div class="flex flex-col justify-around items-center text-[9.7px] h-[1.3rem]">
-                        <span>播客</span>
+                        <span>视频</span>
                     </div>
                 </div>
             </van-tabbar-item>
