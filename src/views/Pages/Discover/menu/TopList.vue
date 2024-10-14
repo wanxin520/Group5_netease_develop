@@ -16,181 +16,198 @@ watch(rankListDtaileData, () => {
 </script>
 
 <template>
-  <div
-    class="flex flex-col justify-start gap-4 p-4 bg-orange-400 rounded-lg shadow-md w-full h-full md:w-1/2 lg:w-1/3 my-5"
-  >
-    <div class="flex justify-between items-center">
-      <h3 class="text-lg font-bold text-[25px]">
-        {{ rankListDtaileData.list[0].name }}
-      </h3>
-      <p class="float-right">
-        {{ rankListDtaileData.list[0].updateFrequency }}
-      </p>
-    </div>
-    <div class="flex">
-      <div class="mt-3 w-[120px] h-[120px]">
-        <img :src="rankListDtaileData.list[0].coverImgUrl" alt="" />
+  <div class="w-[100vw] bg-[#f8f9fd]">
+    <div
+      class="mx-auto w-[95vw] flex flex-col justify-start gap-4 p-2 bg-white rounded-lg shadow-md my-5"
+    >
+      <div class="flex justify-between items-center py-0">
+        <h3 class="font-bold text-[18px]">
+          {{ rankListDtaileData.list[0].name }}
+        </h3>
+        <p class="float-right text-[13px] text-gray-400">
+          {{ rankListDtaileData.list[0].updateFrequency }}
+        </p>
       </div>
-      <div class="ml-5">
-        <ol class="list-none">
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >1.{{ rankListDtaileData.list[0].tracks[0]?.first }}-{{
-                rankListDtaileData.list[0].tracks[0]?.second
-              }}</span
-            >
-            <span class="text-green-500 ml-auto">New</span>
-          </li>
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >2.{{ rankListDtaileData.list[0].tracks[1]?.first }}-{{
-                rankListDtaileData.list[0].tracks[1]?.second
-              }}</span
-            >
-            <span class="text-green-500 ml-auto">New</span>
-          </li>
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >3.{{ rankListDtaileData.list[0].tracks[2]?.first }}-{{
-                rankListDtaileData.list[0].tracks[2]?.second
-              }}</span
-            >
-            <span class="text-green-500 ml-auto">New</span>
-          </li>
-        </ol>
+      <div class="flex py-0">
+        <div class="mt-1 w-[80px] h-[80px]">
+          <img
+            class="w-[80px] h-[80px]"
+            :src="rankListDtaileData.list[0].coverImgUrl"
+            alt=""
+          />
+        </div>
+        <div class="ml-5 truncate w-[65vw] flex items-center">
+          <ol class="list-none">
+            <li class="w-[65vw] flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >1.{{ rankListDtaileData.list[0].tracks[0]?.first }}-{{
+                  rankListDtaileData.list[0].tracks[0]?.second
+                }}</span
+              >
+              <span class="text-green-500 text-[12px] ml-auto">New</span>
+            </li>
+            <li class="w-[65vw] flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >2.{{ rankListDtaileData.list[0].tracks[1]?.first }}-{{
+                  rankListDtaileData.list[0].tracks[1]?.second
+                }}</span
+              >
+              <span class="text-green-500 text-[12px] ml-auto">New</span>
+            </li>
+            <li class="w-[65vw] flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >3.{{ rankListDtaileData.list[0].tracks[2]?.first }}-{{
+                  rankListDtaileData.list[0].tracks[2]?.second
+                }}</span
+              >
+              <span class="text-green-500 text-[12px] ml-auto">New</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="mx-auto w-[95vw] flex flex-col justify-start gap-4 p-2 bg-white rounded-lg shadow-md my-5"
+    >
+      <div class="flex justify-between items-center">
+        <h3 class="font-bold text-[18px]">
+          {{ rankListDtaileData.list[1].name }}
+        </h3>
+        <p class="float-right text-[13px] text-gray-400">
+          {{ rankListDtaileData.list[1].updateFrequency }}
+        </p>
+      </div>
+      <div class="flex">
+        <div class="mt-1 w-[80px] h-[80px]">
+          <img
+            class="w-[80px] h-[80px]"
+            :src="rankListDtaileData.list[1].coverImgUrl"
+            alt=""
+          />
+        </div>
+        <div class="ml-5 truncate w-[65vw] flex items-center">
+          <ol class="list-none">
+            <li class="flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >1.{{ rankListDtaileData.list[1].tracks[0]?.first }}-{{
+                  rankListDtaileData.list[1].tracks[0]?.second
+                }}</span
+              >
+            </li>
+            <li class="flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >2.{{ rankListDtaileData.list[1].tracks[1]?.first }}-{{
+                  rankListDtaileData.list[1].tracks[1]?.second
+                }}</span
+              >
+            </li>
+            <li class="flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >3.{{ rankListDtaileData.list[1].tracks[2]?.first }}-{{
+                  rankListDtaileData.list[1].tracks[2]?.second
+                }}</span
+              >
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="mx-auto w-[95vw] flex flex-col justify-start bg-white gap-4 p-2 rounded-lg shadow-md my-5"
+    >
+      <div class="flex justify-between items-center">
+        <h3 class="font-bold text-[18px]">
+          {{ rankListDtaileData.list[2].name }}
+        </h3>
+        <p class="float-right text-[13px] text-gray-400">
+          {{ rankListDtaileData.list[2].updateFrequency }}
+        </p>
+      </div>
+      <div class="flex">
+        <div class="mt-1 w-[80px] h-[80px]">
+          <img
+            class="w-[80px] h-[80px]"
+            :src="rankListDtaileData.list[2].coverImgUrl"
+            alt=""
+          />
+        </div>
+        <div class="ml-5 truncate w-[65vw] flex items-center">
+          <ol class="list-none">
+            <li class="flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >1.{{ rankListDtaileData.list[2].tracks[0]?.first }}-{{
+                  rankListDtaileData.list[2].tracks[0]?.second
+                }}</span
+              >
+            </li>
+            <li class="flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >2.{{ rankListDtaileData.list[2].tracks[1]?.first }}-{{
+                  rankListDtaileData.list[2].tracks[1]?.second
+                }}</span
+              >
+            </li>
+            <li class="flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >3.{{ rankListDtaileData.list[2].tracks[2]?.first }}-{{
+                  rankListDtaileData.list[2].tracks[2]?.second
+                }}</span
+              >
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="mx-auto w-[95vw] flex flex-col justify-start bg-white gap-4 p-2 rounded-lg shadow-md my-5"
+    >
+      <div class="flex justify-between items-center">
+        <h3 class="font-bold text-[18px]">
+          {{ rankListDtaileData.list[3].name }}
+        </h3>
+        <p class="float-right text-[13px] text-gray-400">
+          {{ rankListDtaileData.list[3].updateFrequency }}
+        </p>
+      </div>
+      <div class="flex">
+        <div class="mt-1 w-[80px] h-[80px]">
+          <img
+            class="w-[80px] h-[80px]"
+            :src="rankListDtaileData.list[3].coverImgUrl"
+            alt=""
+          />
+        </div>
+        <div class="ml-5 truncate w-[65vw] flex items-center">
+          <ol class="list-none">
+            <li class="flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >1.{{ rankListDtaileData.list[3].tracks[0]?.first }}-{{
+                  rankListDtaileData.list[3].tracks[0]?.second
+                }}</span
+              >
+            </li>
+            <li class="flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >2.{{ rankListDtaileData.list[3].tracks[1]?.first }}-{{
+                  rankListDtaileData.list[3].tracks[1]?.second
+                }}</span
+              >
+            </li>
+            <li class="flex items-center">
+              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+                >3.{{ rankListDtaileData.list[3].tracks[2]?.first }}-{{
+                  rankListDtaileData.list[3].tracks[2]?.second
+                }}</span
+              >
+            </li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
-
-  <div
-    class="flex flex-col justify-start gap-4 p-4 bg-orange-400 rounded-lg shadow-md w-full h-full md:w-1/2 lg:w-1/3 my-5"
-  >
-    <div class="flex justify-between items-center">
-      <h3 class="text-lg font-bold text-[25px]">
-        {{ rankListDtaileData.list[1].name }}
-      </h3>
-      <p class="float-right">
-        {{ rankListDtaileData.list[1].updateFrequency }}
-      </p>
-    </div>
-    <div class="flex">
-      <div class="mt-3 w-[120px] h-[120px]">
-        <img :src="rankListDtaileData.list[1].coverImgUrl" alt="" />
-      </div>
-      <div class="ml-5">
-        <ol class="list-none">
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >1.{{ rankListDtaileData.list[1].tracks[0]?.first }}-{{
-                rankListDtaileData.list[1].tracks[0]?.second
-              }}</span
-            >
-          </li>
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >2.{{ rankListDtaileData.list[1].tracks[1]?.first }}-{{
-                rankListDtaileData.list[1].tracks[1]?.second
-              }}</span
-            >
-          </li>
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >3.{{ rankListDtaileData.list[1].tracks[2]?.first }}-{{
-                rankListDtaileData.list[1].tracks[2]?.second
-              }}</span
-            >
-          </li>
-        </ol>
-      </div>
-    </div>
-  </div>
-
-  <div
-    class="flex flex-col justify-start bg-orange-400 gap-4 p-4 rounded-lg shadow-md w-full h-full md:w-1/2 lg:w-1/3 my-5"
-  >
-    <div class="flex justify-between items-center">
-      <h3 class="text-lg font-bold text-[25px]">
-        {{ rankListDtaileData.list[2].name }}
-      </h3>
-      <p class="float-right">
-        {{ rankListDtaileData.list[2].updateFrequency }}
-      </p>
-    </div>
-    <div class="flex">
-      <div class="mt-3 w-[120px] h-[120px]">
-        <img :src="rankListDtaileData.list[2].coverImgUrl" alt="" />
-      </div>
-      <div class="ml-5">
-        <ol class="list-none">
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >1.{{ rankListDtaileData.list[2].tracks[0]?.first }}-{{
-                rankListDtaileData.list[2].tracks[0]?.second
-              }}</span
-            >
-          </li>
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >2.{{ rankListDtaileData.list[2].tracks[1]?.first }}-{{
-                rankListDtaileData.list[2].tracks[1]?.second
-              }}</span
-            >
-          </li>
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >3.{{ rankListDtaileData.list[2].tracks[2]?.first }}-{{
-                rankListDtaileData.list[2].tracks[2]?.second
-              }}</span
-            >
-          </li>
-        </ol>
-      </div>
-    </div>
-  </div>
-
-  <div
-    class="flex flex-col justify-start bg-orange-400 gap-4 p-4 rounded-lg shadow-md w-full h-full md:w-1/2 lg:w-1/3 my-5"
-  >
-    <div class="flex justify-between items-center">
-      <h3 class="text-lg font-bold text-[25px]">
-        {{ rankListDtaileData.list[3].name }}
-      </h3>
-      <p class="float-right">
-        {{ rankListDtaileData.list[3].updateFrequency }}
-      </p>
-    </div>
-    <div class="flex">
-      <div class="mt-3 w-[120px] h-[120px]">
-        <img :src="rankListDtaileData.list[3].coverImgUrl" alt="" />
-      </div>
-      <div class="ml-5">
-        <ol class="list-none">
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >1.{{ rankListDtaileData.list[3].tracks[0]?.first }}-{{
-                rankListDtaileData.list[3].tracks[0]?.second
-              }}</span
-            >
-          </li>
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >2.{{ rankListDtaileData.list[3].tracks[1]?.first }}-{{
-                rankListDtaileData.list[3].tracks[1]?.second
-              }}</span
-            >
-          </li>
-          <li class="flex items-center">
-            <span class="text-[16px]"
-              >3.{{ rankListDtaileData.list[3].tracks[2]?.first }}-{{
-                rankListDtaileData.list[3].tracks[2]?.second
-              }}</span
-            >
-          </li>
-        </ol>
-      </div>
-    </div>
-  </div>
-
   <div class="w-[100%] h-[10vh] flex justify-between items-center flex-wrap">
     <div v-for="item in rankListData.list" :key="item">
       <div class="w-[7.5rem] h-[7.5rem] flex justify-center items-center p-1">
