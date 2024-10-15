@@ -59,3 +59,11 @@ offset: 偏移数量 , 用于分页 , 如 :( 页数 -1)*30, 其中 30 为 limit 
 
 调用例子 : /personalized/mv
 */
+// eslint-disable-next-line import/prefer-default-export
+export const getRecommendMV = async (data) => {
+  const [error, res] = await to(request.post("/personalized/mv"), data);
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
+};
+
+
