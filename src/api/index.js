@@ -367,11 +367,12 @@ export const getRankListDetail = async (data) => {
   return res.data;
 };
 
-// export const  = async (data) => {
+// export const getAlbumList = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
 //   if (error) return console.log("请求出错:" + error);
 //   return res.data;
-// }export const  = async (data) => {
+// }
+// export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
 //   if (error) return console.log("请求出错:" + error);
 //   return res.data;
