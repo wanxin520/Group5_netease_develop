@@ -8,9 +8,8 @@ const NewestMVData = ref("")
 const NewestMVTilte = ref("")
 const { data: NewestMv} = useRequest(getNewestMv);
 watch(NewestMv,() => {
-  console.log(NewestMv);
+  console.log(NewestMv.value);
   NewestMVData.value = NewestMv.value.data
-  // eslint-disable-next-line prefer-destructuring
   NewestMVTilte.value= NewestMv.value.data[0].alias[0]}); 
 const getuserId= (userId) => {
   console.log(userId);

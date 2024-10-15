@@ -95,13 +95,6 @@ export default [
       },
     ]
   },
-
-  // 搜索页面
-  {
-    path: "/search",
-    name: "search",
-    component: () => import("@/views/Top/children/SearchPagePopup.vue"),
-  },
   // 登录路由
   {
     path: "/login", redirect: "/login/tourist",
