@@ -7,13 +7,13 @@ const router = useRouter();
 const props = defineProps({
   data: {},
 });
+// console.log(props.data);
 const emit = defineEmits(["transmitePlaylistId", "transmiteSongId", "transmiteVideoId"])
 
-const isChecked = (id) => {
-  console.log(id);
-  let query = { id: id };
-  router.push({ name: "detail", query });
-};
+// const getResourceId = (resourceId) => {
+//   console.log(resourceId);
+
+// };
 
 </script>
 
@@ -30,7 +30,7 @@ const isChecked = (id) => {
   <div class="w-[100vw] flex justify-center items-center">
     <van-swipe :width="150" :height="200" :stop-propagation="false" :loop="false" :show-indicators="false">
       <van-swipe-item class="p-2" v-for="item in props.data.children" :key="item.id">
-        <div @click="isChecked(item.id)" class="h-[100%] flex flex-col justify-around items-center">
+        <div class="h-[100%] flex flex-col justify-around items-center">
           <img class="rounded-[20px]  w-[10rem] h-[8.8rem]" :src="item.imageUrl" alt="" />
           <van-text-ellipsis :content="item.title" class="text-[12px]" rows="1" />
         </div>

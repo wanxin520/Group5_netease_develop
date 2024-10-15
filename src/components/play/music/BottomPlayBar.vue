@@ -105,14 +105,14 @@ const checkDataReady = () => {
                 musicPlayingData.value.playing = true
             ]
             : musicPlayingData.ready
-        console.log(audio.readyState);
+        // console.log(audio.readyState);
     }, 1000)
 }
 // 封装获取播放状态函数
 let playstatuInterval
 const getPlayStatus = () => {
     playstatuInterval = setInterval(() => {
-        console.log(audio.paused)
+        // console.log(audio.paused)
         musicPlayingData.value.playing = !audio.paused
         musicPlayingData.value.current = audio.currentTime * 1000
         // 获取歌曲进度
@@ -122,7 +122,6 @@ const getPlayStatus = () => {
 // 检测状态库里面是否已经存在歌曲
 let checkSongsAlreadyExist = setInterval(() => {
     if (urlStore.getSongsUrl) {
-        console.log(playStore.playIndex);
         urlStore.getSongsUrl[playStore.playIndex].url
             ?
             [
@@ -142,7 +141,6 @@ let checkSongsAlreadyExist = setInterval(() => {
                 showDefault.value = true,
             ]
     }
-    console.log(showDefault.value);
 }, 1000)
 if (!urlStore.getSongsUrl) {
     clearInterval(checkSongsAlreadyExist)
