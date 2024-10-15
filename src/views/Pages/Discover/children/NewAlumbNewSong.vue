@@ -23,15 +23,14 @@ const getResourceId = (resourceId) => {
 
 <template>
     <div>
-        <div class="flex m-auto p-2 justify-between items-center w-[100vw] h-[6vh] ">
+        <div class="flex m-auto p-2 justify-between items-center w-[100vw] h-[6vh] bg-[#ffffff]">
             <div class="flex justify-center items-center">
                 <div class="text-[#707070] text-[14px] font-bold">{{ props.data.name }}</div>
                 <Icon icon="weui:arrow-filled" width="1.2rem" height="1.2rem" style="color: #666666" />
             </div>
-            <Icon icon="material-symbols:more-vert"
-                class="text-[1.2rem] mr-1 text-[#707070]" />
+            <Icon icon="material-symbols:more-vert" class="text-[1.2rem] mr-1 text-[#707070]" />
         </div>
-        <div class="w-[100vw] flex justify-center items-center">
+        <div class="w-[100vw] flex justify-center items-center bg-[#ffffff]">
             <van-swipe :width="350" :height="230" :stop-propagation="false" :loop="false" loop="false"
                 :show-indicators="false">
                 <van-swipe-item class="p-2" v-for="(item, index) in props.data.creatives" :key="item.id">

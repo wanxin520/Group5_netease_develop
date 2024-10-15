@@ -7,6 +7,7 @@ const router = useRouter();
 const props = defineProps({
   data: {},
 });
+// console.log(props.data);
 const emit = defineEmits(["transmitePlaylistId", "transmiteSongId", "transmiteVideoId"])
 const getResourceId = (resourceId) => {
   console.log(resourceId);
@@ -31,30 +32,31 @@ const getResourceId = (resourceId) => {
           <van-swipe :width="330" :height="150" :loop="false" :show-indicators="false">
             <van-swipe-item @click="getResourceId(inItem.resourceId)"
               v-for="(inItem, inIndex) in props.data.creatives[index].resources">
-              <div class="h-[80%] w-[95%] flex justify-around items-center rounded-[20px] bg-[#f7bfaa]">
-
+              <div class="h-[80%] w-[95%] flex justify-around items-center rounded-[20px] bg-[#80b9bd]">
                 <div class="w-[80%] h-[100%] p-1 flex flex-col justify-around items-start">
-
                   <div class="flex justify-start items-center text-[#4d4c4c] text-[12px] font-bold">
                     <img class="rounded-[20px] w-[2rem] p-1" :src="inItem.uiElement.mainTitle.titleImgUrl" alt="" />
                     <div class="text-[#ffffff] font-bold text-[15px] overflow-hidden line-clamp-1">{{
                       inItem.uiElement.mainTitle.title }}</div>
                   </div>
-                  <van-tag color="rgb(255, 156, 131)" text-color="#ff2121">{{
-                    inItem.uiElement.subTitle.title}}</van-tag>
                   <div class=" flex flex-col justify-between items-center">
                     <div class="w-[100%] p-1 flex justify-start items-center">
-                      <img class="w-[1.5rem] rounded-[50%]" :src="inItem.resourceExtInfo.user.avatarUrl" alt="">
-                      <van-text-ellipsis class="text-[12px] mx-2 text-[#000000]"
+                      <div
+                        class=" flex justify-center items-center text-[#f34c4c] text-[8px] bg-[#fff1f1] rounded-[5px] p-0.5 ">
+                        {{ inItem.uiElement.subTitle.title }}</div>
+                      <img class="w-[1.2rem] h-[1.2rem] rounded-[50%] ml-2" :src="inItem.resourceExtInfo.user.avatarUrl"
+                        alt="">
+                      <van-text-ellipsis class="text-[9px] mx-1 text-[#363636]"
                         :content="inItem.resourceExtInfo.user.nickname" />
                     </div>
-                    <van-text-ellipsis class="text-[10px] mx-1 p-1 text-[#583c3c]"
-                      :content="inItem.resourceExtInfo.eventMsg" rows="2" />
                   </div>
-
+                  <van-text-ellipsis class="text-[10px] mx-1 p-1 text-[#583c3c]"
+                    :content="inItem.resourceExtInfo.eventMsg" rows="2" />
                 </div>
-                <div class="h-[100%] flex flex-col justify-between p-4 items-center">
-                  <img class="rounded-[20px] w-[4.5rem]" :src="inItem.uiElement.image.imageUrl" alt="" />
+
+                <div class="h-[100%] flex flex-col justify-center p-2 items-center">
+                  <img class="rounded-[20px] w-[5rem] h-[4.5rem]" :src="inItem.uiElement.image.imageUrl" alt="" />
+
                 </div>
               </div>
             </van-swipe-item>
@@ -64,5 +66,4 @@ const getResourceId = (resourceId) => {
     </van-swipe>
   </div>
 </template>
-<style scoped>
-</style>
+<style scoped></style>
