@@ -1,12 +1,16 @@
 <script setup>
 import Bottom from "../Bottom/Bottom.vue";
 import BottomPlayBar from "@/components/play/music/BottomPlayBar.vue";
+import NewestMV from "../Pages/MV/NewestMV.vue";
 import RecommendMV from "../Pages/MV/RecommendMV.vue";
 </script>
 
 <template>
   <div class="flex justify-center items-center h-full w-full bg-gray-100" >
     <h1>视频</h1>
+  </div>
+  <div>
+    <NewestMV></NewestMV>
   </div>
   <div>
     <RecommendMV></RecommendMV>

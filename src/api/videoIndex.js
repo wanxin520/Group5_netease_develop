@@ -1,6 +1,7 @@
 import to from "await-to-js";
 import request from "./request";
 import { useUserStore } from "@/store";
+import axios from "axios";
 const userStore = useUserStore()
 const params = new URLSearchParams()
 params.append("cookie", userStore.userInfo.cookie)
@@ -37,7 +38,13 @@ offset: 偏移数量 , 用于分页 , 如 :( 页数 -1)*50, 其中 50 为 limit 
 调用例子 : /mv/first?limit=10
 
 */
-
+// eslint-disable-next-line import/prefer-default-export
+export const getNewestMv = async (data) => {
+    const [error, res] = await to(request.get("/mv/first"), data);
+    if (error) return console.log(`请求出错:${  error}`);
+    return res.data;
+  };
+  
 /* 
 网易出品 mv
 说明 : 调用此接口 , 可获取网易出品 mv
