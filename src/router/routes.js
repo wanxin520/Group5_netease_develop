@@ -10,7 +10,8 @@
 export default [
   { path: "/", redirect: "/home/discover" },
   {
-    path: "/home", component: () => import("@/views/HomePage.vue"),
+    path: "/home",
+    component: () => import("@/views/HomePage.vue"),
     children: [
       // tabBar路由
       // 主页
@@ -18,25 +19,32 @@ export default [
         path: "discover",
         // 主页圆形图标菜单栏的子路由
         children: [
-          { path: "", name: "discover", component: () => import("@/views/TabBar/DiscoverBar.vue"), },
+          {
+            path: "",
+            name: "discover",
+            component: () => import("@/views/TabBar/DiscoverBar.vue"),
+          },
           // 主页
           // 每日推荐
           {
             path: "recommend",
             name: "recommend",
-            component: () => import("@/views/Pages/Discover/menu/Recommend.vue"),
+            component: () =>
+              import("@/views/Pages/Discover/menu/Recommend.vue"),
           },
           // 私人FM
           {
             path: "personalfm",
             name: "personalfm",
-            component: () => import("@/views/Pages/Discover/menu/PersonalFM.vue"),
+            component: () =>
+              import("@/views/Pages/Discover/menu/PersonalFM.vue"),
           },
           // 歌单
           {
             path: "personalized",
             name: "personalized",
-            component: () => import("@/views/Pages/Discover/menu/PersonaLized.vue"),
+            component: () =>
+              import("@/views/Pages/Discover/menu/PersonaLized.vue"),
           },
           // 排行榜
           {
@@ -48,56 +56,87 @@ export default [
           {
             path: "radiostation",
             name: "radiostation",
-            component: () => import("@/views/Pages/Discover/menu/RadioStation.vue"),
+            component: () =>
+              import("@/views/Pages/Discover/menu/RadioStation.vue"),
           },
           // 数字专辑
           {
             path: "albumList",
             name: "albumList",
-            component: () => import("@/views/Pages/Discover/menu/AlbumList.vue"),
+            component: () =>
+              import("@/views/Pages/Discover/menu/AlbumList.vue"),
           },
           // 关注新歌
           {
             path: "concernartist",
             name: "concernartist",
-            component: () => import("@/views/Pages/Discover/menu/ConcernArtist.vue"),
+            component: () =>
+              import("@/views/Pages/Discover/menu/ConcernArtist.vue"),
           },
           // 收藏家
           {
             path: "collector",
             name: "collector",
-            component: () => import("@/views/Pages/Discover/menu/Collector.vue"),
+            component: () =>
+              import("@/views/Pages/Discover/menu/Collector.vue"),
           },
           // 歌房
           {
             path: "musicroom",
             name: "musicroom",
-            component: () => import("@/views/Pages/Discover/menu/MusicRoom.vue"),
+            component: () =>
+              import("@/views/Pages/Discover/menu/MusicRoom.vue"),
+          },
+          // 个人资料
+          {
+            path: "/datum",
+            name: "GetUserDatum",
+            component: () =>
+              import("@/components/userInformation/get/GetUserDatum.vue"),
           },
         ],
       },
-      { path: "podcast", name: "podcast", component: () => import("@/views/TabBar/MVBar.vue") },
-      { path: "personal", name: "personal", component: () => import("@/views/TabBar/PersonalBar.vue") },
-      { path: "attention", name: "attention", component: () => import("@/views/TabBar/AttentionBar.vue") },
-      { path: "dynamic", name: "dynamic", component: () => import("@/views/TabBar/DynamicBar.vue") },
+      {
+        path: "podcast",
+        name: "podcast",
+        component: () => import("@/views/TabBar/MVBar.vue"),
+      },
+      {
+        path: "personal",
+        name: "personal",
+        component: () => import("@/views/TabBar/PersonalBar.vue"),
+      },
+      {
+        path: "attention",
+        name: "attention",
+        component: () => import("@/views/TabBar/AttentionBar.vue"),
+      },
+      {
+        path: "dynamic",
+        name: "dynamic",
+        component: () => import("@/views/TabBar/DynamicBar.vue"),
+      },
       // 歌单详情路由
       {
         path: "listdetail",
         name: "listdetail",
-        component: () => import("@/components/playListInfomation/SongListDetail.vue"),
+        component: () =>
+          import("@/components/playListInfomation/SongListDetail.vue"),
       },
 
       // 歌单所有歌曲路由
       {
         path: "listallsongs",
         name: "listallsongs",
-        component: () => import("@/components/playListInfomation/getPlaylistAllSongs.vue"),
+        component: () =>
+          import("@/components/playListInfomation/getPlaylistAllSongs.vue"),
       },
-    ]
+    ],
   },
   // 登录路由
   {
-    path: "/login", redirect: "/login/tourist",
+    path: "/login",
+    redirect: "/login/tourist",
     children: [
       // 二维码登录
       {
@@ -125,7 +164,6 @@ export default [
       },
     ],
   },
-
 
   // 音乐详情页面（播放页面）
   // {
