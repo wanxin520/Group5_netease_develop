@@ -101,9 +101,9 @@ const onConfirm = (value) => {
   brithValue.value = formattedDate; // 更新生日变量
 };
 
-// 返回上一个页面
-const toBack = () => {
-  router.go(-1);
+// 返回主页面
+const toHome = () => {
+  router.push({ path: "/home/discover" });
 };
 </script>
 <template>
@@ -113,7 +113,7 @@ const toBack = () => {
       <!-- <van-nav-bar title="我的资料" left-arrow @click-left="toBack" /> -->
       <div class="van-nav-bar van-hairline--bottom">
         <div class="van-nav-bar__content">
-          <div class="van-nav-bar__left van-haptics-feedback" @click="toBack">
+          <div class="van-nav-bar__left van-haptics-feedback" @click="toHome">
             <Icon icon="ooui:arrow-next-rtl" style="font-size: 24px"></Icon>
           </div>
           <div class="van-nav-bar__title van-ellipsis">我的资料</div>
