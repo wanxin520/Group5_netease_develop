@@ -19,7 +19,7 @@ export const usePlayStore = defineStore("musicData", {
     actions: {
         setPlayIndex(playIndex) {
             this.playIndex = playIndex
-            console.log("被赋值了");
+            // console.log("被赋值了");
         },
         setShowPlayBar(showPlayBar) {
             this.showPlayBar = showPlayBar

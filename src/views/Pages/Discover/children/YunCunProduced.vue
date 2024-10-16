@@ -32,8 +32,8 @@ const isChecked = (id) => {
         <div @click="isChecked(item.id)" class="flex flex-col items-center">
           <div class="relative">
             <div
-              class="absolute w-[100%] flex justify-center items-center text-[#ffffff] text-[13px] top-[76%] bg-[#1d137a] overflow-hidden rounded-b-[10px]">
-              <van-text-ellipsis :content="item.title" class="h-[2rem]" rows="1" />
+              class="absolute w-[100%] h-[26px] flex justify-center items-center text-[#ffffff] text-[13px] top-[80%] bg-[#1d137a] overflow-hidden text-ellipsis whitespace-nowrap rounded-b-[10px]">
+              {{ item.title }}
             </div>
             <img class="rounded-[10px] h-[8rem]" :src="item.imageUrl" alt="" />
           </div>

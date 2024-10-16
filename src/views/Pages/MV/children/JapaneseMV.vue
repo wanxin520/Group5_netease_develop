@@ -7,7 +7,7 @@ import { ref } from "vue"
 <template>
     <div>
 
-
+        <h1>日本</h1>
     </div>
 </template>
 <style scoped></style>

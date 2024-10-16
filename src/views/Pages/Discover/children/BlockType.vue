@@ -20,6 +20,7 @@ import RCMDVoiceBook from "./RCMDVoiceBook.vue";
 
 const blockTypeComponentMap = {
   HOMEPAGE_BLOCK_PLAYLIST_RCMD: RCMDPlayList, //  推荐歌单
+  HOMEPAGE_MUSIC_CALENDAR: MusicCalender, // 音乐日历
   HOMEPAGE_BLOCK_STYLE_RCMD: RCMDStyle, // 为你定制精选歌曲
   HOMEPAGE_BLOCK_MGC_PLAYLIST: MGCPlayList, //网易云音乐的雷达歌单
   HOMEPAGE_VOICELIST_RCMD: RCMDVoiceList,  // 热门播客
@@ -29,7 +30,6 @@ const blockTypeComponentMap = {
   HOMEPAGE_BLOCK_OFFICIAL_PLAYLIST: OfficialPlayList, //专属场景歌单
   HOMEPAGE_BLOCK_VIDEO_PLAYLIST: VideoPlayList, // 视频合辑
   HOMEPAGE_BLOCK_YUNCUN_PRODUCED: YunCunProduced, // 云村出品
-  HOMEPAGE_MUSIC_CALENDAR: MusicCalender, // 音乐日历
   HOMEPAGE_MUSIC_MLOG: MusicMlog, // 精选音乐视频
   HOMEPAGE_PODCAST24: BroadCast, // 广播
   HOMEPAGE_VOICEBOOK_RCMD: RCMDVoiceBook, // 有声书
@@ -87,6 +87,13 @@ const propsData = computed(() => {
           hasListened: item.resources[0].resourceExtInfo.hasListened,
           specialType: item.resources[0].resourceExtInfo.specialType,
         })),
+      };
+    // 音乐日历
+    case "HOMEPAGE_MUSIC_CALENDAR":
+      // console.log(props.data);
+      return {
+        name: props.data.uiElement.subTitle.title,
+        creatives: props.data.creatives
       };
     // 为你定制精选歌曲
     case "HOMEPAGE_BLOCK_STYLE_RCMD":
@@ -176,13 +183,6 @@ const propsData = computed(() => {
           hasListened: item.resources[0].resourceExtInfo.hasListened,
           replyCount: item.resources[0].replyCount
         })),
-      };
-    // 音乐日历
-    case "HOMEPAGE_MUSIC_CALENDAR":
-      // console.log(props.data);
-      return {
-        name: props.data.uiElement.subTitle.title,
-        creatives: props.data.creatives
       };
     //  热门话题
     case "HOMEPAGE_BLOCK_HOT_TOPIC":
