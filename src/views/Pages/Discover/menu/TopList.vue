@@ -18,49 +18,58 @@ watch(rankListDtaileData, () => {
 <template>
   <div class="w-[100vw] bg-[#f8f9fd]">
     <div
-      class="mx-auto w-[95vw] flex flex-col justify-start gap-4 p-2 bg-white rounded-lg shadow-md my-5"
+      class="rounded-[10px] mx-auto w-[95vw] flex flex-col justify-start gap-4 p-2 bg-white shadow-md my-5"
     >
       <div class="flex justify-between items-center py-0">
-        <h3 class="font-bold text-[18px]">
+        <h3 class="font-bold text-[16px]">
           {{ rankListDtaileData.list[0].name }}
         </h3>
         <p class="float-right text-[13px] text-gray-400">
           {{ rankListDtaileData.list[0].updateFrequency }}
         </p>
       </div>
-      <div class="flex py-0">
-        <div class="mt-1 w-[80px] h-[80px]">
+      <div class="flex py-0 mt-[-10px]">
+        <div class="mt-1 w-[50px] h-[50px]">
           <img
-            class="w-[80px] h-[80px]"
+            class="w-[50px] h-[50px] rounded-[5px]"
             :src="rankListDtaileData.list[0].coverImgUrl"
             alt=""
           />
         </div>
-        <div class="ml-5 truncate w-[65vw] flex items-center">
-          <ol class="list-none">
-            <li class="w-[65vw] flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
-                >1.{{ rankListDtaileData.list[0].tracks[0]?.first }}-{{
+        <div class="ml-5 truncate flex items-center">
+          <ol class="list-decimal">
+            <span class="text-green-500 text-[12px] ml-auto float-right"
+              >New</span
+            >
+
+            <li class=" flex items-center">
+              
+              <span class="text-[12px] font-serif ...text-clip overflow-hidden">
+                1{{ rankListDtaileData.list[0].tracks[0]?.first }}-{{
                   rankListDtaileData.list[0].tracks[0]?.second
                 }}</span
               >
-              <span class="text-green-500 text-[12px] ml-auto">New</span>
             </li>
+            <span class="text-green-500 text-[12px] ml-auto float-right"
+              >New</span
+            >
             <li class="w-[65vw] flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
-                >2.{{ rankListDtaileData.list[0].tracks[1]?.first }}-{{
+             
+              <span class="text-[12px] font-serif ... text-clip overflow-hidden"
+                >2{{ rankListDtaileData.list[0].tracks[1]?.first }}-{{
                   rankListDtaileData.list[0].tracks[1]?.second
                 }}</span
               >
-              <span class="text-green-500 text-[12px] ml-auto">New</span>
             </li>
+            <span class="text-green-500 text-[12px] ml-auto float-right"
+              >New</span
+            >
             <li class="w-[65vw] flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
-                >3.{{ rankListDtaileData.list[0].tracks[2]?.first }}-{{
+              <span class="text-[12px] font-serif ... text-clip overflow-hidden"
+                >3{{ rankListDtaileData.list[0].tracks[2]?.first }}-{{
                   rankListDtaileData.list[0].tracks[2]?.second
                 }}</span
               >
-              <span class="text-green-500 text-[12px] ml-auto">New</span>
             </li>
           </ol>
         </div>
@@ -68,20 +77,20 @@ watch(rankListDtaileData, () => {
     </div>
 
     <div
-      class="mx-auto w-[95vw] flex flex-col justify-start gap-4 p-2 bg-white rounded-lg shadow-md my-5"
+      class="mx-auto w-[95vw] flex flex-col justify-start gap-4 p-2 bg-white rounded-[10px] shadow-md my-5"
     >
       <div class="flex justify-between items-center">
-        <h3 class="font-bold text-[18px]">
+        <h3 class="font-bold text-[16px]">
           {{ rankListDtaileData.list[1].name }}
         </h3>
         <p class="float-right text-[13px] text-gray-400">
           {{ rankListDtaileData.list[1].updateFrequency }}
         </p>
       </div>
-      <div class="flex">
-        <div class="mt-1 w-[80px] h-[80px]">
+      <div class="flex py-0 mt-[-10px]">
+        <div class="mt-1 w-[50px] h-[50px]">
           <img
-            class="w-[80px] h-[80px]"
+            class="w-[50px] h-[50px] rounded-[5px]"
             :src="rankListDtaileData.list[1].coverImgUrl"
             alt=""
           />
@@ -89,21 +98,24 @@ watch(rankListDtaileData, () => {
         <div class="ml-5 truncate w-[65vw] flex items-center">
           <ol class="list-none">
             <li class="flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+              <span
+                class="text-[12px] font-serif ... w-[60vw] text-clip overflow-hidden"
                 >1.{{ rankListDtaileData.list[1].tracks[0]?.first }}-{{
                   rankListDtaileData.list[1].tracks[0]?.second
                 }}</span
               >
             </li>
             <li class="flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+              <span
+                class="text-[12px] font-serif ... w-[60vw] text-clip overflow-hidden"
                 >2.{{ rankListDtaileData.list[1].tracks[1]?.first }}-{{
                   rankListDtaileData.list[1].tracks[1]?.second
                 }}</span
               >
             </li>
             <li class="flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+              <span
+                class="text-[12px] font-serif ... w-[60vw] text-clip overflow-hidden"
                 >3.{{ rankListDtaileData.list[1].tracks[2]?.first }}-{{
                   rankListDtaileData.list[1].tracks[2]?.second
                 }}</span
@@ -115,20 +127,20 @@ watch(rankListDtaileData, () => {
     </div>
 
     <div
-      class="mx-auto w-[95vw] flex flex-col justify-start bg-white gap-4 p-2 rounded-lg shadow-md my-5"
+      class="mx-auto w-[95vw] flex flex-col justify-start bg-white gap-4 p-2 rounded-[10px] shadow-md my-5"
     >
       <div class="flex justify-between items-center">
-        <h3 class="font-bold text-[18px]">
+        <h3 class="font-bold text-[16px]">
           {{ rankListDtaileData.list[2].name }}
         </h3>
         <p class="float-right text-[13px] text-gray-400">
           {{ rankListDtaileData.list[2].updateFrequency }}
         </p>
       </div>
-      <div class="flex">
-        <div class="mt-1 w-[80px] h-[80px]">
+      <div class="flex py-0 mt-[-10px]">
+        <div class="mt-1 w-[50px] h-[50px]">
           <img
-            class="w-[80px] h-[80px]"
+            class="w-[50px] h-[50px] rounded-[5px]"
             :src="rankListDtaileData.list[2].coverImgUrl"
             alt=""
           />
@@ -136,21 +148,24 @@ watch(rankListDtaileData, () => {
         <div class="ml-5 truncate w-[65vw] flex items-center">
           <ol class="list-none">
             <li class="flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+              <span
+                class="text-[12px] font-serif ... w-[60vw] text-clip overflow-hidden"
                 >1.{{ rankListDtaileData.list[2].tracks[0]?.first }}-{{
                   rankListDtaileData.list[2].tracks[0]?.second
                 }}</span
               >
             </li>
             <li class="flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+              <span
+                class="text-[12px] font-serif ... w-[60vw] text-clip overflow-hidden"
                 >2.{{ rankListDtaileData.list[2].tracks[1]?.first }}-{{
                   rankListDtaileData.list[2].tracks[1]?.second
                 }}</span
               >
             </li>
             <li class="flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+              <span
+                class="text-[12px] font-serif ... w-[60vw] text-clip overflow-hidden"
                 >3.{{ rankListDtaileData.list[2].tracks[2]?.first }}-{{
                   rankListDtaileData.list[2].tracks[2]?.second
                 }}</span
@@ -162,20 +177,20 @@ watch(rankListDtaileData, () => {
     </div>
 
     <div
-      class="mx-auto w-[95vw] flex flex-col justify-start bg-white gap-4 p-2 rounded-lg shadow-md my-5"
+      class="mx-auto w-[95vw] flex flex-col justify-start bg-white gap-4 p-2 rounded-[10px] shadow-md my-5"
     >
       <div class="flex justify-between items-center">
-        <h3 class="font-bold text-[18px]">
+        <h3 class="font-bold text-[16px]">
           {{ rankListDtaileData.list[3].name }}
         </h3>
         <p class="float-right text-[13px] text-gray-400">
           {{ rankListDtaileData.list[3].updateFrequency }}
         </p>
       </div>
-      <div class="flex">
-        <div class="mt-1 w-[80px] h-[80px]">
+      <div class="flex py-0 mt-[-10px]">
+        <div class="mt-1 w-[50px] h-[50px] rounded-[5px]">
           <img
-            class="w-[80px] h-[80px]"
+            class="w-[50px] h-[50px] rounded-[5px]"
             :src="rankListDtaileData.list[3].coverImgUrl"
             alt=""
           />
@@ -183,21 +198,24 @@ watch(rankListDtaileData, () => {
         <div class="ml-5 truncate w-[65vw] flex items-center">
           <ol class="list-none">
             <li class="flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+              <span
+                class="text-[12px] font-serif ... w-[60vw] text-clip overflow-hidden"
                 >1.{{ rankListDtaileData.list[3].tracks[0]?.first }}-{{
                   rankListDtaileData.list[3].tracks[0]?.second
                 }}</span
               >
             </li>
             <li class="flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+              <span
+                class="text-[12px] font-serif ... w-[60vw] text-clip overflow-hidden"
                 >2.{{ rankListDtaileData.list[3].tracks[1]?.first }}-{{
                   rankListDtaileData.list[3].tracks[1]?.second
                 }}</span
               >
             </li>
             <li class="flex items-center">
-              <span class="text-[14px] w-[40vw] text-clip overflow-hidden"
+              <span
+                class="text-[12px] font-serif ... w-[60vw] text-clip overflow-hidden"
                 >3.{{ rankListDtaileData.list[3].tracks[2]?.first }}-{{
                   rankListDtaileData.list[3].tracks[2]?.second
                 }}</span
