@@ -164,14 +164,7 @@ const toBack = () => {
             @finish="onFinish"
           />
         </van-popup>
-        <!-- 我的二维码 -->
 
-        <!-- <van-field
-          is-link
-          readonly
-          label="我的二维码"
-          style="border-bottom: none"
-        />       -->
         <div
           class="van-cell van-cell--clickable van-field"
           role="button"
