@@ -12,28 +12,29 @@ import DJProgramTopList from "../searchtoplist/DJProgramTopList.vue";
 import { useRouter } from "vue-router";
 
 const props = defineProps({
+    searchType: {},
     defaultKeywords: {}
 })
+console.log(props);
 const router = useRouter()
 const emit = defineEmits(["closeSearchPopup"])
+const searchType = ref(props.searchType)
 const sourseStore = useSourseStore()
 const searchKeywords = ref("")
 const showResultDetail = ref(false)
-const { run, data: searchResult, loading } = useRequest(() => cloudSearch({ keywords: searchKeywords.value }), { manual: true })
+const { run, data: searchResult, loading } = useRequest(() => cloudSearch(
+    { keywords: searchKeywords.value, type: props.searchType }
+), { manual: true })
 
 watch(searchKeywords, () => {
     searchKeywords.value.trim().length == 0 ? [] : run()
 })
-
 watch(searchResult, () => {
-    // console.log(searchResult.value);
+    console.log(searchResult.value);
 })
-
-// 
 const toResultPage = () => {
     showResultDetail.value = true
 }
-
 const getSourseId = (sourseId) => {
     // console.log(sourseId);
     sourseStore.setMusicSourseIds(sourseId)
@@ -56,57 +57,82 @@ const getSourseId = (sourseId) => {
         </van-sticky>
         <div class="mt-3">
             <div v-if="searchKeywords.trim().length !== 0">
-                <div v-if="!showResultDetail">
-                    <van-cell @click="toResultPage" v-if="!loading"
-                        v-for="(item, index) in searchResult.result.songs.slice(0, 13)">
-                        <!-- 使用 title 插槽来自定义标题 -->
-                        <template #title>
-                            <van-icon name="search" class="search-icon" />
-                            <span class="custom-title ml-3">{{ item.name }}</span>
-                        </template>
-                    </van-cell>
-                </div>
-                <div v-else>
-                    <div v-for="(item, index) in searchResult.result.songs" @click="getSourseId(item.id)"
-                        :key="item.al.id" class="flex w-[100%] h-[10vh] justify-between bg-[white]"
-                        style="background-color: rgba(255, 255, 255,0.98);">
-                        <div class="flex justify-between items-center">
-                            <div class="w-[3.5rem] flex justify-center items-center  text-[#999999]">
-                                <img class="w-[2.5rem] h-[2.5rem] rounded-[0.5rem]" :src="item.al.picUrl" alt="">
-                            </div>
-                            <div class="flex flex-col overflow-hidden">
-                                <!-- 歌曲名称 -->
-                                <div
-                                    class="w-[12rem] text-[0.8rem]  overflow-hidden text-ellipsis whitespace-nowrap text-[#2a3146]">
-                                    {{ item.name }}
-                                </div>
-
-                                <div class="flex h-[2vh] my-2">
-                                    <!-- 是否是付费歌曲 -->
-                                    <div class="w-[1.3rem] h-[0.9rem] flex justify-center items-center text-[0.5rem] rounded-[0.2rem] text-[#ee7975]"
-                                        style="border: 1px,solid #f8d7d7;" v-if="(item.fee == 1 || item.fee == 8)">VIP
-                                    </div>
-
-                                    <!-- 是否是SQ歌曲 -->
-                                    <div class="w-[1.3rem] h-[0.9rem] flex justify-center items-center text-[0.5rem] rounded-[0.2rem] mx-1 text-[#ee7975]"
-                                        style="border: 1px,solid #f8d7d7;" v-if="(item.sq != 0)">SQ</div>
-
-                                    <!-- 专辑名称 --><!-- 歌手名称 -->
+                <div v-if="searchType == ''">
+                    <div v-if="!showResultDetail">
+                        <van-cell @click="toResultPage" v-if="!loading"
+                            v-for="(item, index) in searchResult.result.songs.slice(0, 13)">
+                            <!-- 使用 title 插槽来自定义标题 -->
+                            <template #title>
+                                <div class="flex justify-start items-center">
+                                    <van-icon name="search" class="search-icon" />
                                     <div
-                                        class="w-[12rem] text-[0.7rem]  text-[#828793] mx-1  overflow-hidden text-ellipsis whitespace-nowrap">
-                                        <span>{{ item.ar[0].name }}</span> - <span>{{ item.al.name }}</span>
+                                        class=" ml-3 w-[20rem] overflow-hidden text-ellipsis whitespace-nowrap text-[#2a3146]">
+                                        <span>{{
+                                            item.name }}</span>
+                                    </div>
+                                </div>
+                            </template>
+                        </van-cell>
+                    </div>
+                    <div v-else>
+                        <div v-for="(item, index) in searchResult.result.songs" @click="getSourseId(item.id)"
+                            :key="item.al.id" class="flex w-[100%] h-[10vh] justify-between bg-[white]"
+                            style="background-color: rgba(255, 255, 255,0.98);">
+                            <div class="flex justify-between items-center">
+                                <div class="w-[3.5rem] flex justify-center items-center  text-[#999999]">
+                                    <img class="w-[2.5rem] h-[2.5rem] rounded-[0.5rem]" :src="item.al.picUrl" alt="">
+                                </div>
+                                <div class="flex flex-col overflow-hidden">
+                                    <!-- 歌曲名称 -->
+                                    <div
+                                        class="w-[12rem] text-[0.8rem]  overflow-hidden text-ellipsis whitespace-nowrap text-[#2a3146]">
+                                        {{ item.name }}
+                                    </div>
+                                    <div class="flex h-[2vh] my-2">
+                                        <!-- 是否是付费歌曲 -->
+                                        <div class="w-[1.3rem] h-[0.9rem] flex justify-center items-center text-[0.5rem] rounded-[0.2rem] text-[#ee7975]"
+                                            style="border: 1px,solid #f8d7d7;" v-if="(item.fee == 1 || item.fee == 8)">
+                                            VIP
+                                        </div>
+                                        <!-- 是否是SQ歌曲 -->
+                                        <div class="w-[1.3rem] h-[0.9rem] flex justify-center items-center text-[0.5rem] rounded-[0.2rem] mx-1 text-[#ee7975]"
+                                            style="border: 1px,solid #f8d7d7;" v-if="(item.sq != 0)">SQ</div>
+
+                                        <!-- 专辑名称 --><!-- 歌手名称 -->
+                                        <div
+                                            class="w-[12rem] text-[0.7rem]  text-[#828793] mx-1  overflow-hidden text-ellipsis whitespace-nowrap">
+                                            <span>{{ item.ar[0].name }}</span> - <span>{{ item.al.name }}</span>
+                                        </div>
+
                                     </div>
 
                                 </div>
-
+                            </div>
+                            <div class="flex justify-center items-center">
+                                <Icon v-if="(item.mv != 0)" icon="fluent:video-clip-16-regular" width="1.2rem"
+                                    height="1.2rem" style="color: #c9c9c9" />
+                                <Icon icon="material-symbols:more-vert" class="text-[1.3rem] mr-3" />
+                                <!-- <img :src="item.al.picUrl" alt=""> -->
                             </div>
                         </div>
-                        <div class="flex justify-center items-center">
-                            <Icon v-if="(item.mv != 0)" icon="fluent:video-clip-16-regular" width="1.2rem"
-                                height="1.2rem" style="color: #c9c9c9" />
-                            <Icon icon="material-symbols:more-vert" class="text-[1.3rem] mr-3" />
-                            <!-- <img :src="item.al.picUrl" alt=""> -->
-                        </div>
+                    </div>
+                </div>
+                <div v-else-if="searchType == 1014">
+                    <div v-if="!showResultDetail">
+                        <van-cell @click="toResultPage" v-if="!loading"
+                            v-for="(item, index) in searchResult.result.videos.slice(0, 13)">
+                            <!-- 使用 title 插槽来自定义标题 -->
+                            <template #title>
+                                <div class="flex justify-start items-center">
+                                    <van-icon name="search" class="search-icon" />
+                                    <div
+                                        class=" ml-3 w-[20rem] overflow-hidden text-ellipsis whitespace-nowrap text-[#2a3146]">
+                                        <span>{{
+                                            item.title }}</span>
+                                    </div>
+                                </div>
+                            </template>
+                        </van-cell>
                     </div>
                 </div>
             </div>

@@ -37,9 +37,9 @@ watch(defaultKeywords, () => {
       </div>
     </header>
   </van-sticky>
-  <!-- 右右侧弹出搜索页面 -->
+  <!-- 右侧弹出搜索页面 -->
   <van-popup v-model:show="showSearchPage" position="right" :style="{ width: '100vw', height: '100%' }">
-    <SearchPopup :defaultKeywords="showDefaltKeywords" @closeSearchPopup="closeSearchPopup">
+    <SearchPopup :defaultKeywords="showDefaltKeywords" :searchType="''" @closeSearchPopup="closeSearchPopup">
     </SearchPopup>
   </van-popup>
 </template>

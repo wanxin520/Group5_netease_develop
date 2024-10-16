@@ -36,7 +36,7 @@ function clickMore() {
                                     alt="" />
                             </div>
                             <div class="w-[75%] h-[100%] flex flex-col justify-center items-start ml-2 ">
-                                <div class=" my-3 flex justify-start items-center text-[#313131] text-[14px]">
+                                <div class=" my-3 flex justify-start items-center text-[#4f4f4f] text-[13px] font-bold">
                                     {{ inItem.uiElement.mainTitle.title }}
                                 </div>
                                 <div class="flex justify-start items-center text-[#707070] text-[10px]">

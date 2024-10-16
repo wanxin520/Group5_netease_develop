@@ -16,7 +16,7 @@ type: 搜索类型；默认为 1 即单曲 , 取值意义 : 1: 单曲, 10: 专�
 调用例子 : /search?keywords=海阔天空 /cloudsearch?keywords=海阔天空
 */
 export const cloudSearch = async (data) => {
-    const [error, res] = await to(request.post(`/cloudsearch?keywords=${data.keywords}&type=1`));
+    const [error, res] = await to(request.post(`/cloudsearch?keywords=${data.keywords}&type=${data.type}`));
     if (error) return console.log("请求出错:" + error);
     return res.data;
 }

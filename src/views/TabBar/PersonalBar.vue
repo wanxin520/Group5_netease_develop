@@ -47,13 +47,13 @@ const checked = ref(2)
                   <div>
                     <Icon icon="icon-park-outline:buy" width="1rem" />
                   </div>
-                  <div>最近</div>
+                  <div>商城</div>
                 </div>
                 <div class="w-[4rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
                   <div>
                     <Icon icon="mdi:cloud-upload" width="1rem" />
                   </div>
-                  <div>最近</div>
+                  <div>下载</div>
                 </div>
                 <div class="w-[4rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
                   <div>
