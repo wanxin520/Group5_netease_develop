@@ -7,7 +7,11 @@
  */
 import to from "await-to-js";
 import request from "./request";
-
+import { useUserStore } from "@/store";
+const userStore = useUserStore();
+const params = new URLSearchParams();
+params.append("cookie", userStore.userInfo.cookie);
+params.append("timestamp", Date.now());
 // 使用async和await的语法糖的写法 async和await就是Promise的语法糖
 // 使用to函数实现捕获请求的过程中会出现的错误
 
@@ -372,21 +376,60 @@ export const getRankListDetail = async (data) => {
 //   if (error) return console.log("请求出错:" + error);
 //   return res.data;
 // }
-// export const  = async (data) => {
-//   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:" + error);
-//   return res.data;
-// }
 
-// export const  = async (data) => {
-//   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:" + error);
-//   return res.data;
-// }export const  = async (data) => {
-//   const [error, res] = await to(request.post(""), data);
-//   if (error) return console.log("请求出错:" + error);
-//   return res.data;
-// }
+/*
+收藏的歌手列表
+说明 : 调用此接口,可获取收藏的歌手列表
+
+可选参数 :
+
+limit: 取出歌单数量 , 默认为 25
+
+offset: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*25, 其中 25 为 limit 的值
+
+接口地址 : /artist/sublist
+
+调用例子 : /artist/sublist
+*/
+export const getCollector = async (data) => {
+  const [error, res] = await to(
+    request.post(
+      `/artist/sublist?timestamp=${Date.now()}&cookie=${
+        userStore.userInfo.cookie
+      }`
+    ),
+    data
+  );
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
+};
+/*
+收藏的专栏
+说明 : 调用此接口,可获取收藏的专栏
+
+可选参数 :
+
+limit: 取出歌单数量 , 默认为 50
+
+offset: 偏移数量 , 用于分页 , 如 :( 评论页数 -1)*50, 其中 50 为 limit 的值
+
+接口地址 : /topic/sublist
+
+调用例子 :/topic/sublist?limit=2&offset=1 
+*/
+
+export const getCollectorList = async (data) => {
+  const [error, res] = await to(
+    request.post(
+      `/topic/sublist?timestamp=${Date.now()}&cookie=${
+        userStore.userInfo.cookie
+      }`
+    ),
+    data
+  );
+  if (error) return console.log("请求出错:" + error);
+  return res.data;
+};
 
 // export const  = async (data) => {
 //   const [error, res] = await to(request.post(""), data);
