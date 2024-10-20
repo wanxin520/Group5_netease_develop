@@ -76,7 +76,7 @@ export default [
           },
         ],
       },
-      { path: "podcast", name: "podcast", component: () => import("@/views/TabBar/MVBar.vue") },
+      { path: "mv", name: "mv", component: () => import("@/views/TabBar/MVBar.vue") },
       { path: "personal", name: "personal", component: () => import("@/views/TabBar/PersonalBar.vue") },
       { path: "attention", name: "attention", component: () => import("@/views/TabBar/AttentionBar.vue") },
       { path: "dynamic", name: "dynamic", component: () => import("@/views/TabBar/DynamicBar.vue") },
@@ -91,7 +91,13 @@ export default [
       {
         path: "listallsongs",
         name: "listallsongs",
-        component: () => import("@/components/playListInfomation/getPlaylistAllSongs.vue"),
+        component: () => import("@/components/playListInfomation/GetPlaylistAllSongs.vue"),
+      },
+      // 获取视频详情路由
+      {
+        path: "videodetail",
+        name: "videodetail",
+        component: () => import("@/components/play/video/GetVideoData.vue"),
       },
     ]
   },

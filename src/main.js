@@ -1,6 +1,8 @@
 import { createApp } from "vue";
 import "@/style.css";
 import "vant/lib/index.css";
+import "plyr/dist/plyr.css";
+import "vue-plyr/dist/vue-plyr.css"
 // 导入vant(移动端组件库)组件
 import Vant from 'vant';
 import { Lazyload } from 'vant';
