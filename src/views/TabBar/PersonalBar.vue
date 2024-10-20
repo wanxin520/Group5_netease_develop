@@ -1,14 +1,14 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import Bottom from "../Bottom/Bottom.vue";
-import GetUserAcount from "@/components/userInformation/get/GetUserAcount.vue";
+import GetUserAcount from "@/components/userInfo/get/GetUserAcount.vue";
 import LeftPopup from "../Top/children/MenuPopup.vue";
-import GetUserPlayList from "@/components/userInformation/get/GetUserPlayList.vue";
+import GetUserPlayList from "@/components/userInfo/get/GetUserPlayList.vue";
 import { ref, watch, reactive, onMounted, onUnmounted } from "vue"
 import { useRequest } from 'vue-request';
 import { getUserAccount } from '@/api/userIndex';
 import { useUserStore } from "@/store";
-import GetUserDynamic from "@/components/userInformation/get/GetUserDynamic.vue";
+import GetUserDynamic from "@/components/userInfo/get/GetUserDynamic.vue";
 import BottomPlayBar from "@/components/play/music/BottomPlayBar.vue";
 
 const userStore = useUserStore()

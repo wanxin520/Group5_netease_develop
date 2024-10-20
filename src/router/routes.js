@@ -92,7 +92,7 @@ export default [
             path: "/datum",
             name: "GetUserDatum",
             component: () =>
-              import("@/components/userInformation/get/GetUserDatum.vue"),
+              import("@/components/userInfo/get/GetUserDatum.vue"),
           },
         ],
       },
@@ -105,14 +105,14 @@ export default [
         path: "listdetail",
         name: "listdetail",
         component: () =>
-          import("@/components/playListInfomation/SongListDetail.vue"),
+          import("@/components/playlistInfo/SongListDetail.vue"),
       },
 
       // 歌单所有歌曲路由
       {
         path: "listallsongs",
         name: "listallsongs",
-        component: () => import("@/components/playListInfomation/GetPlaylistAllSongs.vue"),
+        component: () => import("@/components/playlistInfo/GetPlaylistAllSongs.vue"),
       },
       // 获取视频详情路由
       {

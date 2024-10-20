@@ -9,9 +9,9 @@ import to from "await-to-js";
 import request from "./request";
 import { useUserStore } from "@/store";
 const userStore = useUserStore()
-const params = new URLSearchParams()
-params.append("cookie", userStore.userInfo.cookie)
-params.append("timestamp", Date.now())
+// const params = new URLSearchParams()
+// params.append("cookie", userStore.userInfo.cookie)
+// params.append("timestamp", Date.now())
 // 使用async和await的语法糖的写法 async和await就是Promise的语法糖
 // 使用to函数实现捕获请求的过程中会出现的错误
 

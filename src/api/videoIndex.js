@@ -2,9 +2,9 @@ import to from "await-to-js";
 import request from "./request";
 import { useUserStore } from "@/store";
 const userStore = useUserStore()
-const params = new URLSearchParams()
-params.append("cookie", userStore.userInfo.cookie)
-params.append("timestamp", Date.now())
+// const params = new URLSearchParams()
+// params.append("cookie", userStore.userInfo.cookie)
+// params.append("timestamp", Date.now())
 /* 
 全部 mv
 说明 : 调用此接口 , 可获取全部 mv
