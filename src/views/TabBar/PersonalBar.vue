@@ -10,8 +10,10 @@ import { getUserAccount } from '@/api/userIndex';
 import { useUserStore } from "@/store";
 import GetUserDynamic from "@/components/userInfo/get/GetUserDynamic.vue";
 import BottomPlayBar from "@/components/play/music/BottomPlayBar.vue";
+import { useRouter } from "vue-router";
 
 const userStore = useUserStore()
+const router = useRouter()
 const { data, loading } = useRequest(() => getUserAccount({ "timestamp": Date.now(), "cookie": userStore.userInfo.cookie }))
 watch(data, () => {
   // console.log(data.value);
@@ -39,29 +41,34 @@ const checked = ref(2)
             </template>
             <template #bottombar>
               <div class="w-[100%] flex justify-around items-center text-[#ffffff] text-[10px] mb-5">
-                <div class="w-[4rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
+                <div @click="router.push({ name: 'recently' })"
+                  class="w-[4rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
                   <div><van-icon name="underway-o" /></div>
                   <div>最近</div>
                 </div>
-                <div class="w-[4rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
-                  <div>
-                    <Icon icon="icon-park-outline:buy" width="1rem" />
-                  </div>
-                  <div>商城</div>
-                </div>
-                <div class="w-[4rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
-                  <div>
-                    <Icon icon="mdi:cloud-upload" width="1rem" />
-                  </div>
-                  <div>下载</div>
-                </div>
-                <div class="w-[4rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
+                <div @click="router.push({ name: 'local' })"
+                  class="w-[4rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
                   <div>
                     <Icon icon="mingcute:folder-download-line" width="1rem" />
                   </div>
                   <div>本地</div>
                 </div>
-                <div class="w-[2rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
+                <div @click="router.push({ name: 'netdisk' })"
+                  class="w-[4rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
+                  <div>
+                    <Icon icon="mdi:cloud-upload" width="1rem" />
+                  </div>
+                  <div>网盘</div>
+                </div>
+                <div @click="router.push({ name: 'shoped' })"
+                  class="w-[4rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
+                  <div>
+                    <Icon icon="icon-park-outline:buy" width="1rem" />
+                  </div>
+                  <div>已购</div>
+                </div>
+                <div @click="router.push({name:'more'})"
+                  class="w-[2rem] h-[2rem] flex justify-evenly items-center bg-[#ffffff2f] rounded-[10px]">
                   <Icon icon="icon-park-solid:more-app" />
                 </div>
               </div>

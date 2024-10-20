@@ -2,6 +2,7 @@
 import { ref, watch, onBeforeMount, onMounted, onBeforeUnmount } from "vue"
 import { Icon } from "@iconify/vue";
 import MusicPlayer from "./MusicPlayer.vue";
+import PlayingList from "./PlayingList.vue";
 import { getSongsUrl, getSongsDetail } from "@/api/songIndex";
 import { useRequest } from "vue-request";
 import { usePlayStore, useSourseStore, useUserStore, useSongUrlStore, useSongDetailStore } from "@/store";
@@ -12,8 +13,9 @@ const detailStore = useSongDetailStore()
 const sourseStore = useSourseStore()
 const userStore = useUserStore()
 const router = useRouter()
-const emit = defineEmits(["closePlayBar", "nextSong", "backSong"])
-const showBottom = ref(false)
+const emit = defineEmits(["closePlayBar", "nextSong", "backSong", "closePlayingList", "showPlayingList"])
+const showPlayPage = ref(false)
+const showPlayingList = ref(false)
 const showBottomPlayBar = ref(playStore.getShowPlayBar)
 const defaultIMG = ref("../../../../public/cd1.png")
 const showDefault = ref(false)
@@ -243,9 +245,8 @@ const nextSong = () => {
             }, 3000),
         ]
 }
-
-const closePoup = () => {
-    showBottom.value = false
+const closePlayingList = () => {
+    showPlayingList.value = false
 }
 watch(playStore, () => {
     showBottomPlayBar.value = playStore.getShowPlayBar
@@ -259,11 +260,11 @@ onBeforeUnmount(() => {
 <template>
     <div v-if="showBottomPlayBar" class="w-[100%] h-[3rem] bg-[#ffffff] flex justify-center items-center">
         <div v-if="showDefault" class="w-[100%] h-[4rem] flex justify-start items-center">
-            <div class="cdcard ml-3" @click="showBottom = true">
+            <div class="cdcard ml-3" @click="showPlayPage = true">
                 <img :src="defaultIMG" />
             </div>
             <div class="w-[80%] ml-2 flex justify-between items-center">
-                <div @click="showBottom = true">
+                <div @click="showPlayPage = true">
                     <span class="text-[#a1a1a1] text-[10px] font-bold">快来听歌儿吧~</span>
                 </div>
                 <div class="flex justify-center items-center">
@@ -280,11 +281,11 @@ onBeforeUnmount(() => {
         </div>
         <div v-else class="w-[100%] h-[4rem] flex justify-start items-center">
             <div class="cdcard ml-3" :class="{ songimgRotate: musicPlayingData.playing == true }"
-                @click="showBottom = true">
+                @click="showPlayPage = true">
                 <img :src="songMessage.songPicUrl ? songMessage.songPicUrl : defaultIMG" />
             </div>
-            <div class="w-[80%] ml-2 flex justify-between items-center">
-                <div @click="showBottom = true">
+            <div class="w-[84%] ml-2 flex justify-between items-center">
+                <div @click="showPlayPage = true">
                     <span class="text-[#646464] text-[12px] font-bold">{{ songMessage.songName }}</span>
                     <span v-if="songMessage.songName" class="text-[#838383] text-[10px] font-serif ml-1 mr-1">-</span>
                     <span class="text-[#858484] text-[10px] font-serif">{{ songMessage.artistName }}</span>
@@ -303,16 +304,21 @@ onBeforeUnmount(() => {
                             <Icon v-else icon="bi:pause-fill" @click="pause" width="1rem" height="1rem" />
                         </div>
                     </div>
-                    <Icon icon="iconamoon:playlist-fill" width="1.4rem" height="1.4rem" class="text-[#535353] mr-3" />
+                    <Icon @click="showPlayingList = true" icon="iconamoon:playlist-fill" width="1.4rem" height="1.4rem"
+                        class="text-[#535353] mr-2" />
                 </div>
             </div>
         </div>
     </div>
+    <!-- 底部弹出播放列表 -->
+    <van-popup teleport="#app" v-model:show="showPlayingList" position="bottom" :style="{ height: '70%' }">
+        <PlayingList @closePlayingList="closePlayingList"></PlayingList>
+    </van-popup>
     <!-- 底部弹出播放器 -->
-    <van-popup teleport="#app" v-model:show="showBottom" duration="0.5" :close-on-click-overlay="true"
+    <van-popup teleport="#app" v-model:show="showPlayPage" duration="0.5" :close-on-click-overlay="true"
         close-icon-position="top-left" position="bottom" :style="{ height: '100%' }">
-        <MusicPlayer :songMessage="songMessage" :musicPlayingData="musicPlayingData" @closePlayBar="closePoup"
-            @backSong="backSong" @nextSong="nextSong" @play="play" @pause="pause">
+        <MusicPlayer :songMessage="songMessage" :musicPlayingData="musicPlayingData" @closePlayBar="showPlayPage = false"
+            @backSong="backSong" @nextSong="nextSong" @play="play" @pause="pause" @showPlayingList="showPlayingList = true">
         </MusicPlayer>
     </van-popup>
 </template>

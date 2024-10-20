@@ -100,11 +100,6 @@ const onConfirm = (value) => {
   const formattedDate = formatDate(value);
   brithValue.value = formattedDate; // 更新生日变量
 };
-
-// 返回主页面
-const toHome = () => {
-  router.push({ path: "/home/discover" });
-};
 </script>
 <template>
   <div>
@@ -113,7 +108,7 @@ const toHome = () => {
       <!-- <van-nav-bar title="我的资料" left-arrow @click-left="toBack" /> -->
       <div class="van-nav-bar van-hairline--bottom">
         <div class="van-nav-bar__content">
-          <div class="van-nav-bar__left van-haptics-feedback" @click="toHome">
+          <div class="van-nav-bar__left van-haptics-feedback" @click="router.go(-1)">
             <Icon icon="ooui:arrow-next-rtl" style="font-size: 24px"></Icon>
           </div>
           <div class="van-nav-bar__title van-ellipsis">我的资料</div>
@@ -122,21 +117,14 @@ const toHome = () => {
     </div>
     <!-- 头像 -->
     <div class="w-[100%] flex justify-center items-center">
-      <div
-        class="w-[7.2rem] h-[7.2rem] rounded-[50%] bg-[rgb(200,217,230)] flex justify-center items-center"
-      >
-        <img
-          class="w-[7rem] h-[7rem] rounded-[50%]"
-          src="http://p2.music.126.net/SUeqMM8HOIpHv9Nhl9qt9w==/109951165647004069.jpg"
-          alt=""
-        />
+      <div class="w-[7.2rem] h-[7.2rem] rounded-[50%] bg-[rgb(200,217,230)] flex justify-center items-center">
+        <img class="w-[7rem] h-[7rem] rounded-[50%]"
+          src="http://p2.music.126.net/SUeqMM8HOIpHv9Nhl9qt9w==/109951165647004069.jpg" alt="" />
       </div>
     </div>
     <div class="w-[100%] flex justify-center flex-direction-row">
-      <div
-        class="w-[5rem] h-[5vw] flex items-center justify-center bg-[rgb(192,192,192)] rounded-[30%]"
-        style="margin-top: -1vw"
-      >
+      <div class="w-[5rem] h-[5vw] flex items-center justify-center bg-[rgb(192,192,192)] rounded-[30%]"
+        style="margin-top: -1vw">
         <Icon icon="ion:camera-sharp" class="margin-right-5vw"></Icon>
         <div>更换</div>
       </div>
@@ -147,65 +135,29 @@ const toHome = () => {
         <!-- 昵称 -->
         <van-field is-link label="昵称" readonly />
         <!-- 性别 -->
-        <van-field
-          v-model="fieldValue"
-          is-link
-          readonly
-          label="性别"
-          placeholder="请选择"
-          @click="gendershow = true"
-          style="border-bottom: none"
-        />
+        <van-field v-model="fieldValue" is-link readonly label="性别" placeholder="请选择" @click="gendershow = true"
+          style="border-bottom: none" />
         <van-popup v-model:show="gendershow" round position="bottom">
-          <van-cascader
-            v-model="fieldValue"
-            :options="usergender"
-            @close="gendershow = false"
-            @finish="onFinish"
-          />
+          <van-cascader v-model="fieldValue" :options="usergender" @close="gendershow = false" @finish="onFinish" />
         </van-popup>
 
-        <div
-          class="van-cell van-cell--clickable van-field"
-          role="button"
-          tabindex="0"
-        >
+        <div class="van-cell van-cell--clickable van-field" role="button" tabindex="0">
           <div class="van-cell__title van-field__label">
-            <label
-              id="van-field-3-label"
-              for="van-field-3-input"
-              data-allow-mismatc="attribute"
-              >我的二维码</label
-            >
+            <label id="van-field-3-label" for="van-field-3-input" data-allow-mismatc="attribute">我的二维码</label>
           </div>
           <div class="van-cell__value van-field__value">
             <div class="van-field__body">
-              <input
-                type="text"
-                id="van-field-3-input"
-                class="van-field__control"
-                aria-labelledby="van-field-3-label"
-                data-allow-mismatch="attribute"
-                readonly
-              />
+              <input type="text" id="van-field-3-input" class="van-field__control" aria-labelledby="van-field-3-label"
+                data-allow-mismatch="attribute" readonly />
             </div>
           </div>
-          <Icon
-            icon="ph:qr-code-light"
-            style="margin-top: 1.5vw; font-size: 24px"
-          />
-          <i
-            class="van-badge__wrapper van-icon van-icon-arrow van-cell__right-icon"
-          >
+          <Icon icon="ph:qr-code-light" style="margin-top: 1.5vw; font-size: 24px" />
+          <i class="van-badge__wrapper van-icon van-icon-arrow van-cell__right-icon">
           </i>
         </div>
 
         <!-- 我的村龄 -->
-        <van-field
-          label="我的村龄"
-          model-value="××天(20××年×月×日创建)"
-          readonly
-        />
+        <van-field label="我的村龄" model-value="××天(20××年×月×日创建)" readonly />
         <!-- IP属地 -->
         <van-field label="IP属地" model-value="湖北" readonly />
       </van-cell-group>
@@ -214,69 +166,26 @@ const toHome = () => {
       <!-- 生日 -->
       <van-cell-group inset>
         <!-- 日历样式 -->
-        <van-field
-          label="生日"
-          readonly
-          v-model="brithValue"
-          is-link
-          @click="brithshow = true"
-          model-value="请选择日期"
-        />
+        <van-field label="生日" readonly v-model="brithValue" is-link @click="brithshow = true" model-value="请选择日期" />
         <van-calendar v-model:show="brithshow" @confirm="onConfirm" />
         <!-- 日历功能 -->
         <!-- <van-cell title="生日" :value="date" @click="show = true" placeholder="请选择日期" />
         <van-calendar v-model:show="show" @confirm="onConfirm" /> -->
         <!-- 地区 -->
-        <van-field
-          v-model="regionValue"
-          is-link
-          readonly
-          label="地区"
-          placeholder="请选择所在地区"
-          @click="regionshow = true"
-        />
+        <van-field v-model="regionValue" is-link readonly label="地区" placeholder="请选择所在地区" @click="regionshow = true" />
         <van-popup v-model:show="regionshow" round position="bottom">
-          <van-cascader
-            v-model="regionValue"
-            title="请选择所在地区"
-            :options="userregion"
-            @close="regionshow = false"
-            @finish="onRegion"
-          />
+          <van-cascader v-model="regionValue" title="请选择所在地区" :options="userregion" @close="regionshow = false"
+            @finish="onRegion" />
         </van-popup>
         <!-- 学校 -->
-        <van-field
-          v-model="schoolValue"
-          is-link
-          readonly
-          label="大学"
-          placeholder="请选择"
-          @click="schoolshow = true"
-        />
+        <van-field v-model="schoolValue" is-link readonly label="大学" placeholder="请选择" @click="schoolshow = true" />
         <van-popup v-model:show="schoolshow" round position="bottom">
-          <van-cascader
-            v-model="schoolValue"
-            :options="userschool"
-            @close="schoolshow = false"
-            @finish="onSchool"
-          />
+          <van-cascader v-model="schoolValue" :options="userschool" @close="schoolshow = false" @finish="onSchool" />
         </van-popup>
         <!-- 音乐 -->
-        <van-field
-          v-model="musicValue"
-          is-link
-          readonly
-          label="音乐标签"
-          placeholder="请选择"
-          @click="musicshow = true"
-        />
+        <van-field v-model="musicValue" is-link readonly label="音乐标签" placeholder="请选择" @click="musicshow = true" />
         <van-popup v-model:show="musicshow" round position="bottom">
-          <van-cascader
-            v-model="musicValue"
-            :options="usermusic"
-            @close="musicshow = false"
-            @finish="onMusic"
-          />
+          <van-cascader v-model="musicValue" :options="usermusic" @close="musicshow = false" @finish="onMusic" />
         </van-popup>
         <!-- 简介 -->
         <van-field is-link readonly label="简介" placeholder="介绍一下自己吧" />
@@ -287,12 +196,7 @@ const toHome = () => {
         <!-- 云音乐等级 -->
         <van-field is-link readonly label="云音乐等级" />
         <!-- 个人相册 -->
-        <van-field
-          is-link
-          readonly
-          label="个人相册"
-          placeholder="上传照片介绍自己"
-        />
+        <van-field is-link readonly label="个人相册" placeholder="上传照片介绍自己" />
         <!-- 村民证 -->
         <van-field is-link readonly label="村民证" placeholder="领取村民证" />
       </van-cell-group>
@@ -315,27 +219,35 @@ const toHome = () => {
 #van-field-2-input {
   text-align: right;
 }
+
 #van-field-3-input {
   text-align: right;
 }
+
 #van-field-4-input {
   text-align: right;
 }
+
 #van-field-5-input {
   text-align: right;
 }
+
 #van-field-6-input {
   text-align: right;
 }
+
 #van-field-7-input {
   text-align: right;
 }
+
 #van-field-8-input {
   text-align: right;
 }
+
 #van-field-9-input {
   text-align: right;
 }
+
 #van-cell__title van-field__label {
   width: 15vw;
 }

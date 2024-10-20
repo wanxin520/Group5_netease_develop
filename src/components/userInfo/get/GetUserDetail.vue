@@ -36,7 +36,7 @@ const toLoginByPhone = () => {
         </div>
         <div v-else-if="!loading" class="w-[100%] flex flex-col justify-between items-center">
             <!-- 昵称 和 vip -->
-            <div class="w-[100%] justify-center items-center mt-5 h-[1.2rem] flex ">
+            <div @click="router.push({name:'detail'})" class="w-[100%] justify-center items-center mt-5 h-[1.2rem] flex ">
                 <div class="text-[#ffffff] text-[16px] font-bold mr-2">{{ userDetail.profile.nickname }}</div>
                 <img v-if="userDetail.profile.vipType != 0" class="w-[2.6rem]"
                     src="https://p6.music.126.net/obj/wonDlsKUwrLClGjCm8Kx/32582186486/9f31/5cfe/207c/2846c11ce0bd05aae1754aed7e63ca58.png"
@@ -61,7 +61,7 @@ const toLoginByPhone = () => {
                 <div class="mr-4"><span class=" text-[#ffffff] text-[12px]">{{ userDetail.profile.followeds
                         }}</span> 粉丝
                 </div>
-                <div class="mr-4"><span class=" text-[#ffffff] text-[12px]">Lv.{{ userDetail.level }}</span>
+                <div @click="router.push({name:'level'})" class="mr-4"><span class=" text-[#ffffff] text-[12px]">Lv.{{ userDetail.level }}</span>
                     等级</div>
                 <div class="mr-4"><span class=" text-[#ffffff] text-[12px]">{{ userDetail.listenSongs
                         }} <span class="text-[10px]">首</span></span> 听歌</div>

@@ -11,7 +11,7 @@ const props = defineProps({
 songMessage.value = props.songMessage
 musicPlayingData.value = props.musicPlayingData
 
-const emit = defineEmits(["closePlayBar", "nextSong", "backSong", "play", "pause"])
+const emit = defineEmits(["closePlayBar", "nextSong", "backSong", "play", "pause", "showPlayingList"])
 const closePoup = () => {
   emit("closePlayBar", false)
 }
@@ -102,7 +102,7 @@ const closePoup = () => {
                 <Icon icon="entypo:controller-next" width="1.5em" height="1.5rem" style="color: #ffffff" />
               </div>
               <div>
-                <Icon icon="iconamoon:playlist-fill" width="1.4rem" height="1.4rem" />
+                <Icon @click="emit('showPlayingList')" icon="iconamoon:playlist-fill" width="1.4rem" height="1.4rem" />
               </div>
             </div>
           </div>

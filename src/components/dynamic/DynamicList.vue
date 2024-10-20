@@ -11,7 +11,7 @@ const props = defineProps({
 <template>
     <div v-for="(item, index) in props.events"
         class="w-[100%] m-auto flex flex-col justify-around items-around overflow-hidden">
-        <div class="flex justify-start items-startp-1 mt-5 ">
+        <div  v-if="item.user" class="flex justify-start items-startp-1 mt-5 ">
             <div class="flex justify-center">
                 <img class="w-[3rem] h-[3rem] rounded-[50%]" :src="item.user.avatarUrl" alt="">
             </div>

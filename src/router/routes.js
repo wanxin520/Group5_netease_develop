@@ -87,17 +87,62 @@ export default [
             component: () =>
               import("@/views/Pages/Discover/menu/MusicRoom.vue"),
           },
-          // 个人资料
-          {
-            path: "/datum",
-            name: "GetUserDatum",
-            component: () =>
-              import("@/components/userInfo/get/GetUserDatum.vue"),
-          },
         ],
       },
       { path: "mv", name: "mv", component: () => import("@/views/TabBar/MVBar.vue") },
-      { path: "personal", name: "personal", component: () => import("@/views/TabBar/PersonalBar.vue") },
+      // 个人中心路由
+      {
+        path: "personal",
+        children: [
+          {
+            path: "",
+            name: "personal",
+            component: () => import("@/views/TabBar/PersonalBar.vue"),
+          },
+          // 最近
+          {
+            path: "recently",
+            name: "recently",
+            component: () => import("@/components/userInfo/get/children/Recently.vue"),
+          },
+          // 本地
+          {
+            path: "local",
+            name: "local",
+            component: () => import("@/components/userInfo/get/children/Local.vue"),
+          },
+          // 网盘
+          {
+            path: "netdisk",
+            name: "netdisk",
+            component: () => import("@/components/userInfo/get/children/Netdisk.vue"),
+          },
+          // 已购
+          {
+            path: "shoped",
+            name: "shoped",
+            component: () => import("@/components/userInfo/get/children/Shoped.vue"),
+          },
+          // 更多功能
+          {
+            path: "more",
+            name: "more",
+            component: () => import("@/components/userInfo/get/children/MoreApp.vue"),
+          },
+          // 详细资料
+          {
+            path: "detail",
+            name: "detail",
+            component: () => import("@/components/userInfo/get/GetUserDatum.vue"),
+          },
+          // 用户等级
+          {
+            path: "level",
+            name: "level",
+            component: () => import("@/components/userInfo/get/GetUserLevel.vue"),
+          },
+        ],
+      },
       { path: "attention", name: "attention", component: () => import("@/views/TabBar/AttentionBar.vue") },
       { path: "dynamic", name: "dynamic", component: () => import("@/views/TabBar/DynamicBar.vue") },
       // 歌单详情路由
