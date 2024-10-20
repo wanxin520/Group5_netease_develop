@@ -1,6 +1,6 @@
 <script setup>
 import { watch } from "vue";
-import { getRankList, getRankListDetail } from "@/api";
+import { getRankList, getRankListDetail } from "@/api/homemenu";
 import { useRequest } from "vue-request";
 
 const { data: rankListData } = useRequest(() => getRankList());

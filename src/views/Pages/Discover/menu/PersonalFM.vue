@@ -2,7 +2,7 @@
 import { ref, watch, createApp } from "vue";
 import { Icon } from "@iconify/vue";
 import { useRequest } from "vue-request";
-import { getPersonalFM } from "@/api";
+import { getPersonalFM } from "@/api/homemenu";
 import { NoticeBar } from "vant";
 import { useRouter } from "vue-router";
 
