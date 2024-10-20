@@ -112,12 +112,44 @@ lasttime : 返回数据的 lasttime ,默认-1,传入上一次返回结果的 las
 24 分享专栏文章
 41、21 分享视频
 */
-
 export const getUserEvent = async (data) => {
     const [error, res] = await to(request.post(`/user/event?uid=${data.uid}&cookie=${data.cookie}`));
     if (error) return console.log("请求出错:" + error);
     return res.data;
 };
+
+/* 
+获取用户关注列表
+说明 : 登录后调用此接口 , 传入用户 id, 可以获取用户关注列表
+必选参数 : uid : 用户 id
+可选参数 :
+limit : 返回数量 , 默认为 30
+offset : 偏移数量，用于分页 ,如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0
+接口地址 : /user/follows
+调用例子 : /user/follows?uid=32953014
+*/
+export const getUserFollowsList = async (data) => {
+    const [error, res] = await to(request.post(`/user/follows?uid=${data.uid}&cookie=${data.cookie}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+
+/* 
+获取用户粉丝列表
+说明 : 登录后调用此接口 , 传入用户 id, 可以获取用户粉丝列表
+必选参数 : uid : 用户 id
+可选参数 : limit : 返回数量 , 默认为 30
+offset : 偏移数量，用于分页 ,如 :( 页数 -1)*30, 其中 30 为 limit 的值 , 默认为 0
+接口地址 : /user/followeds
+调用例子 : /user/followeds?uid=32953014 /user/followeds?uid=416608258&limit=1 /user/followeds?uid=416608258&limit=1&offset=1
+*/
+export const getUserFollowedsList = async (data) => {
+    const [error, res] = await to(request.post(`/user/followeds?uid=${data.uid}&cookie=${data.cookie}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+
+
 
 /* 
 私信和通知接口
@@ -148,15 +180,115 @@ export const getDynamicMessage = async (data) => {
 /* 
 获取歌手详情
 说明 : 调用此接口 , 传入歌手 id, 可获得获取歌手详情
-
 必选参数 : id: 歌手 id
-
 接口地址 : /artist/detail
-
 调用例子 : /artist/detail?id=11972054 (Billie Eilish)
 */
 export const getArtistDetail = async (data) => {
     const [error, res] = await to(request.post(`/artist/detail?id=${data.id}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+
+/* 
+获取用户播放记录
+说明 : 登录后调用此接口 , 传入用户 id, 可获取用户播放记录
+必选参数 : uid : 用户 id
+可选参数 : type : type=1 时只返回 weekData, type=0 时返回 allData
+接口地址 : /user/record
+调用例子 : /user/record?uid=32953014&type=1
+*/
+export const getUserRecord = async (data) => {
+    const [error, res] = await to(request.post(`/user/record?uid=${data.id}&cookie=${data.cookie}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+/* 
+当前账号关注的用户/歌手
+说明 : 调用此接口, 可获得当前账号关注的用户/歌手
+可选参数 : size : 返回数量 , 默认为 30
+cursor : 返回数据的 cursor, 默认为 0 , 传入上一次返回结果的 cursor,将会返回下一页的数据
+scene : 场景, 0 表示所有关注, 1 表示关注的歌手, 2 表示关注的用户, 默认为 0
+接口地址 : /user/follow/mixed
+调用例子 : /user/follow/mixed?scene=1
+*/
+export const getUserFollowMixed = async (data) => {
+    const [error, res] = await to(request.post(`/user/follow/mixed?cookie=${data.cookie}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+
+/* 
+最近播放-歌曲
+说明 : 调用此接口 , 可获得最近播放-歌曲
+可选参数 : limit : 返回数量 , 默认为 100
+接口地址 : /record/recent/song
+调用例子 : /record/recent/song?limit=1
+*/
+export const getUserRecentSongs = async (data) => {
+    const [error, res] = await to(request.post(`/record/recent/song?cookie=${data.cookie}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+
+/* 
+最近播放-视频
+说明 : 调用此接口 , 可获得最近播放-视频
+可选参数 : limit : 返回数量 , 默认为 100
+接口地址 : /record/recent/video
+调用例子 : /record/recent/video?limit=1
+*/
+export const getUserRecentVideos = async (data) => {
+    const [error, res] = await to(request.post(`/record/recent/video?cookie=${data.cookie}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+/* 
+最近播放-声音
+说明 : 调用此接口 , 可获得最近播放-声音
+可选参数 : limit : 返回数量 , 默认为 100
+接口地址 : /record/recent/voice
+调用例子 : /record/recent/voice?limit=1
+*/
+export const getUserRecentVoices = async (data) => {
+    const [error, res] = await to(request.post(`/record/recent/voice?cookie=${data.cookie}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+/* 
+最近播放-歌单
+说明 : 调用此接口 , 可获得最近播放-歌单
+可选参数 : limit : 返回数量 , 默认为 100
+接口地址 : /record/recent/playlist
+调用例子 : /record/recent/playlist?limit=1
+*/
+export const getUserRecentPlaylists = async (data) => {
+    const [error, res] = await to(request.post(`/record/recent/playlist?cookie=${data.cookie}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+/* 
+最近播放-专辑
+说明 : 调用此接口 , 可获得最近播放-专辑
+可选参数 : limit : 返回数量 , 默认为 100
+接口地址 : /record/recent/album
+调用例子 : /record/recent/album?limit=1
+*/
+export const getUserRecentAlbums = async (data) => {
+    const [error, res] = await to(request.post(`/record/recent/album?cookie=${data.cookie}`));
+    if (error) return console.log("请求出错:" + error);
+    return res.data;
+};
+
+/* 
+最近播放-播客
+说明 : 调用此接口 , 可获得最近播放-播客
+可选参数 : limit : 返回数量 , 默认为 100
+接口地址 : /record/recent/dj
+调用例子 : /record/recent/dj?limit=1
+ */
+export const getUserRecentDjs = async (data) => {
+    const [error, res] = await to(request.post(`/record/recent/dj?cookie=${data.cookie}`));
     if (error) return console.log("请求出错:" + error);
     return res.data;
 };

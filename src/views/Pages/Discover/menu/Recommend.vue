@@ -33,20 +33,6 @@ const getListDataId = (ListDataId) => {
     console.log(ListDataId);
 
 }
-/* const recommendData ={
-  name:recommendPageData.value.recommend[0].name,
-  picUrl:recommendPageData.value.recommend[0].picUrl,
-  playcount:recommendPageData.value.recommend[0].playcount,  
-  userId:recommendPageData.value.recommend[0].creator.userId,
-  avatarUrl:recommendPageData.value.recommend[0].creator.avatarUrl,
-  backgroundUrl:recommendPageData.value.recommend[0].creator.backgroundUrl,
-  backgroundImgId:recommendPageData.value.recommend[0].creator.backgroundImgId,
-  avatarImgIdStr:recommendPageData.value.recommend[0].creator.avatarImgIdStr,
-  avatarImgId:recommendPageData.value.recommend[0].creator.avatarImgId
-
-
-  
-} */
 </script>
 
 <template>

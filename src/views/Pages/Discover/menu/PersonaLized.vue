@@ -1,7 +1,7 @@
 eslint-disable vue/require-v-for-key
 <script setup>
 import { ref } from "vue";
-import { getTopPlayList } from "@/api";
+import { getTopPlayList } from "@/api/homemenu";
 
 const top = ref();
 getTopPlayList()
