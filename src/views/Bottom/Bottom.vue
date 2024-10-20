@@ -13,7 +13,7 @@ import { Icon } from "@iconify/vue";
                     </div>
                 </div>
             </van-tabbar-item>
-            <van-tabbar-item replace to="/home/podcast">
+            <van-tabbar-item replace to="/home/mv">
                 <div class="flex flex-col justify-end items-center">
                     <Icon icon="mingcute:video-fill" width="1.5rem" height="1.5rem" />
                     <div class="flex flex-col justify-around items-center text-[9.7px] h-[1.3rem]">

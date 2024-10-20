@@ -8,10 +8,17 @@
 import to from "await-to-js";
 import request from "./request";
 import { useUserStore } from "@/store";
+<<<<<<< HEAD
 const userStore = useUserStore();
 const params = new URLSearchParams();
 params.append("cookie", userStore.userInfo.cookie);
 params.append("timestamp", Date.now());
+=======
+const userStore = useUserStore()
+const params = new URLSearchParams()
+params.append("cookie", userStore.userInfo.cookie)
+params.append("timestamp", Date.now())
+>>>>>>> feature/61
 // 使用async和await的语法糖的写法 async和await就是Promise的语法糖
 // 使用to函数实现捕获请求的过程中会出现的错误
 
@@ -51,8 +58,8 @@ export const getDragonBall = async (data) => {
 };
 
 // discover页面数据渲染
-export const getHomePageData = async () => {
-  const [error, res] = await to(request.get("/homepage/block/page"));
+export const getHomePageData = async (data) => {
+  const [error, res] = await to(request.post(`/homepage/block/page?cookie=${data.cookie}`));
   if (error) return console.log("请求出错:" + error);
   return res.data.data.blocks;
 };
@@ -197,7 +204,7 @@ export const refreshLoginStatus = async (data) => {
 调用例子 : /recommend/resource
 */
 export const getRecommendList = async (data) => {
-  const [error, res] = await to(request.get("/recommend/resource"), data);
+  const [error, res] = await to(request.post(`/recommend/resource?&cookie=${userStore.userInfo.cookie}`));
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };
@@ -208,8 +215,8 @@ export const getRecommendList = async (data) => {
 接口地址: /recommend/songs
 调用例子: /recommend/songs
 */
-export const getRecommendSongs = async (data) => {
-  const [error, res] = await to(request.get("/recommend/songs"), data);
+export const getRecommendSongs = async () => {
+  const [error, res] = await to(request.post(`/recommend/songs?cookie=${userStore.userInfo.cookie}`));
   if (error) return console.log("请求出错:" + error);
   return res.data;
 };

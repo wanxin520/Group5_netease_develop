@@ -8,15 +8,17 @@ import Bottom from "../Bottom/Bottom.vue";
 import Banner from "../Pages/Discover/children/Banner.vue";
 import MenuPage from "../Pages/Discover/children/MenuPage.vue";
 import BottomPlayBar from "@/components/play/music/BottomPlayBar.vue";
-import { usePlayStore } from "@/store";
+import { usePlayStore,useUserStore } from "@/store";
 const playStore = usePlayStore()
 
 watch(playStore, () => {
     console.log("库里数据变了");
 })
-
+const userStore = useUserStore()
 // useRequest传入的是一个返回Promise值的请求函数,data就是返回的数据
-const { data: pageData } = useRequest(getHomePageData)
+const { data: pageData } = useRequest(()=>getHomePageData(
+    userStore.getLoginStatus ? {cookie:null} : {cookie: userStore.cookie}
+))
 
 </script>
 
